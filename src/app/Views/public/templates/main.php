@@ -96,7 +96,7 @@
                 </button>
             </div>
 
-            <div class="dropdown sidebar-user m-1 rounded">
+            <!-- <div class="dropdown sidebar-user m-1 rounded">
                 <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="d-flex align-items-center gap-2">
                         <img class="rounded header-profile-user" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDSQXqwdS4fWL57bbZn_ELyAX3IVCTh6IXk2qS8p0Woa8XDgTG-ndksUZ8gtK0XakaiJPqvijrGi2oHKHfsLnSp74zwlONu0Y2lbkoXrtakXrfu7MgCB0CFX_sKbNZJdlD4SzyQCYn7au4rdTPdKSSCnJRVzUXAhe6HpuihqqVx9XJ_IV8m_E2zw/s320/GKL12_logo-kabupaten-majalengka%20-%20Koleksilogo.com.png" alt="Header Avatar">
@@ -105,7 +105,7 @@
                         </span>
                     </span>
                 </button>
-            </div>
+            </div> -->
             <?= view('public/templates/menu'); ?>
         </div>
         <!-- Left Sidebar End -->
