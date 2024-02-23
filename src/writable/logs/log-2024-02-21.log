@@ -1,0 +1,222 @@
+INFO - 2024-02-21 02:31:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:31:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:32:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:35:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:57:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 02:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:04:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:05:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:05:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:05:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:20:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 03:43:17 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:44:55 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:45:01 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:46:17 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 03:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 03:49:03 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:49:09 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:49:22 --> ErrorException: Undefined variable: request
+in APPPATH/Controllers/Cms/JabatanController.php on line 49.
+ 1 APPPATH/Controllers/Cms/JabatanController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: request', '/home/dcdrcpia/e-smades.dcdrcpiak.id/src/app/Controllers/Cms/JabatanController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:49:46 --> ErrorException: Undefined variable: request
+in APPPATH/Controllers/Cms/JabatanController.php on line 49.
+ 1 APPPATH/Controllers/Cms/JabatanController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: request', '/home/dcdrcpia/e-smades.dcdrcpiak.id/src/app/Controllers/Cms/JabatanController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 03:50:13 --> ErrorException: Array to string conversion
+in APPPATH/Controllers/Cms/JabatanController.php on line 55.
+ 1 APPPATH/Controllers/Cms/JabatanController.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', '/home/dcdrcpia/e-smades.dcdrcpiak.id/src/app/Controllers/Cms/JabatanController.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 03:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 03:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 03:59:13 --> ErrorException: Array to string conversion
+in APPPATH/Controllers/Cms/JabatanController.php on line 60.
+ 1 APPPATH/Controllers/Cms/JabatanController.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', '/home/dcdrcpia/e-smades.dcdrcpiak.id/src/app/Controllers/Cms/JabatanController.php', 60, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 04:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 04:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 04:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 04:41:37 --> ErrorException: Array to string conversion
+in APPPATH/Controllers/Cms/JabatanController.php on line 60.
+ 1 APPPATH/Controllers/Cms/JabatanController.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', '/home/dcdrcpia/e-smades.dcdrcpiak.id/src/app/Controllers/Cms/JabatanController.php', 60, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 04:41:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 05:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 05:03:22 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 05:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 05:06:03 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 05:43:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 05:43:10 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(39): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->datatable()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 05:50:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:20:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 07:20:47 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 401
+in SYSTEMPATH/HTTP/CURLRequest.php on line 695.
+ 1 SYSTEMPATH/HTTP/CURLRequest.php(695): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 401')
+ 2 SYSTEMPATH/HTTP/CURLRequest.php(387): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH/HTTP/CURLRequest.php(145): CodeIgniter\HTTP\CURLRequest->send('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan')
+ 4 APPPATH/Controllers/Cms/JabatanController.php(28): CodeIgniter\HTTP\CURLRequest->request('GET', 'http://api-e-smades.dcdrcpiak.id:80/api/jabatan', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Cms\JabatanController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cms\JabatanController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 07:24:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:24:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:24:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:36:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:36:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:37:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:38:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:42:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:42:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:42:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:42:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:42:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:43:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:43:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:43:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:43:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:43:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:50:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:50:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:50:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:54:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:54:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 07:56:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-21 08:02:25 --> Error: Class 'Dotenv\Dotenv' not found
+in APPPATH/Controllers/Cms/JabatanController.php on line 20.
+ 1 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\Cms\JabatanController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-21 08:02:27 --> Error: Class 'Dotenv\Dotenv' not found
+in APPPATH/Controllers/Cms/JabatanController.php on line 20.
+ 1 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\Cms\JabatanController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-21 08:04:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 08:04:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 10:43:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 10:44:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 10:44:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 19:28:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 19:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-21 19:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,0 +1,48 @@
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://themesbrand.com/
+Contact: support@themesbrand.com
+File: Custom Css File
+*/
+
+.navbar-menu {
+    width: 400px !important;
+}
+#page-topbar {
+    left: 400px !important;
+}
+
+.navbar-brand-box {
+    background-color: var(--vz-green);
+}
+
+.container-fluid, .page-content {
+    padding: 0 !important;
+}
+
+:is([data-layout=vertical],[data-layout=semibox]) .app-menu .row>* {
+    width: 120px;
+}
+
+/* .modal { z-index: 2; }  */
+.navbar-menu .navbar-nav .nav-link.active {
+    background-color: var(--vz-green);
+    color: var(--vz-gray-900);
+    font-weight: 600;
+}
+
+#map {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+.leaflet-container a.leaflet-popup-close-button {
+    top: 20px !important;
+    right: 20px !important;
+}
+.leaflet-popup-tip-container {
+    display: none;
+}
