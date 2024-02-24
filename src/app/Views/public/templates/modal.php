@@ -810,7 +810,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalKelembagaanLabel">Struktur Organisasi</h5>
+                <h5 class="modal-title" id="modalKelembagaanLabel">Kelembagaan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -818,11 +818,11 @@
                     <div class="row">
                         <div class="col-md-4 text-center">
                             <div class="text-center">
-                                <a href="javascript:showModalSO('Profil Desa')">
+                                <a href="javascript:showModal('BPD')">
                                     <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
                                         <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
                                     </div>
-                                    <h5 class="fs-14 mb-1">Kelembagaan</h5>
+                                    <h5 class="fs-14 mb-1">BPD</h5>
                                 </a>
                             </div>
                         </div>
@@ -832,7 +832,7 @@
                                     <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
                                         <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
                                     </div>
-                                    <h5 class="fs-14 mb-1">Galeri</h5>
+                                    <h5 class="fs-14 mb-1">LPM</h5>
                                 </a>
                             </div>
                         </div>
@@ -842,7 +842,47 @@
                                     <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
                                         <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
                                     </div>
-                                    <h5 class="fs-14 mb-1">Kabar Desa</h5>
+                                    <h5 class="fs-14 mb-1">BUMDES</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="text-center">
+                                <a href="javascript:showModalNews()">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    </div>
+                                    <h5 class="fs-14 mb-1">BUMDES</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="text-center">
+                                <a href="javascript:showModalNews()">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    </div>
+                                    <h5 class="fs-14 mb-1">PKK</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="text-center">
+                                <a href="javascript:showModalNews()">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    </div>
+                                    <h5 class="fs-14 mb-1">Karang Taruna</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="text-center">
+                                <a href="javascript:showModalNews()">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    </div>
+                                    <h5 class="fs-14 mb-1">Kader Posyandu</h5>
                                 </a>
                             </div>
                         </div>

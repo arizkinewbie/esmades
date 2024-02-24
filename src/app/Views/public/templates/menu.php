@@ -14,7 +14,7 @@
                         <div class="text-center">
                             <a href="javascript:showModal('Profil Desa Talaga Wetan')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="https://assets.digitaldesa.id/online/72.03.06.2002/common/300_donggala.png" alt="" class="avatar-md material-shadow">
                                 </div>
                                 <!-- NAMA DESA dari database -->
                                 <h5 class="fs-14 mb-1">Profil Desa Talaga Wetan</h5>
