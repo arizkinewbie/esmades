@@ -31,13 +31,13 @@
                     </div>
                 </div>
                 <h6 class="fs-16 my-3">Visi</h6>
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-3">
                     <div class="flex-grow-1 ms-2 ">
                         <p class="text-muted mb-0">Terwujudnya Talagawetan Yang Religius Aman Harmonis Maju Amanah dan Transfaran ( RAHMAT )</p>
                     </div>
                 </div>
                 <h6 class="fs-16 my-3">Misi</h6>
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-3">
                     <div class="flex-shrink-0">
                         <i class="ri-checkbox-circle-fill text-success"></i>
                     </div>
@@ -48,7 +48,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-3">
                     <div class="flex-shrink-0">
                         <i class="ri-checkbox-circle-fill text-success"></i>
                     </div>
@@ -59,7 +59,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-3">
                     <div class="flex-shrink-0">
                         <i class="ri-checkbox-circle-fill text-success"></i>
                     </div>
@@ -73,7 +73,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-3">
                     <div class="flex-shrink-0">
                         <i class="ri-checkbox-circle-fill text-success"></i>
                     </div>
@@ -112,7 +112,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-1.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-success-subtle text-success fs-11">Business</span>
                                             </li>
                                         </ul>
@@ -140,7 +140,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-2.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-warning-subtle text-warning fs-11">Development</span>
                                             </li>
                                         </ul>
@@ -167,7 +167,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-3.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-info-subtle text-info fs-11">Fashion</span></li>
                                         </ul>
                                         <h5><a href="javascript:void(0);">How to become a best sale marketer in a
@@ -194,7 +194,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-4.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-primary-subtle text-primary fs-11">Product</span>
                                             </li>
                                         </ul>
@@ -222,7 +222,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-5.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-success-subtle text-success fs-11">Business</span>
                                             </li>
                                         </ul>
@@ -250,7 +250,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-6.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-danger-subtle text-danger fs-11">Design</span></li>
                                         </ul>
                                         <h5><a href="javascript:void(0);">A day in the of a professional fashion
@@ -277,7 +277,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-7.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-danger-subtle text-danger fs-11">Design</span></li>
                                         </ul>
                                         <h5><a href="javascript:void(0);">Design your apps in your own way</a></h5>
@@ -303,7 +303,7 @@
                                         <img src="<?= base_url('dist/') ?>assets/images/small/img-8.jpg" alt="" width="115" class="rounded-1" />
                                     </div>
                                     <div class="flex-grow-1 ms-sm-4 mt-3 mt-sm-0">
-                                        <ul class="list-inline mb-2">
+                                        <ul class="list-inline mb-2 mt-3">
                                             <li class="list-inline-item"><span class="badge bg-warning-subtle text-warning fs-11">Development</span>
                                             </li>
                                         </ul>
@@ -755,7 +755,7 @@
                                         </div>
                                         <!-- end row -->
 
-                                        <div class="text-center mt-2 mb-4">
+                                        <div class="text-center mt-3 mb-4">
                                             <a href="javascript:void(0);" class="text-success material-shadow-none"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load
                                                 More </a>
                                         </div>
@@ -789,11 +789,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
-                        <h4 class="h5 mb-2">Penduduk Berdasarkan Jenis Kelamin</h4>
+                        <h4 class="h5 mb-2 mt-3">Penduduk Berdasarkan Jenis Kelamin</h4>
                         <div id="chartdiv" class="text-center"></div>
                     </div>
                     <div class="col-6">
-                        <h4 class="h5 mb-2">Penduduk Berdasarkan Jenis Kelamin</h4>
+                        <h4 class="h5 mb-2 mt-3">Penduduk Berdasarkan Jenis Kelamin</h4>
                         <div id="chartdiv2" class="text-center"></div>
                     </div>
                     <!-- end col -->
@@ -819,8 +819,8 @@
                         <div class="col-md-4 text-center">
                             <div class="text-center">
                                 <a href="javascript:showModal('BPD')">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bpd.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">BPD</h5>
                                 </a>
@@ -829,8 +829,8 @@
                         <div class="col-md-4 text-center">
                             <div class="text-center">
                                 <a href="javascript:showModalGalery()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/lpm.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">LPM</h5>
                                 </a>
@@ -838,9 +838,9 @@
                         </div>
                         <div class="col-md-4 text-center">
                             <div class="text-center">
-                                <a href="javascript:showModalNews()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                <a href="javascript:showModalISO()">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bumdes.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">BUMDES</h5>
                                 </a>
@@ -849,18 +849,8 @@
                         <div class="col-md-4 text-center">
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
-                                    </div>
-                                    <h5 class="fs-14 mb-1">BUMDES</h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="text-center">
-                                <a href="javascript:showModalNews()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/pkk.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">PKK</h5>
                                 </a>
@@ -869,8 +859,8 @@
                         <div class="col-md-4 text-center">
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/karang-taruna.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">Karang Taruna</h5>
                                 </a>
@@ -879,8 +869,8 @@
                         <div class="col-md-4 text-center">
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                        <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/posyandu.png" alt="" class="avatar-md material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">Kader Posyandu</h5>
                                 </a>
@@ -964,8 +954,8 @@
         },
         series: [{
             points: [{
-                    x: 'Kepala Desa \n H. Irwanudin',
-                    id: 'PM'
+                    label_text: '<span><img src="https://e-smades.test/dist/assets/images/users/avatar-3.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%"><br>Kepala Desa<br>H. Irwanudin</span>',
+                    id: 'PM',
                 },
                 {
                     x: 'Deputy Project Manager',
