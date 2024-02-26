@@ -7,7 +7,8 @@
     <title><?= $pageTitle ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Selamat Datang di Elektronik Smart Desa. Copyright 2024 © E-SmaDes. All rights reserved." name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta name="image" content="https://desa.esmades.id/dist/assets/images/favicon.ico">
+    <meta content="E-SmaDes" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= base_url('dist/') ?>assets/images/favicon.ico">
 
