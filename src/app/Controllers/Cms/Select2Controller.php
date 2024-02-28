@@ -89,7 +89,7 @@ class Select2Controller extends BaseAdminController
 
         $api_path = '/api/provinsi';
         if($id) {
-            $api_path = '/api/provinsi?kode=' . $id;
+            $api_path = '/api/provinsi/show/' . $id;
         }
         
         $dataRequest = [
