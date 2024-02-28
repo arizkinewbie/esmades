@@ -95,6 +95,7 @@ class KabupatenController extends BaseAdminController
                 $data = [
                     'title' => $this->titleHeader,
                     'subTitle' => 'Edit',
+                    'select2' => true,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
@@ -113,6 +114,7 @@ class KabupatenController extends BaseAdminController
             'method' => 'POST',
             'api_path' => '/api/kabupaten/update/' . $id,
             'form_params' => [
+                'id'                => $id,
                 'nama'              => $nama,
                 'provinsiKode'      => $provinsiKode,
                 'kode'              => $kode

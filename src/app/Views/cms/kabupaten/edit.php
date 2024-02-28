@@ -18,6 +18,34 @@
                                 <input type="text" class="form-control nama" name="nama" value="<?= $nama ?>" placeholder="Masukan nama">
                             </div>
                         </div>
+
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Provinsi Kode</label>
+                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <div class="mb-3">
+                                <label for="kodeinput" class="form-label">Kode</label>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <div class="mb-1">
+                                <input type="text" class="form-control kode1" name="kode1" readonly>
+                            </div>
+                        </div>
+                        
+                        -
+
+                        <div class="col-2">
+                            <div class="mb-1">
+                                <input type="text" class="form-control kode2" name="kode2" placeholder="Masukan kode">
+                            </div>
+                        </div>
+                        
                         <!--end col-->
                         <div class="col-lg-12">
                             <div class="text-start">
