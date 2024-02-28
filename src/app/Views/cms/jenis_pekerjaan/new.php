@@ -8,7 +8,7 @@
             
 
             <div class="card-body">
-                <form action="<?= site_url('admin/jenis_pekerjaaan/create') ?>" method="post">
+                <form action="<?= site_url('admin/jenis_pekerjaan/create') ?>" method="post">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
