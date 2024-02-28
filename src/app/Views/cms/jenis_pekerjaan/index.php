@@ -33,7 +33,7 @@
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                         </li>
                                         <li>
-                                            <a href="<?= site_url('admin/jenis_pekerjaan/delete/' . $k->id) ?>" class="dropdown-item remove-item-btn">
+                                            <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>
                                         </li>
