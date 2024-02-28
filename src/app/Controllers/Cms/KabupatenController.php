@@ -6,7 +6,7 @@ use App\Controllers\Cms\BaseAdminController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Config\Services;
 
-class JabatanController extends BaseAdminController
+class KabupatenController extends BaseAdminController
 {
     use ResponseTrait;
     protected $var = [];
@@ -15,9 +15,9 @@ class JabatanController extends BaseAdminController
 
     public function __construct()
     {
-        $this->var['viewPath'] = 'cms/jabatan/';
+        $this->var['viewPath'] = 'cms/kabupaten/';
         $this->apiDomain = getenv('API_DOMAIN');
-        $this->titleHeader = 'Jabatan';
+        $this->titleHeader = 'Kabupaten';
     }
 
     public function index()
@@ -25,7 +25,7 @@ class JabatanController extends BaseAdminController
 
         $dataRequest = [
             'method' => 'GET',
-            'api_path' => '/api/jabatan',
+            'api_path' => '/api/kabupaten',
         ];
         $response = $this->request($dataRequest);
 
@@ -50,6 +50,7 @@ class JabatanController extends BaseAdminController
     public function new() {
         $data = [
             'title' => $this->titleHeader,
+            'select2' => true,
             'subTitle' => 'Add New',
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
@@ -58,19 +59,24 @@ class JabatanController extends BaseAdminController
     }
     
     public function create() {
-        $nama = $this->request->getPost('nama');
+        $nama           = $this->request->getPost('nama');
+        $provinsiKode   = $this->request->getPost('provinsiKode');
+        $kode1   = $this->request->getPost('kode1');
+        $kode2   = $this->request->getPost('kode2');
 
         $dataRequest = [
-            'method' => 'POST',
-            'api_path' => '/api/jabatan',
-            'form_params' => [
-                'nama' => $nama,
+                'method'            => 'POST',
+                'api_path'          => '/api/kabupaten',
+                'form_params'       => [
+                    'nama'              => $nama,
+                    'provinsiKode'      => $provinsiKode,
+                    'kode'              => $kode1.'.'.$kode2
             ],
         ];
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jabatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/kabupaten/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
@@ -81,7 +87,7 @@ class JabatanController extends BaseAdminController
         if($id) {
             $dataRequest = [
                 'method' => 'GET',
-                'api_path' => '/api/jabatan/edit/' . $id,
+                'api_path' => '/api/kabupaten/edit/' . $id,
             ];
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
@@ -100,29 +106,33 @@ class JabatanController extends BaseAdminController
 
     public function update($id = null) {
         $nama = $this->request->getPost('nama');
+        $provinsiKode   = $this->request->getPost('provinsiKode');
+        $kode   = $this->request->getPost('kode');
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/jabatan/update/' . $id,
+            'api_path' => '/api/kabupaten/update/' . $id,
             'form_params' => [
-                'nama' => $nama,
+                'nama'              => $nama,
+                'provinsiKode'      => $provinsiKode,
+                'kode'              => $kode
             ],
         ];
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jabatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/kabupaten/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/jabatan/create')->with('error', json_decode($response->getBody())->messages);
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
-    
+
     public function delete($id = null) {
 
         if($id) {
             $dataRequest = [
                 'method' => 'POST',
-                'api_path' => '/api/jabatan/delete/' . $id,
+                'api_path' => '/api/kabupaten/delete/' . $id,
             ];
 
             $response = $this->request($dataRequest);

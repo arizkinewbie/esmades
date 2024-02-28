@@ -34,6 +34,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('create', 'JabatanController::create');
         $routes->get('edit/(:num)', 'JabatanController::edit/$1');
         $routes->post('update/(:num)', 'JabatanController::update/$1');
+        $routes->get('delete/(:num)', 'JabatanController::delete/$1');
     });
 
     $routes->group('agama', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
@@ -42,6 +43,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('create', 'AgamaController::create');
         $routes->get('edit/(:num)', 'AgamaController::edit/$1');
         $routes->post('update/(:num)', 'AgamaController::update/$1');
+        $routes->get('delete/(:num)', 'AgamaController::delete/$1');
     });
 
     $routes->group('jenis_pekerjaan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
@@ -50,6 +52,66 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('create', 'JenisPekerjaanController::create');
         $routes->get('edit/(:num)', 'JenisPekerjaanController::edit/$1');
         $routes->post('update/(:num)', 'JenisPekerjaanController::update/$1');
+        $routes->get('delete/(:num)', 'JenisPekerjaanController::delete/$1');
+    });
+
+    $routes->group('lembaga', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'LembagaController::index');
+        $routes->get('new', 'LembagaController::new');
+        $routes->post('create', 'LembagaController::create');
+        $routes->get('edit/(:num)', 'LembagaController::edit/$1');
+        $routes->post('update/(:num)', 'LembagaController::update/$1');
+        $routes->get('delete/(:num)', 'LembagaController::delete/$1');
+    });
+
+    $routes->group('provinsi', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'ProvinsiController::index');
+        $routes->get('new', 'ProvinsiController::new');
+        $routes->post('create', 'ProvinsiController::create');
+        $routes->get('edit/(:num)', 'ProvinsiController::edit/$1');
+        $routes->post('update/(:num)', 'ProvinsiController::update/$1');
+        $routes->get('delete/(:num)', 'ProvinsiController::delete/$1');
+    });
+    
+    $routes->group('perangkat_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'PerangkatDesaController::index');
+        $routes->get('new', 'PerangkatDesaController::new');
+        $routes->post('create', 'PerangkatDesaController::create');
+        $routes->post('testing', 'PerangkatDesaController::testing');
+        $routes->get('edit/(:num)', 'PerangkatDesaController::edit/$1');
+        $routes->post('update/(:num)', 'PerangkatDesaController::update/$1');
+    });
+    
+    $routes->group('select2', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('jabatan', 'Select2Controller::jabatan');
+        $routes->get('jabatan/(:num)', 'Select2Controller::jabatan/$1');
+        $routes->get('pendidikan', 'Select2Controller::pendidikan');
+        $routes->get('pendidikan/(:num)', 'Select2Controller::pendidikan/$1');
+        $routes->get('provinsi', 'Select2Controller::provinsi');
+        $routes->get('provinsi/(:num)', 'Select2Controller::provinsi/$1');
+    });
+
+    $routes->group('pendidikan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'PendidikanController::index');
+        $routes->get('new', 'PendidikanController::new');
+        $routes->post('create', 'PendidikanController::create');
+        $routes->get('edit/(:num)', 'PendidikanController::edit/$1');
+        $routes->post('update/(:num)', 'PendidikanController::update/$1');
+        $routes->get('delete/(:num)', 'PendidikanController::delete/$1');
+    });
+
+    $routes->group('kabupaten', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'KabupatenController::index');
+        $routes->get('new', 'KabupatenController::new');
+        $routes->post('create', 'KabupatenController::create');
+        $routes->get('edit/(:num)', 'KabupatenController::edit/$1');
+        $routes->post('update/(:num)', 'KabupatenController::update/$1');
+        $routes->get('delete/(:num)', 'KabupatenController::delete/$1');
+    });
+
+    $routes->group('profil', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('/', 'ProfilDesaController::edit');
+        $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
     });
 });
 

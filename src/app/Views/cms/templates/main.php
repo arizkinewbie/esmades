@@ -14,6 +14,18 @@
 
     
 
+    <?php if(isset($select2)): ?>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <?php endif ?>
+
+    <?php if(isset($pickr)): ?>
+        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->
+        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/monolith.min.css" /> <!-- 'monolith' theme -->
+        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/nano.min.css" /> <!-- 'nano' theme -->
+    <?php endif ?>
+
+    <link href="<?= base_url('dist/') ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    
     <!-- Layout config Js -->
     <script src="<?= base_url('dist/') ?>assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
@@ -25,6 +37,8 @@
     <!-- custom Css-->
     <link href="<?= base_url('dist/') ?>assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+    
+    
     <?php if(isset($dataTable)): ?>
         <!--datatable css-->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />

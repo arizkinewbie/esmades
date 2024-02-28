@@ -36,7 +36,7 @@ abstract class BaseAdminController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['site'];
+    protected $helpers = ["site","form"];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
@@ -63,6 +63,22 @@ abstract class BaseAdminController extends Controller
         $main = view('cms/templates/main', $data);
         return $main;
     }
+
+    protected function notFound($message = 'Not Found')
+    {
+        // Load helper 'html' untuk menggunakan fungsi link_tag() dan heading()
+        helper('html');
+
+        // Buat tampilan HTML untuk pesan 404
+        $data = [
+            'title' => '404 Not Found',
+            'message' => $message
+        ];
+        $body = view('errors/html/error_404', $data);
+
+        // Return response dengan status code 404 dan tampilan HTML
+        return $this->response->setStatusCode(404)->setBody($body);
+    }
     
     protected function request($data = [])
     {
@@ -70,12 +86,18 @@ abstract class BaseAdminController extends Controller
         $token = session('jwtToken');
 
         $options = [];
-
+        
         $client = \Config\Services::curlrequest();
+        $options['http_errors'] = false;
         $options['headers'] = [ 'Authorization' => 'Bearer ' . $token ];
+
         if(isset($data['form_params'])) {
             $options['form_params'] = $data['form_params'];
         }
+        if(isset($data['multipart'])) {
+            $options['multipart'] = $data['multipart'];
+        }
+
         $response = $client->request($data['method'], $url, $options);
         
         return $response;

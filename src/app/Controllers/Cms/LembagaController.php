@@ -6,7 +6,7 @@ use App\Controllers\Cms\BaseAdminController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Config\Services;
 
-class JabatanController extends BaseAdminController
+class LembagaController extends BaseAdminController
 {
     use ResponseTrait;
     protected $var = [];
@@ -15,9 +15,9 @@ class JabatanController extends BaseAdminController
 
     public function __construct()
     {
-        $this->var['viewPath'] = 'cms/jabatan/';
+        $this->var['viewPath'] = 'cms/lembaga/';
         $this->apiDomain = getenv('API_DOMAIN');
-        $this->titleHeader = 'Jabatan';
+        $this->titleHeader = 'Lembaga';
     }
 
     public function index()
@@ -25,7 +25,7 @@ class JabatanController extends BaseAdminController
 
         $dataRequest = [
             'method' => 'GET',
-            'api_path' => '/api/jabatan',
+            'api_path' => '/api/lembaga',
         ];
         $response = $this->request($dataRequest);
 
@@ -62,7 +62,7 @@ class JabatanController extends BaseAdminController
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/jabatan',
+            'api_path' => '/api/lembaga',
             'form_params' => [
                 'nama' => $nama,
             ],
@@ -70,9 +70,9 @@ class JabatanController extends BaseAdminController
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jabatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/lembaga/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->to('/admin/lembaga/index')->with('error', 'Data gagal disimpan.');
         }
     }
     
@@ -81,7 +81,7 @@ class JabatanController extends BaseAdminController
         if($id) {
             $dataRequest = [
                 'method' => 'GET',
-                'api_path' => '/api/jabatan/edit/' . $id,
+                'api_path' => '/api/lembaga/edit/' . $id,
             ];
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
@@ -103,7 +103,7 @@ class JabatanController extends BaseAdminController
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/jabatan/update/' . $id,
+            'api_path' => '/api/lembaga/update/' . $id,
             'form_params' => [
                 'nama' => $nama,
             ],
@@ -111,30 +111,9 @@ class JabatanController extends BaseAdminController
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jabatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/lembaga/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/jabatan/create')->with('error', json_decode($response->getBody())->messages);
-        }
-    }
-    
-    public function delete($id = null) {
-
-        if($id) {
-            $dataRequest = [
-                'method' => 'POST',
-                'api_path' => '/api/jabatan/delete/' . $id,
-            ];
-
-            $response = $this->request($dataRequest);
-
-            if($response->getStatusCode() == 200) {
-                return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
-            } else {
-                return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
-            }
-            
-        } else {
-            return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
+            return redirect()->to('/admin/lembaga/index')->with('error', 'Data gagal disimpan.');
         }
     }
 }
