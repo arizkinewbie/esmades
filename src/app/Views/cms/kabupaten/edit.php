@@ -29,20 +29,7 @@
                         <div class="col-1">
                             <div class="mb-3">
                                 <label for="kodeinput" class="form-label">Kode</label>
-                            </div>
-                        </div>
-
-                        <div class="col-1">
-                            <div class="mb-1">
-                                <input type="text" class="form-control kode1" name="kode1" readonly>
-                            </div>
-                        </div>
-                        
-                        -
-
-                        <div class="col-2">
-                            <div class="mb-1">
-                                <input type="text" class="form-control kode2" name="kode2" placeholder="Masukan kode">
+                                <input type="text" readonly class="form-control kode1" name="kode" value="<?= $kode ?>">
                             </div>
                         </div>
                         
@@ -60,3 +47,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+        
+        ajaxSelect({
+            id: '.provinsiKode',
+            url: '<?= site_url('admin/select2/provinsi') ?>',
+            selected: '<?= set_value('provinsiKode', $provinsiKode) ?>',
+            readonly: true
+        });
+    })
+</script>
