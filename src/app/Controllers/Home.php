@@ -14,7 +14,7 @@ class Home extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Beranda',
+            'title' => 'Saya Coba Edit Ya!',
             'subTitle' => '',
             'view' => $this->var['viewPath'] . 'index',
         ];
