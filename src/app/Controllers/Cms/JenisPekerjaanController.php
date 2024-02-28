@@ -116,4 +116,25 @@ class JenisPekerjaanController extends BaseAdminController
             return redirect()->to('/admin/jenis_pekerjaan/index')->with('error', 'Data gagal disimpan.');
         }
     }
+
+    public function delete($id = null) {
+
+        if($id) {
+            $dataRequest = [
+                'method' => 'POST',
+                'api_path' => '/api/jenis_pekerjaan/delete/' . $id,
+            ];
+
+            $response = $this->request($dataRequest);
+
+            if($response->getStatusCode() == 200) {
+                return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
+            } else {
+                return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
+            }
+            
+        } else {
+            return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
+        }
+    }
 }
