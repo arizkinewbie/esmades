@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 // tabrak 
+=======
+// coba test 
+>>>>>>> a36e43455b36ccf6633d0a9bbd6e3c2be825b6ca
 // Check PHP version.
 $minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
