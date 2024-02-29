@@ -55,7 +55,8 @@
         ajaxSelect({
             id: '.provinsiKode',
             url: '<?= site_url('admin/select2/provinsi') ?>',
-            selected: '<?= set_value('provinsiKode', $provinsiKode) ?>'
+            selected: '<?= set_value('provinsiKode', $provinsiKode) ?>',
+            readonly:true
         });
     })
 </script>
