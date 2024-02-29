@@ -12,35 +12,34 @@
             <div class="card-body">
                 <form action="<?= site_url('admin/kecamatan/update/' . $id) ?>" method="post">
                     <div class="row">
+                    
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Nama</label>
-                                <input type="text" class="form-control nama" name="nama" value="<?= $nama ?>" placeholder="Masukan nama">
+                                <label class="form-label">Provinsi</label>
+                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="mb-3">
-                                <label class="form-label">Provinsi Kode</label>
-                                <select class="form-control js-example-basic-single provinsiKode"></select>
-                                <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label">Kabupaten Kode</label>
-                                <select class="form-control js-example-basic-single kabupatenKode"></select>
-                                <input type="hidden" name="kabupatenKode" value="<?= $kabupatenKode; ?>">
+                                <label class="form-label">Kabupaten</label>
+                                <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
                             </div>
                         </div>
 
                         <div class="col-1">
                             <div class="mb-3">
                                 <label for="kodeinput" class="form-label">Kode</label>
-                                <input type="text" readonly class="form-control kode1" name="kode" value="<?= $kode ?>">
+                                <input type="text" readonly class="form-control kode1" name="kode" value="<?= set_value('kode', $kode) ?>">
                             </div>
                         </div>
+                        <div class="col-5">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Kecamatan</label>
+                                <input type="text" class="form-control nama" name="nama" value="<?= set_value('nama', $nama) ?>" placeholder="Masukan nama">
+                            </div>
+                        </div>
+
                         
                         <!--end col-->
                         <div class="col-lg-12">
@@ -65,14 +64,19 @@
             id: '.provinsiKode',
             url: '<?= site_url('admin/select2/provinsi') ?>',
             selected: '<?= set_value('provinsiKode', $provinsiKode) ?>',
-            disabled:'readonly'
+            disabled: true,
         });
 
-        ajaxSelect({
-            id: '.kabupatenKode',
-            url: '<?= site_url('admin/select2/kabupaten') ?>',
-            selected: '<?= set_value('kabupatenKode', $kabupatenKode) ?>',
-            disabled: 'readonly'
-        });
+        $('.provinsiKode').on('change', function(){
+            var val = $(this).val();
+            ajaxSelect({
+                id: '.kabupatenKode',
+                url: '<?= site_url('admin/select2/kabupaten') ?>',
+                selected: '<?= set_value('kabupatenKode', $kabupatenKode) ?>',
+                optionalSearch: {provinsiKode: val},
+                disabled: true,
+            });
+        })
+
     })
 </script>

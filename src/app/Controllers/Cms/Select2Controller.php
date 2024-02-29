@@ -123,17 +123,23 @@ class Select2Controller extends BaseAdminController
     public function kabupaten($id = null)
     {
         $data = [];
-
+        
+        $provinsiKode = $this->request->getGet('provinsiKode');
+        
         $api_path = '/api/kabupaten';
         if($id) {
-            $api_path = '/api/kabupaten?kode=' . $id;
+            $api_path .= '?kode=' . $id;
+        }
+        
+        if($provinsiKode) {
+            $api_path .= '?provinsiKode='.$provinsiKode;
         }
         
         $dataRequest = [
             'method' => 'GET',
             'api_path' => $api_path,
-        ];        
-
+        ];
+        
         $response = $this->request($dataRequest);
         
         if($response->getStatusCode() != 200) {
