@@ -22,13 +22,12 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Provinsi Kode</label>
-                                <select class="form-control js-example-basic-single provinsiKode">
-                                    <?php print_r($result); ?>
+                                <select class="form-control js-example-basic-single provinsiKode" disabled>
                                     <?php if(!empty($result)): foreach($result as $k):?>
                                         <option class="provinsi<?= $k['kode']; ?>" value="<?= $k['kode']; ?>"><?= $k['nama']; ?></option>
                                     <?php endforeach; endif; ?>
                                 </select>
-                                <input type="hidden" name="provinsiKode" value="">
+                                <input type="hidden" class="provinsiKode" name="provinsiKode" value="">
                             </div>
                         </div>
 
@@ -86,6 +85,11 @@
 
         $(".kabupatenKode").change(function(){
             var getkode = $(".kabupatenKode").val();
+            var splitArray = getkode.toString().split('.');
+            var intValue = splitArray[0];
+
+            $(".provinsi"+ intValue).attr('selected', true);
+            $(".provinsiKode").val(intValue);
             $(".kode1").attr("value", getkode);
         })
         
