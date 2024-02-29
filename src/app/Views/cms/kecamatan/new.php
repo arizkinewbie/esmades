@@ -27,7 +27,7 @@
                                         <option class="provinsi<?= $k->kode; ?>" value="<?= $k->kode; ?>"><?= $k->nama; ?></option>
                                     <?php endforeach; endif; ?>
                                 </select>
-                                <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
+                                <input type="hidden" name="provinsiKode" value="">
                             </div>
                         </div>
 
