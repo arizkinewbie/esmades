@@ -106,8 +106,8 @@ class Select2Controller extends BaseAdminController
         if($response->getStatusCode() == 200) {
             $decodeResponse = json_decode($response->getBody(), true);
             if($id) {
-                $data['id'] = $decodeResponse['kode'];
-                $data['text'] = $decodeResponse['nama'];
+                $data['id'] = $decodeResponse[0]['kode'];
+                $data['text'] = $decodeResponse[0]['nama'];
             } else {
                 foreach($decodeResponse as $row) {
                     $item['id'] = $row['kode'];
