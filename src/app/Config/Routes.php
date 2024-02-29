@@ -109,6 +109,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'KabupatenController::delete/$1');
     });
 
+    $routes->group('kecamatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'KecamatanController::index');
+        $routes->get('new', 'KecamatanController::new');
+        $routes->post('create', 'KecamatanController::create');
+        $routes->get('edit/(:num)', 'KecamatanController::edit/$1');
+        $routes->post('update/(:num)', 'KecamatanController::update/$1');
+        $routes->get('delete/(:num)', 'KecamatanController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
