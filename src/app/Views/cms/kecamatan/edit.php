@@ -71,7 +71,7 @@
         ajaxSelect({
             id: '.kabupatenKode',
             url: '<?= site_url('admin/select2/kabupaten') ?>',
-            selected: '<?= set_value('kabupatenKode') ?>',
+            selected: '<?= set_value('kabupatenKode', $kabupatenKode) ?>',
             disabled: 'readonly'
         });
     })
