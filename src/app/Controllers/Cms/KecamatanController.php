@@ -137,6 +137,9 @@ class KecamatanController extends BaseAdminController
                 'kode'              => $kode
             ],
         ];
+
+        print_r($dataRequest);
+        die();
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
