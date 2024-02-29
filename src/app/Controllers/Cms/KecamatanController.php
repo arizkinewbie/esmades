@@ -63,11 +63,12 @@ class KecamatanController extends BaseAdminController
         $data = [
             'title' => $this->titleHeader,
             'select2' => true,
+            'result' => $result,
             'subTitle' => 'Add New',
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
         ];
-        return $this->render(array_merge($data, $result));
+        return $this->render($data);
     }
     
     public function create() {
