@@ -23,6 +23,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Provinsi Kode</label>
                                 <select class="form-control js-example-basic-single provinsiKode">
+                                    <?php print_r($result); ?>
                                     <?php if(!empty($result)): foreach($result as $k):?>
                                         <option class="provinsi<?= $k->kode; ?>" value="<?= $k->kode; ?>"><?= $k->nama; ?></option>
                                     <?php endforeach; endif; ?>
