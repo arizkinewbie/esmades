@@ -60,9 +60,6 @@ class KecamatanController extends BaseAdminController
             $result = "";
         }
 
-        print_r($result);
-        die();
-
         $data = [
             'title' => $this->titleHeader,
             'select2' => true,
