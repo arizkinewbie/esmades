@@ -10,7 +10,7 @@
             </div>
 
             <div class="card-body">
-                <form action="<?= site_url('admin/kabupaten/update/' . $id) ?>" method="post">
+                <form action="<?= site_url('admin/kecamatan/update/' . $id) ?>" method="post">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">

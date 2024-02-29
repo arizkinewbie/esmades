@@ -73,6 +73,7 @@ class KecamatanController extends BaseAdminController
     
     public function create() {
         $nama           = $this->request->getPost('nama');
+        $provinsiKode   = $this->request->getPost('provinsiKode');
         $kabupatenKode  = $this->request->getPost('kabupatenKode');
         $kode1   = $this->request->getPost('kode1');
         $kode2   = $this->request->getPost('kode2');
