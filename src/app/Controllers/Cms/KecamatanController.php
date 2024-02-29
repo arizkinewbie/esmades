@@ -48,6 +48,21 @@ class KecamatanController extends BaseAdminController
     }
 
     public function new() {
+        $dataRequest = [
+            'method' => 'GET',
+            'api_path' => '/api/provinsi/',
+        ];
+        $response = $this->request($dataRequest);
+        if ($response->getStatusCode() == 200) {
+            $result = json_decode($response->getBody(), true);
+        }
+        else{
+            $result = "";
+        }
+
+        print_r($result);
+        die();
+
         $data = [
             'title' => $this->titleHeader,
             'select2' => true,
@@ -55,18 +70,14 @@ class KecamatanController extends BaseAdminController
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
         ];
-        return $this->render($data);
+        return $this->render(array_merge($data, $result));
     }
     
     public function create() {
         $nama           = $this->request->getPost('nama');
-    
         $kabupatenKode  = $this->request->getPost('kabupatenKode');
         $kode1   = $this->request->getPost('kode1');
         $kode2   = $this->request->getPost('kode2');
-        
-        print_r($kode1);
-        die();
 
         $dataRequest = [
                 'method'            => 'POST',

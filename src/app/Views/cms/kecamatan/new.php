@@ -21,6 +21,14 @@
 
                         <div class="col-6">
                             <div class="mb-3">
+                                <label class="form-label">Provinsi Kode</label>
+                                <select class="form-control js-example-basic-single provinsiKode"></select>
+                                <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="mb-3">
                                 <label class="form-label">Kabupaten Kode</label>
                                 <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
                             </div>
