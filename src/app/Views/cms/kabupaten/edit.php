@@ -1,18 +1,3 @@
-<style>
-    select[readonly].select2-hidden-accessible + .select2-container {
-    pointer-events: none;
-    touch-action: none;
-
-    .select2-selection {
-        background: #eee;
-        box-shadow: none;
-    }
-
-    .select2-selection__arrow, select[readonly].select2-hidden-accessible + .select2-container .select2-selection__clear {
-        display: none;
-    }
-}
-</style>
 <div class="row">
     <div class="col-md-12">
         <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
