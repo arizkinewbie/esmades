@@ -77,3 +77,4 @@ function ajaxSelect(data) {
         }
     }
 }
+
