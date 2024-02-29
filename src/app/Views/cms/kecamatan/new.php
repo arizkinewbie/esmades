@@ -18,12 +18,6 @@
                                 <input type="text" class="form-control nama" name="nama" placeholder="Masukan nama">
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label">Provinsi Kode</label>
-                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
-                            </div>
-                        </div>
 
                         <div class="col-12">
                             <div class="mb-3">
@@ -48,15 +42,7 @@
 
                         <div class="col-2">
                             <div class="mb-1">
-                                <input type="text" class="form-control kode2" name="kode2" redonly>
-                            </div>
-                        </div>
-
-                        -
-
-                        <div class="col-2">
-                            <div class="mb-1">
-                                <input type="text" class="form-control kode3" name="kode3" placeholder="Masukan kode">
+                                <input type="text" class="form-control kode2" name="kode2" placeholder="Masukan kode">
                             </div>
                         </div>
                         
@@ -78,17 +64,6 @@
 <script>
 
     $(document).ready(function(){
-        
-        ajaxSelect({
-            id: '.provinsiKode',
-            url: '<?= site_url('admin/select2/provinsi') ?>',
-            selected: '<?= set_value('provinsiKode') ?>'
-        });
-
-        $(".provinsiKode").change(function(){
-            var getkode = $(".provinsiKode").val();
-            $(".kode1").attr("value", getkode);
-        })
 
         ajaxSelect({
             id: '.kabupatenKode',
@@ -98,7 +73,7 @@
 
         $(".kabupatenKode").change(function(){
             var getkode = $(".kabupatenKode").val();
-            $(".kode2").attr("value", getkode);
+            $(".kode1").attr("value", getkode);
         })
         
     })

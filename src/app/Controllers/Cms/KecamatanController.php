@@ -60,11 +60,13 @@ class KecamatanController extends BaseAdminController
     
     public function create() {
         $nama           = $this->request->getPost('nama');
-        $provinsiKode   = $this->request->getPost('provinsiKode');
+    
         $kabupatenKode  = $this->request->getPost('kabupatenKode');
         $kode1   = $this->request->getPost('kode1');
         $kode2   = $this->request->getPost('kode2');
-        $kode3   = $this->request->getPost('kode3');
+        
+        print_r($kode1);
+        die();
 
         $dataRequest = [
                 'method'            => 'POST',
@@ -73,7 +75,7 @@ class KecamatanController extends BaseAdminController
                     'nama'              => $nama,
                     'provinsiKode'      => $provinsiKode,
                     'kabupatenKode'     => $kabupatenKode,
-                    'kode'              => $kode1.'.'.$kode2.'.'.$kode3
+                    'kode'              => $kode1.'.'.$kode2
             ],
         ];
         $response = $this->request($dataRequest);
