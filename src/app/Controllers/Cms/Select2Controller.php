@@ -119,4 +119,41 @@ class Select2Controller extends BaseAdminController
         
         return $this->respond($data, 200);
     }
+
+    public function kabupaten($id = null)
+    {
+        $data = [];
+
+        $api_path = '/api/kabupaten';
+        if($id) {
+            $api_path = '/api/kabupaten?kode=' . $id;
+        }
+        
+        $dataRequest = [
+            'method' => 'GET',
+            'api_path' => $api_path,
+        ];        
+
+        $response = $this->request($dataRequest);
+        
+        if($response->getStatusCode() != 200) {
+            return $this->respond($data, 404);
+        }
+
+        if($response->getStatusCode() == 200) {
+            $decodeResponse = json_decode($response->getBody(), true);
+            if($id) {
+                $data['id'] = $decodeResponse[0]['kode'];
+                $data['text'] = $decodeResponse[0]['nama'];
+            } else {
+                foreach($decodeResponse as $row) {
+                    $item['id'] = $row['kode'];
+                    $item['text'] = $row['nama'];
+                    $data[] = $item;
+                }
+            }
+        }
+        
+        return $this->respond($data, 200);
+    }
 }
