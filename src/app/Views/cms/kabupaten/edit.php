@@ -56,6 +56,7 @@
             id: '.provinsiKode',
             url: '<?= site_url('admin/select2/provinsi') ?>',
             selected: '<?= set_value('provinsiKode', $provinsiKode) ?>',
+            disabled:'readonly'
         });
     })
 </script>
