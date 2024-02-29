@@ -61,6 +61,7 @@ class KecamatanController extends BaseAdminController
     public function create() {
         $nama           = $this->request->getPost('nama');
         $provinsiKode   = $this->request->getPost('provinsiKode');
+        $kabupatenKode  = $this->request->getPost('kabupatenKode');
         $kode1   = $this->request->getPost('kode1');
         $kode2   = $this->request->getPost('kode2');
         $kode3   = $this->request->getPost('kode3');
@@ -71,6 +72,7 @@ class KecamatanController extends BaseAdminController
                 'form_params'       => [
                     'nama'              => $nama,
                     'provinsiKode'      => $provinsiKode,
+                    'kabupatenKode'     => $kabupatenKode,
                     'kode'              => $kode1.'.'.$kode2.'.'.$kode3
             ],
         ];
@@ -109,6 +111,7 @@ class KecamatanController extends BaseAdminController
     public function update($id = null) {
         $nama = $this->request->getPost('nama');
         $provinsiKode   = $this->request->getPost('provinsiKode');
+        $kabupatenKode  = $this->request->getPost('kabupatenKode');
         $kode   = $this->request->getPost('kode');
 
         $dataRequest = [
@@ -118,6 +121,7 @@ class KecamatanController extends BaseAdminController
                 'id'                => $id,
                 'nama'              => $nama,
                 'provinsiKode'      => $provinsiKode,
+                'kabupatenKode'     => $kabupatenKode,
                 'kode'              => $kode
             ],
         ];

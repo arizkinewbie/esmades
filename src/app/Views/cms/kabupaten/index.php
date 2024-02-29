@@ -16,6 +16,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Provinsi Kode</th>
+                            <th>Kode</th>
                             <th class="w-75">Nama</th>
                             <th>Action</th>
                         </tr>
@@ -24,6 +26,8 @@
                         <?php if(!empty($result)): $no = 1; foreach($result as $k): ?>
                         <tr>
                             <td><?= $no; ?></td>
+                            <td><?= $k->provinsiKode; ?></td>
+                            <td><?= $k->kode; ?></td>
                             <td><?= $k->nama; ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
