@@ -21,9 +21,9 @@ File: Custom Css File
     padding: 0 !important;
 }
 
-/* :is([data-layout=vertical],[data-layout=semibox]) .app-menu .row>* {
+:is([data-layout=vertical],[data-layout=semibox]) .app-menu .row>* {
     width: 120px;
-} */
+}
 
 /* .modal { z-index: 2; }  */
 .navbar-menu .navbar-nav .nav-link.active {
