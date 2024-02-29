@@ -50,7 +50,7 @@ class KecamatanController extends BaseAdminController
     public function new() {
         $dataRequest = [
             'method' => 'GET',
-            'api_path' => '/api/provinsi/',
+            'api_path' => '/api/provinsi',
         ];
         $response = $this->request($dataRequest);
         if ($response->getStatusCode() == 200) {
