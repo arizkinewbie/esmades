@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label">Kabupaten Kode</label>
                                 <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
