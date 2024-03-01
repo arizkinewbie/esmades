@@ -1,20 +1,16 @@
 <div id="scrollbar">
     <div class="container-fluid">
-
-
         <div id="two-column-menu">
         </div>
         <ul class="navbar-nav" id="navbar-nav">
-
-            <div class="mb-5"></div>
-
+            <div class="mb-3"></div>
             <div class="d-flex justify-content-center">
                 <div class="row">
                     <div class="col-md-4 text-center">
                         <div class="text-center">
                             <a href="javascript:showModal('Profil Desa Talaga Wetan')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="https://assets.digitaldesa.id/online/72.03.06.2002/common/300_donggala.png" alt="" class="avatar-md material-shadow">
+                                    <img src="https://assets.digitaldesa.id/online/72.03.06.2002/common/300_donggala.png" alt="" class="avatar-sm material-shadow">
                                 </div>
                                 <!-- NAMA DESA dari database -->
                                 <h5 class="fs-14 mb-1">Profil Desa Talaga Wetan</h5>
@@ -25,7 +21,7 @@
                         <div class="text-center">
                             <a href="javascript:showModal('Profil Desa')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-sm material-shadow">
                                 </div>
                                 <h5 class="fs-14 mb-1">Kepala Desa</h5>
                             </a>
@@ -35,7 +31,7 @@
                         <div class="text-center">
                             <a href="javascript:showModalSO('Profil Desa')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-1.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-1.jpg" alt="" class="rounded-circle avatar-sm material-shadow">
                                 </div>
                             </a>
                             <h5 class="fs-14 mb-1">Struktur Organisasi</h5>
@@ -43,13 +39,13 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-3">
                 <div class="row">
                     <div class="col-md-4 text-center">
                         <div class="text-center">
                             <a href="javascript:showModalKelembagaan('Profil Desa')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-sm material-shadow">
                                 </div>
                                 <h5 class="fs-14 mb-1">Kelembagaan</h5>
                             </a>
@@ -59,7 +55,7 @@
                         <div class="text-center">
                             <a href="javascript:showModalGalery()">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-sm material-shadow">
                                 </div>
                                 <h5 class="fs-14 mb-1">Galeri</h5>
                             </a>
@@ -69,7 +65,7 @@
                         <div class="text-center">
                             <a href="javascript:showModalNews()">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
-                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-md material-shadow">
+                                    <img src="<?= base_url('dist/') ?>assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-sm material-shadow">
                                 </div>
                                 <h5 class="fs-14 mb-1">Kabar Desa</h5>
                             </a>
@@ -148,11 +144,8 @@
                     <i class="ri-newspaper-fill text-info"></i> <span data-key="t-layouts">Objek Wisata</span>
                 </a>
             </li>
-
-
         </ul>
     </div>
     <!-- Sidebar -->
 </div>
-
 <div class="sidebar-background"></div>

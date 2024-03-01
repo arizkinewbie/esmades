@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
         <?php echo view('cms/partials/alerts', array('tipe' => 'error')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>     
+        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>
 
         <div class="card">
             <div class="card-header d-flex align-items-center">
@@ -12,18 +12,21 @@
             <div class="card-body">
                 <form action="<?= site_url('admin/kecamatan/update/' . $id) ?>" method="post">
                     <div class="row">
-                    
+
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Provinsi</label>
-                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
+                                <select class="form-control js-example-basic-single provinsiKode"></select>
+                                <input type="hidden" name="id" value="<?= $id; ?>">
+                                <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Kabupaten</label>
-                                <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
+                                <select class="form-control js-example-basic-single kabupatenKode"></select>
+                                <input type="hidden" name="kabupatenKode" value="<?= $kabupatenKode; ?>">
                             </div>
                         </div>
 
@@ -40,7 +43,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!--end col-->
                         <div class="col-lg-12">
                             <div class="text-start">
@@ -58,8 +61,8 @@
 
 
 <script>
-    $(document).ready(function(){
-        
+    $(document).ready(function() {
+
         ajaxSelect({
             id: '.provinsiKode',
             url: '<?= site_url('admin/select2/provinsi') ?>',
@@ -67,13 +70,15 @@
             disabled: true,
         });
 
-        $('.provinsiKode').on('change', function(){
+        $('.provinsiKode').on('change', function() {
             var val = $(this).val();
             ajaxSelect({
                 id: '.kabupatenKode',
                 url: '<?= site_url('admin/select2/kabupaten') ?>',
                 selected: '<?= set_value('kabupatenKode', $kabupatenKode) ?>',
-                optionalSearch: {provinsiKode: val},
+                optionalSearch: {
+                    provinsiKode: val
+                },
                 disabled: true,
             });
         })
