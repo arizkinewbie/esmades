@@ -16,14 +16,17 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Provinsi</label>
-                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
+                                <select class="form-control js-example-basic-single provinsiKode"></select>
+                                <input type="hidden" name="id" value="<?= $id; ?>">
+                                <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Kabupaten</label>
-                                <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
+                                <select class="form-control js-example-basic-single kabupatenKode"></select>
+                                <input type="hidden" name="kabupatenKode" value="<?= $kabupatenKode; ?>">
                             </div>
                         </div>
 

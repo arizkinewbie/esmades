@@ -22,19 +22,14 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Provinsi Kode</label>
-                                <select class="form-control js-example-basic-single provinsiKode" disabled>
-                                    <?php if(!empty($result)): foreach($result as $k):?>
-                                        <option class="provinsi<?= $k['kode']; ?>" value="<?= $k['kode']; ?>"><?= $k['nama']; ?></option>
-                                    <?php endforeach; endif; ?>
-                                </select>
-                                <input type="hidden" class="provinsiKode" name="provinsiKode" value="">
+                                <select class="form-control js-example-basic-single provinsiKode" name="provinsiKode"></select>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Kabupaten Kode</label>
-                                <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode"></select>
+                                <select class="form-control js-example-basic-single kabupatenKode" name="kabupatenKode" disabled></select>
                             </div>
                         </div>
 
@@ -78,19 +73,27 @@
     $(document).ready(function(){
 
         ajaxSelect({
-            id: '.kabupatenKode',
-            url: '<?= site_url('admin/select2/kabupaten') ?>',
-            selected: '<?= set_value('kabupatenKode') ?>'
+            id: '.provinsiKode',
+            url: '<?= site_url('admin/select2/provinsi') ?>',
+            selected: '<?= set_value('provinsiKode') ?>',
         });
 
-        $(".kabupatenKode").change(function(){
-            var getkode = $(".kabupatenKode").val();
-            var splitArray = getkode.toString().split('.');
-            var intValue = splitArray[0];
+        $('.provinsiKode').on('change', function() {
+            $('.kabupatenKode').attr('disabled',false);
+            var val = $(this).val();
+            ajaxSelect({
+                id: '.kabupatenKode',
+                url: '<?= site_url('admin/select2/kabupaten') ?>',
+                selected: '<?= set_value('kabupatenKode') ?>',
+                optionalSearch: {
+                    provinsiKode: val
+                },
+            });
 
-            $(".provinsi"+ intValue).attr('selected', true);
-            $(".provinsiKode").val(intValue);
-            $(".kode1").attr("value", getkode);
+            $('.kabupatenKode').on('change', function(){
+                var valkab = $(this).val();
+                $('.kode1').val(valkab);
+            })
         })
         
     })
