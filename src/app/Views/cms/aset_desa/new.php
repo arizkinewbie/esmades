@@ -40,7 +40,7 @@
 
 <script>
 var settings = {
-    "url": "http://api.esmades.id:80/api/barang/select2",
+    "url": "https://api.esmades.id:80/api/barang/select2",
     "method": "GET",
     "timeout": 0,
     "headers": {
