@@ -26,6 +26,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
     $routes->group('aset_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('index', 'AsetDesaController::index');
         $routes->get('datatable', 'AsetDesaController::indexDataTable');
+        $routes->get('new', 'AsetDesaController::new');
+        $routes->post('create', 'AsetDesaController::create');
     });
     
     $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
