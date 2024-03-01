@@ -38,7 +38,7 @@ Options -Indexes
 	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
 
-<FilesMatch ".(eot|ttf|otf|woff)">
+<FilesMatch ".(eot|ttf|otf|woff|js)">
     Header set Access-Control-Allow-Origin "*"
 </FilesMatch>
 
