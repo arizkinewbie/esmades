@@ -18,16 +18,16 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('signin', 'AuthController::signInProcess');
         $routes->get('signout', 'AuthController::signOut');
     });
-    
+
     $routes->group('dashboard', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('index', 'DashboardController::index');
     });
-    
+
     $routes->group('aset_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('index', 'AsetDesaController::index');
         $routes->get('datatable', 'AsetDesaController::indexDataTable');
     });
-    
+
     $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('index', 'JabatanController::index');
         $routes->get('new', 'JabatanController::new');
@@ -72,7 +72,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('update/(:num)', 'ProvinsiController::update/$1');
         $routes->get('delete/(:num)', 'ProvinsiController::delete/$1');
     });
-    
+
     $routes->group('perangkat_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('index', 'PerangkatDesaController::index');
         $routes->get('new', 'PerangkatDesaController::new');
@@ -81,7 +81,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('edit/(:num)', 'PerangkatDesaController::edit/$1');
         $routes->post('update/(:num)', 'PerangkatDesaController::update/$1');
     });
-    
+
     $routes->group('select2', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('jabatan', 'Select2Controller::jabatan');
         $routes->get('jabatan/(:num)', 'Select2Controller::jabatan/$1');
@@ -91,7 +91,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('provinsi/(:num)', 'Select2Controller::provinsi/$1');
         $routes->get('kabupaten', 'Select2Controller::kabupaten');
         $routes->get('kabupaten/(:any)', 'Select2Controller::kabupaten/$1');
-        
     });
 
     $routes->group('pendidikan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
