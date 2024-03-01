@@ -820,7 +820,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModal('BPD')">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bpd.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bpd.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">BPD</h5>
                                 </a>
@@ -830,7 +830,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModalGalery()">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/lpm.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/lpm.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">LPM</h5>
                                 </a>
@@ -840,7 +840,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModalISO()">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bumdes.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/bumdes.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">BUMDES</h5>
                                 </a>
@@ -850,7 +850,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/pkk.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/pkk.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">PKK</h5>
                                 </a>
@@ -860,7 +860,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/karang-taruna.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/karang-taruna.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">Karang Taruna</h5>
                                 </a>
@@ -870,7 +870,7 @@
                             <div class="text-center">
                                 <a href="javascript:showModalNews()">
                                     <div class="profile-user position-relative d-inline-block mx-auto mb-2 mt-3">
-                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/posyandu.png" alt="" class="avatar-md material-shadow">
+                                        <img src="<?= base_url('dist/') ?>assets/images/lembaga/posyandu.png" alt="" class="avatar-sm material-shadow">
                                     </div>
                                     <h5 class="fs-14 mb-1">Kader Posyandu</h5>
                                 </a>
