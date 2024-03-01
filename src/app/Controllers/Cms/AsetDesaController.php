@@ -17,7 +17,7 @@ class AsetDesaController extends BaseAdminController
     {
         $this->var['viewPath'] = 'cms/aset_desa/';
         $this->apiDomain = getenv('API_DOMAIN');
-        $this->titleHeader = 'Kecamatan';
+        $this->titleHeader = 'Aset Desa';
     }
 
     public function index()
