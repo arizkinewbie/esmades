@@ -128,4 +128,4 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-src/public/*
+src/public/
