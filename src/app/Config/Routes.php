@@ -122,6 +122,24 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'KecamatanController::delete/$1');
     });
 
+    $routes->group('jenis_berita', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'JenisBeritaController::index');
+        $routes->get('new', 'JenisBeritaController::new');
+        $routes->post('create', 'JenisBeritaController::create');
+        $routes->get('edit/(:num)', 'JenisBeritaController::edit/$1');
+        $routes->post('update/(:num)', 'JenisBeritaController::update/$1');
+        $routes->get('delete/(:num)', 'JenisBeritaController::delete/$1');
+    });
+
+    $routes->group('jenis_galeri', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'JenisGaleriController::index');
+        $routes->get('new', 'JenisGaleriController::new');
+        $routes->post('create', 'JenisGaleriController::create');
+        $routes->get('edit/(:num)', 'JenisGaleriController::edit/$1');
+        $routes->post('update/(:num)', 'JenisGaleriController::update/$1');
+        $routes->get('delete/(:num)', 'JenisGaleriController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');

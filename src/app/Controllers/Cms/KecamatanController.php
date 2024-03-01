@@ -110,6 +110,7 @@ class KecamatanController extends BaseAdminController
 
     public function update($id = null) {
         $id = $this->request->getPost('id');
+
         $nama = $this->request->getPost('nama');
         $provinsiKode   = $this->request->getPost('provinsiKode');
         $kabupatenKode  = $this->request->getPost('kabupatenKode');
