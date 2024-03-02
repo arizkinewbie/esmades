@@ -60,7 +60,7 @@ class AuthController extends BaseAdminController
 
         $response = curl_exec($ch);
 
-        return json_encode($response);
+        return json_decode($response)->token;
 
         $session->set('jwtToken', json_decode($response)->token);
 
