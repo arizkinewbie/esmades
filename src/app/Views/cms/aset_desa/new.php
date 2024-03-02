@@ -40,11 +40,12 @@
 
 <script>
 var settings = {
-    "url": "https://api.esmades.id/api/barang/select2",
+    "url": "http://api.esmades.id/api/barang/select2",
     "method": "GET",
     "timeout": 0,
+    "dataType": 'JSON',
     "headers": {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFc21hZGVzIEpXVCIsImF1ZCI6IkVzbWFkZXMgSldUIiwic3ViIjoiRXNtYWRlcyBKV1QiLCJrbGllbl9pZCI6IjEiLCJrbGllbl9lbWFpbCI6ImtsaWVuMDFAZ21haWwuY29tIn0.zbprHXYk34c3B9aRjCPr1RbHknlL3kaCYyAwzEikXrw"
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFc21hZGVzIEpXVCIsImF1ZCI6IkVzbWFkZXMgSldUIiwic3ViIjoiRXNtYWRlcyBKV1QiLCJrbGllbl9pZCI6IjEiLCJrbGllbl9lbWFpbCI6ImtsaWVuMDFAZ21haWwuY29tIn0.zbprHXYk34c3B9aRjCPr1RbHknlL3kaCYyAwzEikXrw",
     },
 };
 
