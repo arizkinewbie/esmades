@@ -72,7 +72,7 @@ class AgamaController extends BaseAdminController
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/agama/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/agama/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
     
@@ -113,7 +113,7 @@ class AgamaController extends BaseAdminController
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/agama/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/agama/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
 

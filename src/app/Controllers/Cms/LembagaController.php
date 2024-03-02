@@ -72,7 +72,7 @@ class LembagaController extends BaseAdminController
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/lembaga/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/lembaga/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
     
@@ -113,7 +113,7 @@ class LembagaController extends BaseAdminController
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/lembaga/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/lembaga/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
 

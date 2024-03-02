@@ -109,12 +109,10 @@ class KecamatanController extends BaseAdminController
     }
 
     public function update($id = null) {
-        $id = $this->request->getPost('id');
-
-        $nama = $this->request->getPost('nama');
+        $nama           = $this->request->getPost('nama');
         $provinsiKode   = $this->request->getPost('provinsiKode');
         $kabupatenKode  = $this->request->getPost('kabupatenKode');
-        $kode   = $this->request->getPost('kode');
+        $kode           = $this->request->getPost('kode');
 
         $dataRequest = [
             'method' => 'POST',
@@ -127,13 +125,12 @@ class KecamatanController extends BaseAdminController
                 'kode'              => $kode
             ],
         ];
-
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/kecamatan/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->to('/admin/kecamatan/create')->with('error', json_decode($response->getBody())->messages);
         }
     }
 

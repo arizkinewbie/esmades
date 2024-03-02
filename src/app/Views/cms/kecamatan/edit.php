@@ -17,7 +17,6 @@
                             <div class="mb-3">
                                 <label class="form-label">Provinsi</label>
                                 <select class="form-control js-example-basic-single provinsiKode"></select>
-                                <input type="hidden" name="id" value="<?= $id; ?>">
                                 <input type="hidden" name="provinsiKode" value="<?= $provinsiKode; ?>">
                             </div>
                         </div>
