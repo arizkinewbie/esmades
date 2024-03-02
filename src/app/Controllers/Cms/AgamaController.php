@@ -38,7 +38,7 @@ class AgamaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index',
+            'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',

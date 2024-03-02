@@ -5,7 +5,7 @@
 
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h5 class="card-title mb-0 flex-grow-1">Add New Rows</h5>
+                <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
             </div>
 
             <div class="card-body">

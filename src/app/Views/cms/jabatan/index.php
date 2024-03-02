@@ -5,7 +5,7 @@
         <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>        
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h5 class="card-title mb-0 flex-grow-1">Add Rows</h5>
+                <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
                     <a href="<?= site_url('admin/jabatan/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>

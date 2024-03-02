@@ -5,7 +5,7 @@
 
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h5 class="card-title mb-0 flex-grow-1">Tambah Data</h5>
+                <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
             </div>
 
             <div class="card-body">
