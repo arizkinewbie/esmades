@@ -43,7 +43,6 @@
                             </div>
                         </div>
 
-
                         <!--end col-->
                         <div class="col-lg-12">
                             <div class="text-start">
