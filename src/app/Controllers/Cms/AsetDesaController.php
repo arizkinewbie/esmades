@@ -38,7 +38,7 @@ class AsetDesaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index',
+            'subTitle' => 'Index '. $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -109,7 +109,7 @@ class AsetDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit',
+                    'subTitle' => 'Edit '. $this->titleHeader,
                     'select2' => true,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',
