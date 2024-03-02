@@ -45,10 +45,10 @@ class AuthController extends BaseAdminController
             // Jika tidak, kembali ke halaman login dengan pesan kesalahan
             return redirect()->back()->with('error', 'Email atau password salah.');
         }
-        // api-e-smades.dcdrcpiak.id/api/login
+
         $session = session();
         //konek ke api
-        $url = "http://api.esmades.id:80/api/auth/login";
+        $url = "http://api-e-smades.dcdrcpiak.id:80/api/auth/login";
         $data = [
             'email' => 'klien01@gmail.com',
             'password' => 'klien01'
@@ -59,8 +59,6 @@ class AuthController extends BaseAdminController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
-
-        echo $response; die;
 
         $session->set('jwtToken', json_decode($response)->token);
 
