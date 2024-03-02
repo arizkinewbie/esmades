@@ -1,14 +1,10 @@
 <div class="row">
     <div class="col-lg-12">
-        <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'error')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>     
-
         <div class="card">
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
-                    <a href="<?= site_url('admin/kecamatan/new') ?>" class="btn btn-primary">Add New Row</a>
+                    <a href="<?= site_url('admin/jenis_galeri/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>
             </div>
             <div class="card-body">
@@ -16,9 +12,6 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Provinsi Kode</th>
-                            <th>Kabupaten Kode</th>
-                            <th>Kode</th>
                             <th class="w-75">Nama</th>
                             <th>Action</th>
                         </tr>
@@ -27,9 +20,6 @@
                         <?php if(!empty($result)): $no = 1; foreach($result as $k): ?>
                         <tr>
                             <td><?= $no; ?></td>
-                            <td><?= $k->provinsiKode; ?></td>
-                            <td><?= $k->kabupatenKode; ?></td>
-                            <td><?= $k->kode; ?></td>
                             <td><?= $k->nama; ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
@@ -39,7 +29,7 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
-                                            <a href="<?= site_url('admin/kecamatan/edit/' . $k->id) ?>" class="dropdown-item"><i
+                                            <a href="<?= site_url('admin/jenis_galeri/edit/' . $k->id) ?>" class="dropdown-item"><i
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                         </li>
                                         <li>
@@ -62,6 +52,7 @@
 
 <script>
 $('#table').DataTable();
+
 function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
@@ -77,7 +68,7 @@ function deleteData(id) {
             preConfirm: function (email) {
                 return new Promise(function (resolve, reject) {
                     $.ajax({
-                        url: "<?= site_url('admin/kecamatan/delete/') ?>" + id,
+                        url: "<?= site_url('admin/jenis_galeri/delete/') ?>" + id,
                         headers: {'X-Requested-With': 'XMLHttpRequest'},
                         success: function(res) {
                             if(res.status) {

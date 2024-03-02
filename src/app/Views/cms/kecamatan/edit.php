@@ -6,7 +6,7 @@
 
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h5 class="card-title mb-0 flex-grow-1">Add New Rows</h5>
+                <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
             </div>
 
             <div class="card-body">
@@ -42,7 +42,6 @@
                                 <input type="text" class="form-control nama" name="nama" value="<?= set_value('nama', $nama) ?>" placeholder="Masukan nama">
                             </div>
                         </div>
-
 
                         <!--end col-->
                         <div class="col-lg-12">

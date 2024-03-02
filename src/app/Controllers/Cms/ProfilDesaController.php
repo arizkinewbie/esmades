@@ -38,7 +38,7 @@ class ProfilDesaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index',
+            'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -50,7 +50,7 @@ class ProfilDesaController extends BaseAdminController
     public function new() {
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Add New',
+            'subTitle' => 'Tambah '.$this->titleHeader,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
         ];
@@ -87,7 +87,7 @@ class ProfilDesaController extends BaseAdminController
             $result = json_decode($response->getBody(), true);
             $data = [
                 'title' => $this->titleHeader,
-                'subTitle' => 'Edit',
+                'subTitle' => 'Edit '.$this->titleHeader,
                 'view' => $this->var['viewPath'] . 'edit',
             ];
             $data = array_merge($data, $result[0]);

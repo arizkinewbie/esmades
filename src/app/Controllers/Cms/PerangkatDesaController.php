@@ -11,9 +11,11 @@ class PerangkatDesaController extends BaseAdminController
     use ResponseTrait;
     protected $var = [];
     protected $apiDomain;
+    protected $titleHeader;
 
     public function __construct()
     {
+        $this->titleHeader = 'Perangkat Desa';
         $this->var['viewPath'] = 'cms/perangkat_desa/';
         $this->apiDomain = getenv('API_DOMAIN');
     }
@@ -31,7 +33,7 @@ class PerangkatDesaController extends BaseAdminController
 
         $data = [
             'title' => 'Aset Desa',
-            'subTitle' => 'Index',
+            'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -42,8 +44,8 @@ class PerangkatDesaController extends BaseAdminController
 
     public function new() {
         $data = [
-            'title' => 'Perangkat Desa',
-            'subTitle' => 'Tambah Data',
+            'title' => $this->titleHeader,
+            'subTitle' => 'Tambah Data '.$this->titleHeader,
             'select2' => true,
             'pickr' => true,
             'token' => session('jwtToken'),
@@ -168,8 +170,8 @@ class PerangkatDesaController extends BaseAdminController
             if ($response->getStatusCode() == 200) {
                 $result = json_decode($response->getBody(), true);
                 $data = [
-                    'title' => 'Jabatan',
-                    'subTitle' => 'Edit',
+                    'title' => $this->titleHeader,
+                    'subTitle' => 'Edit '.$this->titleHeader,
                     'select2' => true,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',

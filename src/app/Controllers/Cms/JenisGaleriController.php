@@ -6,7 +6,7 @@ use App\Controllers\Cms\BaseAdminController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Config\Services;
 
-class KecamatanController extends BaseAdminController
+class JenisGaleriController extends BaseAdminController
 {
     use ResponseTrait;
     protected $var = [];
@@ -15,9 +15,9 @@ class KecamatanController extends BaseAdminController
 
     public function __construct()
     {
-        $this->var['viewPath'] = 'cms/kecamatan/';
+        $this->titleHeader = 'Jenis Galeri';
+        $this->var['viewPath'] = 'cms/jenis_galeri/';
         $this->apiDomain = getenv('API_DOMAIN');
-        $this->titleHeader = 'Kecamatan';
     }
 
     public function index()
@@ -25,7 +25,7 @@ class KecamatanController extends BaseAdminController
 
         $dataRequest = [
             'method' => 'GET',
-            'api_path' => '/api/kecamatan',
+            'api_path' => '/api/jenis_galeri',
         ];
         $response = $this->request($dataRequest);
 
@@ -48,10 +48,8 @@ class KecamatanController extends BaseAdminController
     }
 
     public function new() {
-
         $data = [
             'title' => $this->titleHeader,
-            'select2' => true,
             'subTitle' => 'Tambah '.$this->titleHeader,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
@@ -60,28 +58,21 @@ class KecamatanController extends BaseAdminController
     }
     
     public function create() {
-        $nama           = $this->request->getPost('nama');
-        $provinsiKode   = $this->request->getPost('provinsiKode');
-        $kabupatenKode  = $this->request->getPost('kabupatenKode');
-        $kode1   = $this->request->getPost('kode1');
-        $kode2   = $this->request->getPost('kode2');
+        $nama = $this->request->getPost('nama');
 
         $dataRequest = [
-                'method'            => 'POST',
-                'api_path'          => '/api/kecamatan',
-                'form_params'       => [
-                    'nama'              => $nama,
-                    'provinsiKode'      => $provinsiKode,
-                    'kabupatenKode'     => $kabupatenKode,
-                    'kode'              => $kode1.'.'.$kode2
+            'method' => 'POST',
+            'api_path' => '/api/jenis_galeri',
+            'form_params' => [
+                'nama' => $nama,
             ],
         ];
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/kecamatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/jenis_galeri/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->to('/admin/jenis_galeri/index')->with('error', 'Data gagal disimpan.');
         }
     }
     
@@ -90,7 +81,7 @@ class KecamatanController extends BaseAdminController
         if($id) {
             $dataRequest = [
                 'method' => 'GET',
-                'api_path' => '/api/kecamatan/edit/' . $id,
+                'api_path' => '/api/jenis_galeri/edit/' . $id,
             ];
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
@@ -98,7 +89,6 @@ class KecamatanController extends BaseAdminController
                 $data = [
                     'title' => $this->titleHeader,
                     'subTitle' => 'Edit '.$this->titleHeader,
-                    'select2' => true,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
@@ -109,31 +99,21 @@ class KecamatanController extends BaseAdminController
     }
 
     public function update($id = null) {
-        $id = $this->request->getPost('id');
-
         $nama = $this->request->getPost('nama');
-        $provinsiKode   = $this->request->getPost('provinsiKode');
-        $kabupatenKode  = $this->request->getPost('kabupatenKode');
-        $kode   = $this->request->getPost('kode');
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/kecamatan/update/' . $id,
+            'api_path' => '/api/jenis_galeri/update/' . $id,
             'form_params' => [
-                'id'                => $id,
-                'nama'              => $nama,
-                'provinsiKode'      => $provinsiKode,
-                'kabupatenKode'     => $kabupatenKode,
-                'kode'              => $kode
+                'nama' => $nama,
             ],
         ];
-
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/kecamatan/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/jenis_galeri/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->to('/admin/jenis_galeri/index')->with('error', 'Data gagal disimpan.');
         }
     }
 
@@ -142,7 +122,7 @@ class KecamatanController extends BaseAdminController
         if($id) {
             $dataRequest = [
                 'method' => 'POST',
-                'api_path' => '/api/kecamatan/delete/' . $id,
+                'api_path' => '/api/jenis_galeri/delete/' . $id,
             ];
 
             $response = $this->request($dataRequest);
@@ -158,5 +138,3 @@ class KecamatanController extends BaseAdminController
         }
     }
 }
-
-

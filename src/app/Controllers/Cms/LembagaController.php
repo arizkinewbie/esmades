@@ -38,7 +38,7 @@ class LembagaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index',
+            'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -50,7 +50,7 @@ class LembagaController extends BaseAdminController
     public function new() {
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Add New',
+            'subTitle' => 'Tambah '.$this->titleHeader,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
         ];
@@ -88,7 +88,7 @@ class LembagaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit',
+                    'subTitle' => 'Edit '.$this->titleHeader,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
@@ -114,6 +114,27 @@ class LembagaController extends BaseAdminController
             return redirect()->to('/admin/lembaga/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->to('/admin/lembaga/index')->with('error', 'Data gagal disimpan.');
+        }
+    }
+
+    public function delete($id = null) {
+
+        if($id) {
+            $dataRequest = [
+                'method' => 'POST',
+                'api_path' => '/api/lembaga/delete/' . $id,
+            ];
+
+            $response = $this->request($dataRequest);
+
+            if($response->getStatusCode() == 200) {
+                return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
+            } else {
+                return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
+            }
+            
+        } else {
+            return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }
     }
 }
