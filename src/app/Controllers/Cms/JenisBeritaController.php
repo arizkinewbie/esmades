@@ -70,9 +70,9 @@ class JenisBeritaController extends BaseAdminController
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jenis_berita/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/jabatan/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/jenis_berita/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
     
@@ -110,10 +110,10 @@ class JenisBeritaController extends BaseAdminController
         ];
         $response = $this->request($dataRequest);
 
-        if ($response->getStatusCode() == 201) {
+        if ($response->getStatusCode() == 200) {
             return redirect()->to('/admin/jenis_berita/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/jenis_berita/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
 

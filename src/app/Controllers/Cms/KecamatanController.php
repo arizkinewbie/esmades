@@ -127,10 +127,10 @@ class KecamatanController extends BaseAdminController
         ];
         $response = $this->request($dataRequest);
 
-        if ($response->getStatusCode() == 201) {
+        if ($response->getStatusCode() == 200) {
             return redirect()->to('/admin/kecamatan/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/kecamatan/create')->with('error', json_decode($response->getBody())->messages);
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
 

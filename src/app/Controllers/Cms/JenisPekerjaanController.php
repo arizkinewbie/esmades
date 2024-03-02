@@ -110,10 +110,10 @@ class JenisPekerjaanController extends BaseAdminController
         ];
         $response = $this->request($dataRequest);
 
-        if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/jenis_pekerjaan/index')->with('success', 'Data berhasil disimpan.');
+        if ($response->getStatusCode() == 200) {
+            return redirect()->to('/admin/agama/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->to('/admin/jenis_pekerjaan/index')->with('error', 'Data gagal disimpan.');
+            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
 
