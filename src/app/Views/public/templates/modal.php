@@ -11,32 +11,17 @@
                 <div class="d-flex">
                     <div class="flex-grow-1 ms-2">
                         <p class="text-muted mb-0">
-                            Desa Talagawetan Kecamatan Talaga Kabupaten Majalengka, adalah salah satu desa yang berada tepat di pusat kota kecamatan, dengan demikian maka pembangunan diberbagai bidang perlu digalakan tahun demi tahun karena sebagai desa yang berada di pusat kota kecamatan akan menjadi cerminan maju mundurnya suatu wilayah kecamatan.
-                            Atas kerjasama pemerintahan dan masyarakat, pembangunan demi pembangunan dapat terlaksana walaupun masih banyak kekurangannya.<br><br>
-
-                            Sebagaimana kita maklumi bersama bahwa infrastruktur perdesaan dan segala fasilitasnya adalah sarana penunjang lancarnya roda pemerintahan, pembangunan dan kemasyarakatan ditingkat desa, termasuk di dalamnya peningkatan perekonomian masyarakat dan pembangunan infrastruktur jalan sebagai sarana transportasi masyarakat yang akan menunjang kepada peningkatan perekonomian masyarakat, karena itulah semestinya sarana tersebut harus memadai sehingga mempunyai pengaruh yang besar terhadap kegiatan dan kelancaran roda pemerintahan dan kesejahteraan masyarakat di desa dan kegiatan lainnya yang positif.<br><br>
-
-                            Dengan pertimbangan tersebut di atas, kami telah merencanakan untuk melaksanakan Pembangunan Infrastruktur Sarana dan Prasarana Pedesaan yaitu berupa pembukaan jalan Poros Desa yang menjadi akses jalan penghubung antara desa Talagawetan ke Desa Campaga. Hal ini adalah dalam rangka untuk meningkatkan perekonomian masyarakat dan sarana trasportasi yang optimal.<br><br>
-
-                            Desa Talagawetan Kecamatan Talaga merupakan bagian tidak terpisahkan dari Pemerintahan Kabupaten Majalengka. Mengingat kedudukannya sebagai penyelenggara Pemerintahan Desa, hingga dengan demikian dalam melaksanakan pokok fungsi dan peranannya selalu berpedoman kepada kebijakan Pemerintah yang lebih tinggi.<br><br>
-
-                            Pada saat ini Pemerintah Desa diharapkan menjadi miniature system Pemerintah Kabupaten, sehingga dapat menampilkan kinerja yang optimal didalam melayani masyarakatnya sesuai dengan amanat Undang Undang Nomor 6 Tahun 2014 Tentang Desa, dan Peraturan Pemerintah Nomor 43 Tahun 2014 tentang Peraturan Pelaksanaan Undang Undang Nomor 6 Tahun 2014 Tentang Desa.<br><br>
-
-                            Pemerintah Desa harus berfungsi secara kondusif dalam membangun kemitraan diantara berbagai domain tata Pemerintahan, yaitu sebagai unsur Pemerintahan Desa termasuk peran aktif Lembaga Permusyawaratan Desa (BPD) dan peran serta masyarakat.<br><br>
-
-                            Urusan Pemerintahan yang menjadi kewenangan Kabupaten/Kota yang diserahkan pengaturannya kepada Desa adalah urusan kepemerintahan yang secara langsung dapat meningkatkan pelayanan pemberdayaan masyarakat dengan pembiayaan yang bersumber dari Anggaran Pendapatan dan Belanja Daerah (APBD) Kabupaten/Kota.
-
-                            Realisasi pelaksanaan kegiatan Masyarakat Desa Talagawetan, Kecamatan Talaga, Kabupaten Majalengka, Provinsi Jawa Barat pada bidang infrastruktur yang menjadi prioritas untuk memenuhi kebutuhan bagi masyarakat desa belum seluruhnya dapat terselesaikan mengingat keterbatasan alokasi dana yang tersedia.
+                            <?= $sejarah ?>
                         </p>
                     </div>
                 </div>
                 <h6 class="fs-16 my-3">Visi</h6>
                 <div class="d-flex mt-3">
                     <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0">Terwujudnya Talagawetan Yang Religius Aman Harmonis Maju Amanah dan Transfaran ( RAHMAT )</p>
+                        <p class="text-muted mb-0"><?= $visi_misi ?></p>
                     </div>
                 </div>
-                <h6 class="fs-16 my-3">Misi</h6>
+                <h6 class="fs-16 my-3">Misi (VISI DAN MISI HARAP DIPISAH DI BE)</h6>
                 <div class="d-flex mt-3">
                     <div class="flex-shrink-0">
                         <i class="ri-checkbox-circle-fill text-success"></i>
