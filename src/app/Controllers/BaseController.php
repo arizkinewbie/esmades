@@ -62,4 +62,37 @@ abstract class BaseController extends Controller
         $main = view('public/templates/main', $data);
         return $main;
     }
+    protected function request($data = [])
+    {
+        $url = getenv('API_DOMAIN') . $data['api_path'];
+        $token = session('jwtToken');
+        $options = [];
+
+        $client = \Config\Services::curlrequest();
+        $options['http_errors'] = false;
+        $options['headers'] = ['Authorization' => 'Bearer ' . $token];
+
+        if (isset($data['form_params'])) {
+            $options['form_params'] = $data['form_params'];
+        }
+        if (isset($data['multipart'])) {
+            $options['multipart'] = $data['multipart'];
+        }
+
+        $response = $client->request($data['method'], $url, $options);
+        return $response;
+    }
+    protected function notFound($message = 'Not Found')
+    {
+        // Load helper 'html' untuk menggunakan fungsi link_tag() dan heading()
+        helper('html');
+        // Buat tampilan HTML untuk pesan 404
+        $data = [
+            'title' => '404 Not Found',
+            'message' => $message
+        ];
+        $body = view('errors/html/error_404', $data);
+        // Return response dengan status code 404 dan tampilan HTML
+        return $this->response->setStatusCode(404)->setBody($body);
+    }
 }
