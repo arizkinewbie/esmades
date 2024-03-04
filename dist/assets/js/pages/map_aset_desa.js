@@ -59,10 +59,9 @@ function initialize() {
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
 
+        var latLngArray = [place.geometry.location.lat(), place.geometry.location.lng()];
+        document.querySelector('.lat_lng').value = latLngArray;
         addMarker(new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()), map);
-
-        document.getElementById('latMap1').value = place.geometry.location.lat();
-        document.getElementById('lngMap1').value = place.geometry.location.lng();
 
         infowindowContent.children["place-name"].textContent = place.name;
         infowindowContent.children["place-address"].textContent =
