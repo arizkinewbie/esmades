@@ -1,3 +1,10 @@
+<style>
+    .pac-container, .pac-container2 {
+        z-index: 1099;
+        position: fixed !important;
+        top: 25% !important;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
 
@@ -85,6 +92,17 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Koordinat Aset</label>
+                                <div class="input-group">
+                                    <button type="button" class="input-group-text btnModalMap1">Tampilkan Peta</button>
+                                    <input type="text" class="form-control lat_lng" name="lat_lng" placeholder="Garis Bujur & lintang">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="dropzone">
                                 <div class="fallback">
@@ -98,6 +116,31 @@
                                     <h4>Drop files here or click to upload.</h4>
                                 </div>
                             </div>
+
+                            <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                <li class="mt-2" id="dropzone-preview-list">
+                                    <!-- This is used as the file preview template -->
+                                    <div class="border rounded">
+                                        <div class="d-flex p-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm bg-light rounded">
+                                                    <img data-dz-thumbnail class="img-fluid rounded d-block" src="assets/images/new-document.png" alt="Dropzone-Image" />
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="pt-1">
+                                                    <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
+                                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                    <strong class="error text-danger" data-dz-errormessage></strong>
+                                                </div>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <!--end row-->
@@ -144,9 +187,41 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div class="modal fade modalMap1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Peta</h5>
+            </div>
+            <div class="modal-body">
+                <p class="fs-15 text-info mb-5">Klik pada peta atau lakukan pencarian lokasi untuk mendapatkan koordinat</p>
+                <div class="mb-5" id="pac-card">
+                    <div class="input-group" id="pac-container">
+                        <input type="text" class="form-control" id="pac-input" placeholder="address...">
+                    </div>
+                </div>
+                <div style="height:350px;" id="map1"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none"
+                    data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCynBKMoc3o3YGdscEYadjoFFyqtXhqjuY&libraries=places,geometry,drawing"></script>
+<script src="<?= base_url('dist/') ?>assets/libs/gmaps/gmaps.min.js"></script>
+<script src="<?= base_url('dist/') ?>assets/js/pages/map_aset_desa.js"></script>
 
 <script>
 var tableBarang;
+$(document).on('click', '.btnModalMap1', function(data){
+    $('.modalMap1').modal('show')
+});
+
 $(document).on('click', '.btnModalBarang', function(data){
     $('.modalBarang').modal('show')
 
@@ -226,85 +301,16 @@ $('.kondisi_barang').select2({
     ]
 });
 
-var barang_bidang_kode = $('.barang_bidang_kode').select2({
-    placeholder: 'Pilih Opsi'
-});
-var barang_kelompok_kode = $('.barang_kelompok_kode').select2({
-    placeholder: 'Pilih Opsi'
-});
-// var barang_kode = $('.barang_kode').select2({ placeholder: 'Pilih Opsi' });
-var barang_bantu_kode = $('.barang_bantu_kode').select2({
-    placeholder: 'Pilih Opsi'
-});
-
-
-
-$(document).on('change', '.barang_golongan_kode', function() {
-    barang_bidang_kode.val('').trigger('change');
-    barang_kelompok_kode.val('').trigger('change');
-    barang_kode.val('').trigger('change');
-    barang_bantu_kode.val('').trigger('change');
-
-    var val = $(this).val();
-    ajaxSelectFromApi({
-        id: '.barang_bidang_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/barang_bidang' ?>',
-        optionalSearch: {
-            barang_golongan_kode: val
-        },
+var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
+// dropzonePreviewNode.id = "1";
+if(dropzonePreviewNode){
+    var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
+    dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
+    var dropzone = new Dropzone(".dropzone", {
+        url: 'https://httpbin.org/post',
+        method: "post",
+        previewTemplate: previewTemplate,
+        previewsContainer: "#dropzone-preview",
     });
-});
-
-$(document).on('change', '.barang_bidang_kode', function() {
-    barang_kelompok_kode.val('').trigger('change');
-    barang_kode.val('').trigger('change');
-    barang_bantu_kode.val('').trigger('change');
-
-    var val = $(this).val();
-    ajaxSelectFromApi({
-        id: '.barang_kelompok_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/barang_kelompok' ?>',
-        optionalSearch: {
-            barang_bidang_kode: val
-        },
-    });
-});
-
-$(document).on('change', '.barang_kelompok_kode', function() {
-    barang_kode.val('').trigger('change');
-    barang_bantu_kode.val('').trigger('change');
-
-    var val = $(this).val();
-    ajaxSelectFromApi({
-        id: '.barang_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/barang' ?>',
-        optionalSearch: {
-            barang_kelompok_kode: val
-        },
-    });
-});
-
-$(document).on('change', '.barang_kode', function() {
-    barang_bantu_kode.val('').trigger('change');
-    var val = $(this).val();
-    ajaxSelectFromApi({
-        id: '.barang_bantu_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/barang_bantu' ?>',
-        optionalSearch: {
-            barang_kode: val
-        },
-    });
-});
+}
 </script>
