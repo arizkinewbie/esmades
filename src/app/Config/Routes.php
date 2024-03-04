@@ -140,6 +140,24 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JenisGaleriController::delete/$1');
     });
 
+    $routes->group('galeri_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'GaleriDesaController::index');
+        $routes->get('new', 'GaleriDesaController::new');
+        $routes->post('create', 'GaleriDesaController::create');
+        $routes->get('edit/(:num)', 'GaleriDesaController::edit/$1');
+        $routes->post('update/(:num)', 'GaleriDesaController::update/$1');
+        $routes->get('delete/(:num)', 'GaleriDesaController::delete/$1');
+    });
+
+    $routes->group('kabar_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('index', 'KabarDesaController::index');
+        $routes->get('new', 'KabarDesaController::new');
+        $routes->post('create', 'KabarDesaController::create');
+        $routes->get('edit/(:num)', 'KabarDesaController::edit/$1');
+        $routes->post('update/(:num)', 'KabarDesaController::update/$1');
+        $routes->get('delete/(:num)', 'KabarDesaController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
