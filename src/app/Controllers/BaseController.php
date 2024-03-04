@@ -55,7 +55,19 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
-
+    protected function notFound($message = 'Not Found')
+    {
+        // Load helper 'html' untuk menggunakan fungsi link_tag() dan heading()
+        helper('html');
+        // Buat tampilan HTML untuk pesan 404
+        $data = [
+            'title' => '404 Not Found',
+            'message' => $message
+        ];
+        $body = view('errors/html/error_404', $data);
+        // Return response dengan status code 404 dan tampilan HTML
+        return $this->response->setStatusCode(404)->setBody($body);
+    }
     protected function render($data = [])
     {
         // Load main
@@ -82,17 +94,19 @@ abstract class BaseController extends Controller
         $response = $client->request($data['method'], $url, $options);
         return $response;
     }
-    protected function notFound($message = 'Not Found')
+    protected function setJwtToken()
     {
-        // Load helper 'html' untuk menggunakan fungsi link_tag() dan heading()
-        helper('html');
-        // Buat tampilan HTML untuk pesan 404
+        $session = session();
+        $url = getenv('API_DOMAIN') . "/api/auth/login";
         $data = [
-            'title' => '404 Not Found',
-            'message' => $message
+            'email' => getenv('KLIEN_EMAIL'),
+            'password' => getenv('KLIEN_PASS'),
         ];
-        $body = view('errors/html/error_404', $data);
-        // Return response dengan status code 404 dan tampilan HTML
-        return $this->response->setStatusCode(404)->setBody($body);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        $session->set('jwtToken', json_decode($response)->token);
+        curl_close($ch);
     }
 }
