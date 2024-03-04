@@ -46,7 +46,7 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="<?= base_url('dist/') ?>assets/images/logo-dark.png" alt="" height="70">
+                                    <img src="<?= base_url('dist/') ?>assets/images/logo-light.png" alt="" height="150">
                                 </a>
                             </div>
                         </div>
