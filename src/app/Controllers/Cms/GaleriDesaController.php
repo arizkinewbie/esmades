@@ -37,7 +37,7 @@ class GaleriDesaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index '.$this->titleHeader,
+            'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -46,27 +46,20 @@ class GaleriDesaController extends BaseAdminController
         return $this->render($data);
     }
 
-    public function new() {
+    public function new()
+    {
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Tambah '. $this->titleHeader,
+            'subTitle' => 'Tambah ' . $this->titleHeader,
             'token' => session('jwtToken'),
             'select2' => true,
             'view' => $this->var['viewPath'] . 'new',
         ];
         return $this->render($data);
     }
-    
-    public function create() {
-        
-        // $validationRules      = [
-        //     'file' => [
-        //         'uploaded[file]',
-        //         'mime_in[file,image/png,image/jpg,image/jpeg]',
-        //     ],
-        //     'jenis_galeri' => ['required'],
-        //     'keterangan' => ['required']
-        // ];
+
+    public function create()
+    {
 
         $validationRules = [
             'file' => [
@@ -91,14 +84,14 @@ class GaleriDesaController extends BaseAdminController
 
         ];
 
-        if (! $this->validate($validationRules)) {
+        if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
 
 
         $fotoNama = '';
         $foto = $this->request->getFile('file');
-        if (! $foto->hasMoved()) {
+        if (!$foto->hasMoved()) {
             $filenameFoto = $foto->getRandomName();
             $foto->move('uploads/galeri_desa/images', $filenameFoto);
             $fotoNama = $filenameFoto;
@@ -119,10 +112,11 @@ class GaleriDesaController extends BaseAdminController
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
         }
     }
-    
-    public function edit($id = null) {
 
-        if($id) {
+    public function edit($id = null)
+    {
+
+        if ($id) {
             $dataRequest = [
                 'method' => 'GET',
                 'api_path' => '/api/galeri_desa/edit/' . $id,
@@ -132,8 +126,9 @@ class GaleriDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit '. $this->titleHeader,
+                    'subTitle' => 'Edit ' . $this->titleHeader,
                     'token' => session('jwtToken'),
+                    'select2' => true,
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
                 $data = array_merge($data, $result);
@@ -142,7 +137,8 @@ class GaleriDesaController extends BaseAdminController
         }
     }
 
-    public function update($id = null) {
+    public function update($id = null)
+    {
         $nama = $this->request->getPost('nama');
 
         $dataRequest = [
@@ -161,9 +157,10 @@ class GaleriDesaController extends BaseAdminController
         }
     }
 
-    public function delete($id = null) {
+    public function delete($id = null)
+    {
 
-        if($id) {
+        if ($id) {
             $dataRequest = [
                 'method' => 'POST',
                 'api_path' => '/api/galeri_desa/delete/' . $id,
@@ -171,12 +168,11 @@ class GaleriDesaController extends BaseAdminController
 
             $response = $this->request($dataRequest);
 
-            if($response->getStatusCode() == 200) {
+            if ($response->getStatusCode() == 200) {
                 return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
             } else {
                 return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
             }
-            
         } else {
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }

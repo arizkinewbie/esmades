@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <?php echo view('cms/partials/show_alert') ?>    
+        <?php echo view('cms/partials/show_alert') ?>
 
         <div class="card">
             <div class="card-header d-flex align-items-center">
@@ -28,32 +28,47 @@
 <!--end row-->
 
 <script>
-
-$(document).ready(function() {
-    $('#table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: '<?= $apiDomain ?>/api/datatable/kecamatan',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
-            }
-        },
-        columns: [
-            {data: 'id'},
-            {data: 'kode'},
-            {data: 'nama'},
-            {
-                data: 'nama',
-                render: function(data) {
-                    return 'actions';
+    $(document).ready(function() {
+        $('#table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '<?= $apiDomain ?>/api/datatable/kecamatan',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
                 }
             },
-        ]
+            columns: [{
+                    data: 'id'
+                },
+                {
+                    data: 'kode'
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'id',
+                    orderable: false,
+                    className: 'text-center',
+                    width: '100px',
+                    render: function(data, type, row) {
+                        var html = `<div class="dropdown d-inline-block">
+                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ri-more-fill align-middle"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">`;
+                        html += `<li><a href="<?= site_url('admin/kecamatan/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
+                        html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
+                        html += `</ul></div>`;
+                        return html;
+                    }
+                },
+            ]
+        });
     });
-});
 
-function deleteData(id) {
+    function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
             text: "Data yang telah dihapus tidak dapat dikembalikan!",
@@ -65,13 +80,15 @@ function deleteData(id) {
             cancelButtonText: "Batal",
             buttonsStyling: false,
             showCloseButton: true,
-            preConfirm: function (email) {
-                return new Promise(function (resolve, reject) {
+            preConfirm: function(email) {
+                return new Promise(function(resolve, reject) {
                     $.ajax({
                         url: "<?= site_url('admin/kecamatan/delete/') ?>" + id,
-                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
                         success: function(res) {
-                            if(res.status) {
+                            if (res.status) {
                                 resolve();
                                 Swal.fire('Success!', res.message, 'success').then((result) => {
                                     location.reload();
