@@ -63,9 +63,11 @@ class AsetDesaController extends BaseAdminController
         $data = [
             'title' => $this->titleHeader,
             'select2' => true,
+            'dataTable' => true,
             'result' => $result,
-            'subTitle' => 'Add New',
+            'subTitle' => 'Tambah Baru',
             'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'new',
         ];
         return $this->render($data);

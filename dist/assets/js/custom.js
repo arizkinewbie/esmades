@@ -78,3 +78,58 @@ function ajaxSelect(data) {
     }
 }
 
+function ajaxSelectFromApi(data) {
+    if (data) {
+        $(data.id).select2({
+            multiple: data.multiple ? data.multiple : false,
+            templateResult: data.templateResult ? data.templateResult : templateResult,
+            templateSelection: data.templateSelection ? data.templateSelection : templateSelection,
+            minimumInputLength: data.minimumInputLength ? data.minimumInputLength : null,
+            allowClear: data.allowClear ? data.allowClear : null,
+            readonly: data.readonly ? data.readonly : null,
+            disabled: data.disabled ? data.disabled : null,
+            placeholder: data.placeholder ? data.placeholder : 'Pilih Opsi',
+            ajax: {
+                url: data.url,
+                dataType: 'json',
+                headers: data.headers,
+                delay: 250,
+                data: function (params) {
+                    var query = {
+                        q: params.term,
+                        type: 'public',
+                    }
+
+                    let mergedParams = { ...data.optionalSearch, ...query };
+                    return mergedParams;
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    }
+                },
+                cache: false,
+            },
+        })
+
+        var selected = data.selected
+        if (selected) {
+            var dataoption = $(data.id)
+            $.ajax({
+                url: data.url + '/' + selected,
+                dataType: 'json',
+                success: function (data) {
+                    var option = new Option(data.text, data.id, true, true);
+                    dataoption.append(option).trigger('change');
+                    dataoption.trigger({
+                        type: 'select2:select',
+                        params: {
+                            data: data
+                        }
+                    })
+                }
+            })
+        }
+    }
+}
+
