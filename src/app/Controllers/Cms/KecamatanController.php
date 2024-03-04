@@ -40,6 +40,7 @@ class KecamatanController extends BaseAdminController
             'title' => $this->titleHeader,
             'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
+            'apiDomain' => $this->apiDomain,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
             'result' => $result

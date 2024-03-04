@@ -14,43 +14,12 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Provinsi Kode</th>
-                            <th>Kabupaten Kode</th>
                             <th>Kode</th>
                             <th class="w-75">Nama</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php if(!empty($result)): $no = 1; foreach($result as $k): ?>
-                        <tr>
-                            <td><?= $no; ?></td>
-                            <td><?= $k->provinsiKode; ?></td>
-                            <td><?= $k->kabupatenKode; ?></td>
-                            <td><?= $k->kode; ?></td>
-                            <td><?= $k->nama; ?></td>
-                            <td>
-                                <div class="dropdown d-inline-block">
-                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill align-middle"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a href="<?= site_url('admin/kecamatan/edit/' . $k->id) ?>" class="dropdown-item"><i
-                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php $no++; endforeach; endif; ?>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
@@ -59,7 +28,31 @@
 <!--end row-->
 
 <script>
-$('#table').DataTable();
+
+$(document).ready(function() {
+    $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '<?= $apiDomain ?>/api/datatable/kecamatan',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
+            }
+        },
+        columns: [
+            {data: 'id'},
+            {data: 'kode'},
+            {data: 'nama'},
+            {
+                data: 'nama',
+                render: function(data) {
+                    return 'actions';
+                }
+            },
+        ]
+    });
+});
+
 function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",

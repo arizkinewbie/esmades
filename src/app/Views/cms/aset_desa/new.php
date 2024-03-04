@@ -13,6 +13,12 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
+                                <label class="form-label">Pilih Kode Barang</label>
+                                <input type="text" class="form-control barang_kode" name="barang_kode" placeholder="Pilih kode barang">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
                                 <label class="form-label">Golongan Barang</label>
                                 <select class="form-control js-example-basic-single barang_golongan_kode" name="barang_golongan_kode"></select>
                             </div>
@@ -128,7 +134,7 @@
 
     var barang_bidang_kode = $('.barang_bidang_kode').select2({ placeholder: 'Pilih Opsi' });
     var barang_kelompok_kode = $('.barang_kelompok_kode').select2({ placeholder: 'Pilih Opsi' });
-    var barang_kode = $('.barang_kode').select2({ placeholder: 'Pilih Opsi' });
+    // var barang_kode = $('.barang_kode').select2({ placeholder: 'Pilih Opsi' });
     var barang_bantu_kode = $('.barang_bantu_kode').select2({ placeholder: 'Pilih Opsi' });
 
     ajaxSelectFromApi({

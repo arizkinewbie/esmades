@@ -42,7 +42,7 @@ abstract class BaseAdminController extends Controller
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
-    // protected $session;
+    protected $session;
 
     /**
      * @return void
@@ -54,10 +54,14 @@ abstract class BaseAdminController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
 
-        if(empty(session('jwtToken'))) {
-            return redirect()->to('/admin/auth/signin');
+        // if(empty(session('jwtToken'))) {
+        //     echo session('jwtToken'); exit;
+        // }
+        if($this->session->has('jwtToken')) {
+            return redirect()->to('/admin/aset_desa/');
+            // exit;
         }
     }
 
