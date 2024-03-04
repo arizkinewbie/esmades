@@ -4,7 +4,7 @@
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
-                    <a href="<?= site_url('admin/agama/new') ?>" class="btn btn-primary">Add New Row</a>
+                    <a href="<?= site_url('admin/galeri_desa/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>
             </div>
             <div class="card-body">
@@ -12,7 +12,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th class="w-75">Nama</th>
+                            <th class="w-75">Jenis Galeri</th>
+                            <th>Keterangan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -20,7 +21,8 @@
                         <?php if(!empty($result)): $no = 1; foreach($result as $k): ?>
                         <tr>
                             <td><?= $no; ?></td>
-                            <td><?= $k->nama; ?></td>
+                            <td><?= $k->jenis_galeri; ?></td>
+                            <td><?= $k->keterangan; ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -29,7 +31,7 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
-                                            <a href="<?= site_url('admin/agama/edit/' . $k->id) ?>" class="dropdown-item"><i
+                                            <a href="<?= site_url('admin/galeri_desa/edit/' . $k->id) ?>" class="dropdown-item"><i
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                         </li>
                                         <li>
@@ -68,7 +70,7 @@ function deleteData(id) {
             preConfirm: function (email) {
                 return new Promise(function (resolve, reject) {
                     $.ajax({
-                        url: "<?= site_url('admin/agama/delete/') ?>" + id,
+                        url: "<?= site_url('admin/galeri_desa/delete/') ?>" + id,
                         headers: {'X-Requested-With': 'XMLHttpRequest'},
                         success: function(res) {
                             if(res.status) {

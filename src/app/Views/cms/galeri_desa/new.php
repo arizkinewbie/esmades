@@ -8,12 +8,12 @@
             
 
             <div class="card-body">
-                <form action="<?= site_url('admin/agama/create') ?>" method="post">
+                <form action="<?= site_url('admin/galeri_desa/create') ?>" method="post">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Nama Agama</label>
-                                <input type="text" class="form-control nama" name="nama" placeholder="Masukan nama">
+                                <label class="form-label">Jenis Galeri</label>
+                                <select class="form-control js-example-basic-single jenis_galeri" name="jenis_galeri"></select>
                             </div>
                         </div>
                         <!--end col-->
@@ -30,3 +30,17 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function(){
+        
+        ajaxSelect({
+            id: '.jenis_galeri',
+            url: '<?= site_url('admin/select2/jenis_galeri') ?>',
+            selected: '<?= set_value('jenis_galeri') ?>'
+        });
+    })
+
+    
+</script>
