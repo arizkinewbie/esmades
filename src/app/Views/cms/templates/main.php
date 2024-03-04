@@ -14,9 +14,13 @@
 
     
 
+    <?php if(isset($dropzone)): ?>
+        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/dropzone/dropzone.css" type="text/css" />
+    <?php endif ?>
     <?php if(isset($select2)): ?>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <?php endif ?>
+    
 
     <?php if(isset($pickr)): ?>
         <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->

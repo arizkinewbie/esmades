@@ -64,6 +64,7 @@ class AsetDesaController extends BaseAdminController
             'title' => $this->titleHeader,
             'select2' => true,
             'dataTable' => true,
+            'dropzone' => true,
             'result' => $result,
             'subTitle' => 'Tambah Baru',
             'token' => session('jwtToken'),
