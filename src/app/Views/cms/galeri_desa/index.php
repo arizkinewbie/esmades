@@ -20,33 +20,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if(!empty($result)): $no = 1; foreach($result as $k): ?>
-                        <tr>
-                            <td><?= $no; ?></td>
-                            <td><?= $k->jenis_galeri; ?></td>
-                            <td><img src="<?= base_url('uploads/galeri_desa/images/'.$k->file); ?>" class="rounded" alt="200x200" width="200"></td>
-                            <td><?= $k->keterangan; ?></td>
-                            <td>
-                                <div class="dropdown d-inline-block">
-                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill align-middle"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a href="<?= site_url('admin/galeri_desa/edit/' . $k->id) ?>" class="dropdown-item"><i
-                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php $no++; endforeach; endif; ?>
+                        <?php if (!empty($result)) : $no = 1;
+                            foreach ($result as $k) : ?>
+                                <tr>
+                                    <td><?= $no; ?></td>
+                                    <td><?= $k->jenis_galeri; ?></td>
+                                    <td><img data-bs-toggle="modal" data-bs-target="#myModal<?= $no; ?>" src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>" class="rounded" alt="200x200" width="200">
+
+                                        <!-- Default Modals -->
+                                        <div id="myModal<?= $no; ?>" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModalLabel">Galeri Desa</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <center>
+                                                            <img class='img-fluid' src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>">
+                                                        </center>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    </td>
+                                    <td><?= $k->keterangan; ?></td>
+                                    <td>
+                                        <div class="dropdown d-inline-block">
+                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-more-fill align-middle"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a href="<?= site_url('admin/galeri_desa/edit/' . $k->id) ?>" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
+                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                        <?php $no++;
+                            endforeach;
+                        endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -56,9 +79,9 @@
 <!--end row-->
 
 <script>
-$('#table').DataTable();
+    $('#table').DataTable();
 
-function deleteData(id) {
+    function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
             text: "Data yang telah dihapus tidak dapat dikembalikan!",
@@ -70,13 +93,15 @@ function deleteData(id) {
             cancelButtonText: "Batal",
             buttonsStyling: false,
             showCloseButton: true,
-            preConfirm: function (email) {
-                return new Promise(function (resolve, reject) {
+            preConfirm: function(email) {
+                return new Promise(function(resolve, reject) {
                     $.ajax({
                         url: "<?= site_url('admin/galeri_desa/delete/') ?>" + id,
-                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
                         success: function(res) {
-                            if(res.status) {
+                            if (res.status) {
                                 resolve();
                                 Swal.fire('Success!', res.message, 'success').then((result) => {
                                     location.reload();
