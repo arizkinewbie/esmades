@@ -1,6 +1,5 @@
 <div class="row">
     <div class="col-md-12">
-
         <?php echo view('cms/partials/show_alert') ?>
 
         <div class="card">

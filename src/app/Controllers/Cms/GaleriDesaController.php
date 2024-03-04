@@ -92,6 +92,9 @@ class GaleriDesaController extends BaseAdminController
                 'file' => $fileNama,
             ],
         ];
+
+        print_r($dataRequest);
+        die();
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {

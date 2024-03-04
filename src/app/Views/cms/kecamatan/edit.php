@@ -1,8 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'error')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>
+        <?php echo view('cms/partials/show_alert') ?>
 
         <div class="card">
             <div class="card-header d-flex align-items-center">

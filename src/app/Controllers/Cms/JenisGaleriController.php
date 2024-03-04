@@ -70,7 +70,7 @@ class JenisGaleriController extends BaseAdminController
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            return redirect()->to('/admin/agama/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/jenis_galeri/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }

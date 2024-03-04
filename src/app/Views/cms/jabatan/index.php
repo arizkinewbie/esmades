@@ -1,8 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'error')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>        
+        <?php echo view('cms/partials/show_alert') ?> 'listErrors')) ?>        
         <div class="card">
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
@@ -31,10 +29,6 @@
                                         <i class="ri-more-fill align-middle"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a href="#!" class="dropdown-item"><i
-                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
-                                        </li>
                                         <li>
                                             <a href="<?= site_url('admin/jabatan/edit/' . $k->id) ?>" class="dropdown-item"><i
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
