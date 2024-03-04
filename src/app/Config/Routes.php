@@ -93,6 +93,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('provinsi/(:num)', 'Select2Controller::provinsi/$1');
         $routes->get('kabupaten', 'Select2Controller::kabupaten');
         $routes->get('kabupaten/(:any)', 'Select2Controller::kabupaten/$1');
+        $routes->get('jenis_galeri/(:num)', 'Select2Controller::jenis_galeri/$1');
+        $routes->get('jenis_berita/(:num)', 'Select2Controller::jenis_berita/$1');
     });
 
     $routes->group('pendidikan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
