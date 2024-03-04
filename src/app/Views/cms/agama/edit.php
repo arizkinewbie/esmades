@@ -20,6 +20,7 @@
                         <div class="col-lg-12">
                             <div class="text-start">
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="<?= base_url('admin/agama/index'); ?>" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
                         <!--end col-->
