@@ -23,7 +23,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Foto</label>
-                                <input class="form-control" type="file" name="file" required>
+                                <input class="form-control" type="file" name="file">
                             </div>
                         </div>
                         <!--end col-->

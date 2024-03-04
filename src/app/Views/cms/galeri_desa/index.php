@@ -13,7 +13,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th class="w-75">Jenis Galeri</th>
+                            <th>Jenis Galeri</th>
+                            <th>Foto</th>
                             <th>Keterangan</th>
                             <th>Action</th>
                         </tr>
@@ -23,6 +24,7 @@
                         <tr>
                             <td><?= $no; ?></td>
                             <td><?= $k->jenis_galeri; ?></td>
+                            <td><img src="<?= base_url('uploads/galeri_desa/images/'.$k->file); ?>" class="rounded" alt="200x200" width="200"></td>
                             <td><?= $k->keterangan; ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">

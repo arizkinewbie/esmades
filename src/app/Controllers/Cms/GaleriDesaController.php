@@ -31,7 +31,6 @@ class GaleriDesaController extends BaseAdminController
 
         if ($response->getStatusCode() == 200) {
             $result = json_decode($response->getBody());
-
         } else {
             $result = "";
         }
@@ -59,48 +58,65 @@ class GaleriDesaController extends BaseAdminController
     }
     
     public function create() {
+        
+        // $validationRules      = [
+        //     'file' => [
+        //         'uploaded[file]',
+        //         'mime_in[file,image/png,image/jpg,image/jpeg]',
+        //     ],
+        //     'jenis_galeri' => ['required'],
+        //     'keterangan' => ['required']
+        // ];
 
-        $validationRules      = [
+        $validationRules = [
             'file' => [
-                'uploaded[file]',
-                'mime_in[file,image/png,image/jpg,image/jpeg]',
-            ]
+                'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'gambar wajib diupload.',
+                    'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
+                ]
+            ],
+            'jenis_galeri' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
+            'keterangan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
+
         ];
 
         if (! $this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
 
-        $fileNama = '';
-        $file = $this->request->getFile('file');
-        if (! $file->hasMoved()) {
-            $filenamefile = $file->getRandomName();
-            $file->move('uploads/galeri_desa/images', $filenamefile);
-            $fileNama = $filenamefile;
-        }
 
-        $jenis_galeri = $this->request->getPost('jenis_galeri');
-        $keterangan = $this->request->getPost('keterangan');
-        $file = $this->request->getPost('file');
+        $fotoNama = '';
+        $foto = $this->request->getFile('file');
+        if (! $foto->hasMoved()) {
+            $filenameFoto = $foto->getRandomName();
+            $foto->move('uploads/galeri_desa/images', $filenameFoto);
+            $fotoNama = $filenameFoto;
+        }
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/galeri_desa',
-            'form_params' => [
-                'jenis_galeri' => $jenis_galeri,
-                'keterangan' => $keterangan,
-                'file' => $fileNama,
-            ],
+            'api_path' => '/api/galeri_desa/create',
+            'form_params' => array_merge($this->request->getPost(), [
+                'file' => $fotoNama,
+            ]),
         ];
 
-        print_r($dataRequest);
-        die();
         $response = $this->request($dataRequest);
-
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/galeri_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
         }
     }
     
