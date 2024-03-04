@@ -55,6 +55,10 @@ abstract class BaseAdminController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        if(empty(session('jwtToken'))) {
+            return redirect()->to('/admin/auth/signin');
+        }
     }
 
     protected function render($data = [])
