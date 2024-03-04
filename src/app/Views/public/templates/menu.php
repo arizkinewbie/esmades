@@ -8,12 +8,12 @@
                 <div class="row">
                     <div class="col-md-4 text-center">
                         <div class="text-center">
-                            <a href="javascript:showModal('Profil Desa Talaga Wetan')">
+                            <a href="javascript:showModal('Profil Desa')">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
                                     <img src="https://assets.digitaldesa.id/online/72.03.06.2002/common/300_donggala.png" alt="" class="avatar-sm material-shadow">
                                 </div>
                                 <!-- NAMA DESA dari database -->
-                                <h5 class="fs-14 mb-1">Profil Desa Talaga Wetan</h5>
+                                <h5 class="fs-14 mb-1">Profil Desa <?= $nama ?></h5>
                             </a>
                         </div>
                     </div>

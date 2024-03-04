@@ -18,57 +18,13 @@
                 <h6 class="fs-16 my-3">Visi</h6>
                 <div class="d-flex mt-3">
                     <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0"><?= $visi_misi ?></p>
+                        <p class="text-muted mb-0"><?= $visi ?></p>
                     </div>
                 </div>
-                <h6 class="fs-16 my-3">Misi (VISI DAN MISI HARAP DIPISAH DI BE)</h6>
+                <h6 class="fs-16 my-3">Misi</h6>
                 <div class="d-flex mt-3">
-                    <div class="flex-shrink-0">
-                        <i class="ri-checkbox-circle-fill text-success"></i>
-                    </div>
                     <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0">Religius<br>
-                            Meningkatkan Kualitas Kehidupan beragama dalam mewujudkan masyarakat Talaga Wetan yang beriman dan bertakwa kepada Allah SWT.<br>
-                            Menanamkan nilai-nilai religius dan kearifan lokal melalui program pengembangan nilai-nilai spiritual dan adat istiadat.
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex mt-3">
-                    <div class="flex-shrink-0">
-                        <i class="ri-checkbox-circle-fill text-success"></i>
-                    </div>
-                    <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0">Aman<br>
-                            Meningkatkan sistem keamanan lingkungan dalam upaya terciptanya rasa aman seaman di masyarakat desa Talaga Wetan.<br>
-                            Meningkatkan kemanan ketertiban, ketertiban dan ketentraman warga melalui program Desa Siaga.
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex mt-3">
-                    <div class="flex-shrink-0">
-                        <i class="ri-checkbox-circle-fill text-success"></i>
-                    </div>
-                    <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0">Harmonis<br>
-                            Mewujudkan harmonisasi antar kelembagaan desa sehingga terjalin sinegritas kinerja yang optimal.<br>
-                            Meningkatkan pemahaman aparatur desa terhadap tufoksi aparat desa.<br>
-                            Meningkatkan tata kerja dan tata hubungan antar lembaga desa.<br>
-                            Meningkatkan kapasitas dan kompetensi aparatur pemerintahan desa.<br>
-                            Menciptakan harmonisasi antara pemerintahan desa dengan masyarakat.
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex mt-3">
-                    <div class="flex-shrink-0">
-                        <i class="ri-checkbox-circle-fill text-success"></i>
-                    </div>
-                    <div class="flex-grow-1 ms-2 ">
-                        <p class="text-muted mb-0">Maju<br>
-                            Mewujudkan perekonomian dan kesejahteraan masyarakat. Meningkatkan pengetahuan dan keterampilan masyarakat agar tumbuh kemandirian.<br>
-                            Mewujudkan sistem usaha mandiri melalui program Bumdesa.<br>
-                            Meningkatkan kualitas pendidikan dan kesehatan.<br>
-                            Meningkatkan pembangunan infrastruktur yang mendukung peningkatan sosial ekonomi masyarakat.
-                        </p>
+                        <p class="text-muted mb-0"><?= $misi ?></p>
                     </div>
                 </div>
             </div>
