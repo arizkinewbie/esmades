@@ -53,6 +53,8 @@ class GaleriDesaController extends BaseAdminController
             'subTitle' => 'Tambah ' . $this->titleHeader,
             'token' => session('jwtToken'),
             'select2' => true,
+            'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'new',
         ];
         return $this->render($data);
@@ -129,6 +131,8 @@ class GaleriDesaController extends BaseAdminController
                     'subTitle' => 'Edit ' . $this->titleHeader,
                     'token' => session('jwtToken'),
                     'select2' => true,
+                    'token' => session('jwtToken'),
+                    'apiDomain' => getenv('API_DOMAIN'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
                 $data = array_merge($data, $result);

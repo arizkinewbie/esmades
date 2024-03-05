@@ -45,17 +45,13 @@
 <script>
     $(document).ready(function() {
 
-        $('.jenis_galeri').on('change', function() {
-            var val = $(this).val();
-            ajaxSelect({
-                id: '.jenis_galeri',
-                url: '<?= site_url('admin/select2/jenis_galeri') ?>',
-                selected: '<?= set_value('jenis_galeri', $jenis_galeri) ?>',
-                optionalSearch: {
-                    jenis_galeri: val
-                },
-                disabled: true,
-            });
-        })
+        ajaxSelectFromApi({
+            id: '.jenis_galeri',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/jenis_galeri' ?>',
+            selected: '<?= set_value('jenis_galeri', $jenis_galeri) ?>',
+        });
     })
 </script>

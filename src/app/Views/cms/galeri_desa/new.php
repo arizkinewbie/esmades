@@ -43,15 +43,14 @@
 </div>
 
 <script>
+    $(document).ready(function() {
 
-    $(document).ready(function(){
-        
-        ajaxSelect({
+        ajaxSelectFromApi({
             id: '.jenis_galeri',
-            url: '<?= site_url('admin/select2/jenis_galeri') ?>',
-            selected: '<?= set_value('jenis_galeri') ?>'
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/jenis_galeri' ?>',
         });
     })
-
-    
 </script>
