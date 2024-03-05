@@ -25,28 +25,32 @@
                                 <tr>
                                     <td><?= $no; ?></td>
                                     <td><?= $k->jenis_galeri; ?></td>
-                                    <td><img data-bs-toggle="modal" data-bs-target="#myModal<?= $no; ?>" src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>" class="rounded" alt="200x200" width="200">
+                                    <td>
+                                        <?php if (!empty($k->file)) : if (file_exists("uploads/galeri_desa/images/" . $k->file)) : ?>
+                                                <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no; ?>" src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>" class="rounded" alt="200x200" width="200">
 
-                                        <!-- Default Modals -->
-                                        <div id="myModal<?= $no; ?>" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="myModalLabel">Galeri Desa</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <center>
-                                                            <img class='img-fluid' src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>">
-                                                        </center>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                    </div>
+                                                <!-- Default Modals -->
+                                                <div id="myModal<?= $no; ?>" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel">Galeri Desa</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <img class='img-fluid' src="<?= base_url('uploads/galeri_desa/images/' . $k->file); ?>">
+                                                                </center>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                            </div>
 
-                                                </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
-                                        </div><!-- /.modal -->
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                        <?php endif;
+                                        endif; ?>
                                     </td>
                                     <td><?= $k->keterangan; ?></td>
                                     <td>

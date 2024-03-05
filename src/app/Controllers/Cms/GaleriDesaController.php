@@ -62,7 +62,6 @@ class GaleriDesaController extends BaseAdminController
 
     public function create()
     {
-
         $validationRules = [
             'file' => [
                 'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
