@@ -189,8 +189,7 @@ class GaleriDesaController extends BaseAdminController
         endif;
 
         $jenis_galeri = $this->request->getPost('jenis_galeri');
-        $Keterangan = $this->request->getPost('Keterangan');
-
+        $Keterangan = $this->request->getPost('keterangan');
 
         $dataRequest = [
             'method' => 'POST',
@@ -198,9 +197,10 @@ class GaleriDesaController extends BaseAdminController
             'form_params' => [
                 'jenis_galeri' => $jenis_galeri,
                 'keterangan' => $Keterangan,
-                'fotoNama' => $fotoNama
+                'file' => $fotoNama
             ],
         ];
+
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 200) {
