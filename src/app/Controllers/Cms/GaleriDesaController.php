@@ -213,26 +213,29 @@ class GaleriDesaController extends BaseAdminController
     public function delete($id = null)
     {
         if ($id) {
-            $dataRequest = [
-                'method' => 'POST',
-                'api_path' => '/api/galeri_desa/delete/' . $id,
+
+            //start hapus gambar dlu sebelum hapus record 
+            $dataRequest1 = [
+                'method' => 'GET',
+                'api_path' => '/api/galeri_desa/edit/' . $id,
             ];
-
-
-            $response = $this->request($dataRequest);
-
-            if ($response->getStatusCode() == 200) {
-                $dataRequest1 = [
-                    'method' => 'GET',
-                    'api_path' => '/api/galeri_desa/edit/' . $id,
-                ];
-                $response1 = $this->request($dataRequest1);
+            $response1 = $this->request($dataRequest1);
+            if ($response1->getStatusCode() == 200) {
                 $result = json_decode($response1->getBody(), true);
 
                 if (file_exists('uploads/galeri_desa/images/' . $result['file'])) :
                     unlink('uploads/galeri_desa/images/' . $result['file']);
                 endif;
+            }
+            //end hapus gambar dlu sebelum hapus record 
 
+            $dataRequest = [
+                'method' => 'POST',
+                'api_path' => '/api/galeri_desa/delete/' . $id,
+            ];
+            $response = $this->request($dataRequest);
+
+            if ($response->getStatusCode() == 200) {
                 return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
             } else {
                 return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
