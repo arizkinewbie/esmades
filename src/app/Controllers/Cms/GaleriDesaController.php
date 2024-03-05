@@ -229,8 +229,8 @@ class GaleriDesaController extends BaseAdminController
                 $response1 = $this->request($dataRequest1);
                 $result = json_decode($response1->getBody(), true);
 
-                if (file_exists('uploads/perangkat_desa/pdf/' . $result['file'])) :
-                    unlink('uploads/perangkat_desa/pdf/' . $result['file']);
+                if (file_exists('uploads/galeri_desa/images/' . $result['file'])) :
+                    unlink('uploads/galeri_desa/images/' . $result['file']);
                 endif;
 
                 return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
