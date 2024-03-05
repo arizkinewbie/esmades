@@ -22,10 +22,10 @@
     <?php endif ?>
     
 
+    <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->
+    <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/monolith.min.css" /> <!-- 'monolith' theme -->
+    <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/nano.min.css" /> <!-- 'nano' theme -->
     <?php if(isset($pickr)): ?>
-        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->
-        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/monolith.min.css" /> <!-- 'monolith' theme -->
-        <link rel="stylesheet" href="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/themes/nano.min.css" /> <!-- 'nano' theme -->
     <?php endif ?>
 
     <link href="<?= base_url('dist/') ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -40,6 +40,8 @@
     <link href="<?= base_url('dist/') ?>assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="<?= base_url('dist/') ?>assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+
+    
 
     
     

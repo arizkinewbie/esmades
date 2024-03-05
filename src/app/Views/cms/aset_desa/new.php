@@ -16,94 +16,117 @@
             </div>
 
             <div class="card-body">
-                <form action="<?= site_url('admin/jabatan/create') ?>" method="post">
+                <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1">
+                    
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Kode Barang</label>
-                                <div class="input-group">
-                                    <button type="button" class="input-group-text btnModalBarang">Cari Kode Barang</button>
-                                    <input type="text" class="form-control barang_kode" name="barang_kode" readonly placeholder="Kode barang">
-                                    <input type="text" class="form-control barang_nama" name="barang_nama" readonly placeholder="Nama barang">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Identitas Barang</label>
-                                <input type="text" class="form-control identitas_barang" name="identitas_barang" placeholder="Identitas Barang">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Tahun Pengadaan</label>
-                                <input type="text" class="form-control tahun_pengadaan" name="tahun_pengadaan"
-                                    placeholder="Masukan tahun pengadaan">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Tanggal Perolehan</label>
-                                <input type="text" class="form-control tanggal_perolehan" name="tanggal_perolehan"
-                                    placeholder="Masukan Tanggal Perolehan">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Nilai Kekayaan</label>
-                                <input type="text" class="form-control nilai_kekayaan" name="nilai_kekayaan"
-                                    placeholder="Masukan Nilai Kekayaan">
+                                <label for="firstNameinput" class="form-label">Nama Barang</label>
+                                <input type="text" class="form-control nama_barang" name="nama_barang" value="<?= set_value('nama_barang') ?>" placeholder="Masukan nama barang">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Opsi Satuan</label>
-                                <select class="form-control js-example-basic-single opsi_satuan" name="opsi_satuan"></select>
+                                <label class="form-label">Kode Barang</label>
+                                <div class="input-group">
+                                    <button type="button" class="input-group-text btnModalBarang">Cari Kode Barang</button>
+                                    <input type="text" class="form-control barang_kode" name="barang_kode" value="<?= set_value('barang_kode') ?>" readonly placeholder="Kode barang">
+                                    <!-- <input type="text" class="form-control barang_nama" name="barang_nama" value="<?= set_value('barang_nama') ?>" readonly placeholder="Nama barang"> -->
+                                    <input type="text" class="form-control nomor_urut" name="nomor_urut" value="<?= set_value('nomor_urut') ?>" readonly placeholder="Nomor Urut">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                    </div>
+
+                    
+                        
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Nilai Satuan</label>
-                                <input type="text" class="form-control nilai_satuan" name="nilai_satuan" placeholder="Nilai Satuan">
+                                <label for="firstNameinput" class="form-label">Identitas Barang</label>
+                                <textarea name="identitas_barang" class="form-control" placeholder="Masukan identitas barang"><?= set_value('identitas_barang') ?></textarea>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Asal Usul Aset</label>
-                                <select class="form-control js-example-basic-single asal_usul_aset_id" name="asal_usul_aset_id"></select>
+                                <label for="firstNameinput" class="form-label">Tahun Pengadaan</label>
+                                <input type="text" class="form-control tahun_pengadaan" data-provider="flatpickr" data-date-format="Y-m-d" name="tahun_pengadaan" value="<?= set_value('tahun_pengadaan') ?>" placeholder="Masukan tahun pengadaan">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Bidang Aset</label>
-                                <select class="form-control js-example-basic-single bidang_aset_id" name="bidang_aset_id"></select>
+                                <label for="firstNameinput" class="form-label">Tanggal Perolehan</label>
+                                <input type="text" class="form-control tanggal_perolehan" data-provider="flatpickr" data-date-format="Y-m-d" name="tanggal_perolehan" value="<?= set_value('tanggal_perolehan') ?>" placeholder="Masukan Tanggal Perolehan">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Nilai</label>
+                                <input type="text" class="form-control nilai_satuan" name="nilai_satuan" value="<?= set_value('nilai_satuan') ?>" placeholder="Masukan nilai">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Satuan</label>
+                                <select class="form-control js-example-basic-single aset_satuan_id" name="aset_satuan_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Nilai Kekayaan</label>
+                                <input type="text" class="form-control nilai_kekayaan" name="nilai_kekayaan" value="<?= set_value('nilai_kekayaan') ?>" placeholder="Masukan Nilai Kekayaan">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Asal Usul</label>
+                                <select class="form-control js-example-basic-single aset_asal_usul_id" name="aset_asal_usul_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 aset_bidang">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Bidang</label>
+                                <select class="form-control js-example-basic-single aset_bidang_id" name="aset_bidang_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 aset_sub_bidang hidden">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Sub Bidang</label>
+                                <select class="form-control js-example-basic-single aset_sub_bidang_id" name="aset_sub_bidang_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Kondisi Barang</label>
                                 <select class="form-control js-example-basic-single kondisi_barang"
                                     name="kondisi_barang"></select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Fisik Barang</label>
+                                <select class="form-control js-example-basic-single fisik_barang"
+                                    name="fisik_barang"></select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Koordinat Aset</label>
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalMap1">Tampilkan Peta</button>
-                                    <input type="text" class="form-control lat_lng" name="lat_lng" placeholder="Garis Bujur & lintang">
+                                    <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <textarea name="files" id="files" cols="30" rows="10"></textarea>
+                        <textarea name="files" id="files" cols="30" rows="10" hidden></textarea>
                         <div class="col-md-6">
                             <div class="dropzone">
                                 <div class="fallback">
@@ -148,7 +171,7 @@
                     <div class="row mt-5">
                         <div class="col-md-12">
                             <div class="text-start">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -212,6 +235,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<script src="<?= base_url('dist/') ?>assets/js/app.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCynBKMoc3o3YGdscEYadjoFFyqtXhqjuY&libraries=places,geometry,drawing"></script>
 <script src="<?= base_url('dist/') ?>assets/libs/gmaps/gmaps.min.js"></script>
@@ -257,34 +281,61 @@ $('#tblBarang tbody').on('click', 'tr', function () {
 });
 
 ajaxSelectFromApi({
-    id: '.asal_usul_aset_id',
+    id: '.aset_asal_usul_id',
     headers: {
         "Authorization": "Bearer <?= $token ?>"
     },
     url: '<?= $apiDomain . '/api/select2/asal_usul_aset' ?>',
+    selected: '<?= set_value('aset_asal_usul_id') ?>',
 });
 
 ajaxSelectFromApi({
-    id: '.bidang_aset_id',
+    id: '.aset_bidang_id',
     headers: {
         "Authorization": "Bearer <?= $token ?>"
     },
     url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
-    selected: '1'
+    selected: '<?= set_value('aset_bidang_id') ?>',
 });
 
-$('.opsi_satuan').select2({
-    placeholder: 'Pilih Opsi',
-    data: [{
-            id: 'Jumlah',
-            text: 'Jumlah'
-        },
-        {
-            id: 'Luas',
-            text: 'Luas'
-        },
-    ]
+ajaxSelectFromApi({
+    id: '.aset_satuan_id',
+    headers: {
+        "Authorization": "Bearer <?= $token ?>"
+    },
+    url: '<?= $apiDomain . '/api/select2/satuan_aset' ?>',
+    selected: '<?= set_value('aset_satuan_id') ?>',
 });
+
+$(document).on('change', '.aset_bidang_id', function(data) {
+    var val = $(this).val()
+    ajaxSelectFromApi({
+        id: '.aset_sub_bidang_id',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
+        selected: '<?= set_value('aset_sub_bidang_id') ?>',
+        optionalSearch: {aset_bidang_kode : val}
+    });
+})
+
+$(document).on('change', '.aset_asal_usul_id', function(data) {
+    var val = $(this).val()
+    if(val == '2') {
+        $('.aset_sub_bidang').attr('hidden', false).removeClass('col-md-6').addClass('col-md-3')
+        $('.aset_bidang').removeClass('col-md-6').addClass('col-md-3')
+        $('.aset_sub_bidang_id').select2({
+            placeholder: 'Pilih Opsi'
+        }).val('').trigger('change');
+    } else {
+        $('.aset_sub_bidang').attr('hidden', true).removeClass('col-md-3').addClass('col-md-6')
+        $('.aset_bidang').removeClass('col-md-3').addClass('col-md-6')
+        $('.aset_sub_bidang_id').select2().val('').trigger('change');
+    }
+})
+
+
 
 $('.kondisi_barang').select2({
     placeholder: 'Pilih Opsi',
@@ -301,8 +352,22 @@ $('.kondisi_barang').select2({
             text: 'Rusak Berat'
         },
     ]
-});
+}).val('<?= set_value('kondisi_barang') ?>').trigger('change');
 
+$('.fisik_barang').select2({
+    placeholder: 'Pilih Opsi',
+    data: [{
+            id: 'Ada',
+            text: 'Ada'
+        },
+        {
+            id: 'Tidak Ada',
+            text: 'Tidak Ada'
+        },
+    ]
+}).val('<?= set_value('fisik_barang') ?>').trigger('change');
+
+var formData = new FormData();
 var dataFiles = [];
 var textareaFiles = $("#files");
 var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
@@ -310,20 +375,46 @@ if(dropzonePreviewNode){
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
     var dropzone = new Dropzone(".dropzone", {
+        autoQueue: false,
         url: 'https://httpbin.org/post',
         method: "post",
         previewTemplate: previewTemplate,
         previewsContainer: "#dropzone-preview",
-        success: function(file, response){
-            dataFiles.push({uuid: file.upload.uuid, file: file.dataURL});
-            textareaFiles.val(dataFiles.join('\n'));
+        success: function(file, response) {
+            
+            // dataFiles.push({uuid: file.upload.uuid, file: file.upload.filename});
+            // textareaFiles.val(JSON.stringify(file.upload));
             // alert('File uploaded successfully!');
         },
+
         init: function() {
+            
             this.on("removedfile", function (file) {
-                console.log(file.upload.uuid)
+                console.log(file.upload.uuid);
+            });
+            this.on("addedfile", function (file) {
+                var myForm = document.getElementById('form1');
+                formData = new FormData(myForm);
+                console.log(formData);
+            });
+            this.on("sendingmultiple", function (file, xhr, formData) {
+                formData.append('name', jQuery('#name').val());
+
+                $("form").find("input").each(function(){
+                    formData.append($(this).attr("name"), $(this).val());
+                });
             });
         }
     });
+}
+
+function base64ToImage(base64Image, filename) {
+    // Buat elemen <a> untuk menampilkan file
+    var a = document.createElement('a');
+    a.href = base64Image;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 </script>

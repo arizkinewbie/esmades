@@ -19,9 +19,9 @@
     <script src="<?= base_url('dist/') ?>assets/libs/dropzone/dropzone-min.js"></script>
 <?php endif ?>
 
+<script src="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/pickr.min.js"></script>
+<script src="<?= base_url('dist/') ?>assets/js/pages/form-pickers.init.js"></script>
 <?php if(isset($pickr)): ?>
-    <script src="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/pickr.min.js"></script>
-    <script src="<?= base_url('dist/') ?>assets/js/pages/form-pickers.init.js"></script>
 <?php endif ?>
 
 <?php if(isset($select2)): ?>

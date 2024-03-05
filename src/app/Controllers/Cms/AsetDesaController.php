@@ -75,28 +75,18 @@ class AsetDesaController extends BaseAdminController
     }
     
     public function create() {
-        $nama           = $this->request->getPost('nama');
-        $provinsiKode   = $this->request->getPost('provinsiKode');
-        $kabupatenKode  = $this->request->getPost('kabupatenKode');
-        $kode1   = $this->request->getPost('kode1');
-        $kode2   = $this->request->getPost('kode2');
-
         $dataRequest = [
-                'method'            => 'POST',
-                'api_path'          => '/api/aset_desa',
-                'form_params'       => [
-                    'nama'              => $nama,
-                    'provinsiKode'      => $provinsiKode,
-                    'kabupatenKode'     => $kabupatenKode,
-                    'kode'              => $kode1.'.'.$kode2
-            ],
+            'method'            => 'POST',
+            'api_path'          => '/api/aset_desa',
+            'form_params'       => array_merge($this->request->getPost(), ['desa_id' => '29198']),
         ];
+
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
             return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
-            return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
+            return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
     
