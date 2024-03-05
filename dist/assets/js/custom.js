@@ -118,6 +118,7 @@ function ajaxSelectFromApi(data) {
             $.ajax({
                 url: data.url + '/' + selected,
                 dataType: 'json',
+                headers: data.headers,
                 success: function (data) {
                     var option = new Option(data.text, data.id, true, true);
                     dataoption.append(option).trigger('change');

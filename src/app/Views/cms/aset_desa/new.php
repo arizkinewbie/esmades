@@ -103,6 +103,7 @@
                         </div>
                     </div>
                     <div class="row">
+                        <textarea name="files" id="files" cols="30" rows="10"></textarea>
                         <div class="col-md-6">
                             <div class="dropzone">
                                 <div class="fallback">
@@ -269,6 +270,7 @@ ajaxSelectFromApi({
         "Authorization": "Bearer <?= $token ?>"
     },
     url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
+    selected: '1'
 });
 
 $('.opsi_satuan').select2({
@@ -301,8 +303,9 @@ $('.kondisi_barang').select2({
     ]
 });
 
+var dataFiles = [];
+var textareaFiles = $("#files");
 var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
-// dropzonePreviewNode.id = "1";
 if(dropzonePreviewNode){
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
@@ -311,6 +314,16 @@ if(dropzonePreviewNode){
         method: "post",
         previewTemplate: previewTemplate,
         previewsContainer: "#dropzone-preview",
+        success: function(file, response){
+            dataFiles.push({uuid: file.upload.uuid, file: file.dataURL});
+            textareaFiles.val(dataFiles.join('\n'));
+            // alert('File uploaded successfully!');
+        },
+        init: function() {
+            this.on("removedfile", function (file) {
+                console.log(file.upload.uuid)
+            });
+        }
     });
 }
 </script>
