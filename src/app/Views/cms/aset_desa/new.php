@@ -84,7 +84,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nilai Kekayaan</label>
-                                <input type="text" class="form-control nilai_kekayaan" name="nilai_kekayaan" value="<?= set_value('nilai_kekayaan') ?>" placeholder="Masukan Nilai Kekayaan">
+                                <input type="text" class="form-control nilai_kekayaan" id="cleave-numeral" name="nilai_kekayaan" value="<?= set_value('nilai_kekayaan') ?>" placeholder="Masukan Nilai Kekayaan">
                             </div>
                         </div>
                     </div>
