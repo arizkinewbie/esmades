@@ -93,7 +93,7 @@
                                 <select class="form-control js-example-basic-single aset_bidang_id" name="aset_bidang_id"></select>
                             </div>
                         </div>
-                        <div class="col-md-6 aset_sub_bidang hidden">
+                        <div class="col-md-6 aset_sub_bidang" hidden>
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Sub Bidang</label>
                                 <select class="form-control js-example-basic-single aset_sub_bidang_id" name="aset_sub_bidang_id"></select>
@@ -307,17 +307,23 @@ ajaxSelectFromApi({
     selected: '<?= set_value('aset_satuan_id') ?>',
 });
 
+$(document).on('change', '.aset_satuan_id', function(data) {
+
+});
+
 $(document).on('change', '.aset_bidang_id', function(data) {
     var val = $(this).val()
-    ajaxSelectFromApi({
-        id: '.aset_sub_bidang_id',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
-        selected: '<?= set_value('aset_sub_bidang_id') ?>',
-        optionalSearch: {aset_bidang_kode : val}
-    });
+    if(val == '2') {
+        ajaxSelectFromApi({
+            id: '.aset_sub_bidang_id',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
+            selected: '<?= set_value('aset_sub_bidang_id') ?>',
+            optionalSearch: {aset_bidang_kode : val}
+        });
+    }
 })
 
 $(document).on('change', '.aset_asal_usul_id', function(data) {
