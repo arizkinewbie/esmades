@@ -266,4 +266,8 @@ class KabarDesaController extends BaseAdminController
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }
     }
+
+    public function hapus_gambar()
+    {
+    }
 }

@@ -30,9 +30,9 @@
                         <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
 
                                 <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
-                                    <div class="col-3">
+                                    <div class="col-3 show_data">
                                         <div class="md-3">
-                                            <label for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
+                                            <label data-id="<?= base_url($f->path_file); ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
                                             <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
                                             <!-- Default Modals -->
                                             <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -117,4 +117,16 @@
             </div>
         `);
     }
+
+    $("body").on("click", ".hapus", function(e) {
+        var lokasi_file = $(this).attr("data-id");
+        $.ajax({
+            url: '<?php echo site_url("admin/kabar_desa/hapus_gambar"); ?>',
+            type: 'POST',
+            data: {
+                lokasi_file: lokasi_file,
+            }
+        })
+        $(this).parents('.show_data').remove();
+    });
 </script>
