@@ -39,11 +39,8 @@
     <!-- custom Css-->
     <link href="<?= base_url('dist/') ?>assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
-<<<<<<< HEAD
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />
-=======
->>>>>>> 0844ade7387de2600867165a1253773d64cb1be9
 
 
 
