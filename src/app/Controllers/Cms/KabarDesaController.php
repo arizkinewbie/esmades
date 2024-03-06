@@ -230,9 +230,9 @@ class KabarDesaController extends BaseAdminController
                 $no++;
             }
 
-            $hasil_array = json_encode(array_merge($hasil, $file_array));
+            $hasil_array = (!empty($file_array)) ? json_encode(array_merge($hasil, $file_array)) : json_encode($hasil);
         else :
-            $hasil_array = json_encode($file_array);
+            $hasil_array = (!empty($file_array)) ? json_encode($file_array) : '';
         endif;
 
         $jenis_berita   = $this->request->getPost('jenis_berita');
