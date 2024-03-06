@@ -74,11 +74,11 @@
             autoclose: true,
         });
 
-        if (document.querySelector(".cleave-numeral")) {
-            var cleaveNumeral = new Cleave('.cleave-numeral', {
+        document.querySelectorAll('input').forEach(function(el) {
+            new Cleave(el, {
                 numeral: true,
                 numeralThousandsGroupStyle: 'thousand'
             });
-        }
+        });
     })
 </script>
