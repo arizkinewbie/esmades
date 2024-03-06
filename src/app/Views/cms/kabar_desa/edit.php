@@ -5,69 +5,86 @@
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
             </div>
-
             <div class="card-body">
-                <form action="<?= site_url('admin/galeri_desa/update/' . $id) ?>" method="post" enctype="multipart/form-data">
+                <form id="form1" action="<?= site_url('admin/kabar_desa/update/' . $id) ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label class="form-label">Jenis Galeri</label>
-                                <select class="form-control js-example-basic-single jenis_galeri" name="jenis_galeri"></select>
+                                <label class="form-label">Jenis Berita</label>
+                                <select class="form-control js-example-basic-single jenis_berita" name="jenis_berita"></select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label class="form-label">Keterangan</label>
-                                <textarea name="keterangan" class="form-control keterangan"><?= $keterangan; ?></textarea>
+                                <label for="firstNameinput" class="form-label">Judul Berita</label>
+                                <input type="text" class="form-control judul_berita" name="judul_berita" value="<?= $judul_berita; ?>" placeholder="Masukan judul berita">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="mb-3">
-                                <label class="form-label">Foto</label>
-                                <input class="form-control" type="file" name="file">
+                                <label class="form-label">Isi Berita</label>
+                                <textarea name="isi_berita" class="form-control isi_berita"><?= $isi_berita; ?></textarea>
                             </div>
                         </div>
-                        <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
-                                <div class="col-6">
-                                    <div class="md-3">
-                                        <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url('uploads/galeri_desa/images/' . $file); ?>" class="rounded" alt="200x200" width="200">
-                                        <!-- Default Modals -->
-                                        <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="myModalLabel">Galeri Desa</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <center>
-                                                            <img class='img-fluid' src="<?= base_url('uploads/galeri_desa/images/' . $file); ?>">
-                                                        </center>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                    </div>
 
-                                                </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
-                                        </div><!-- /.modal -->
+                        <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
+
+                                <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
+                                    <div class="col-3">
+                                        <div class="md-3">
+                                            <label for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
+                                            <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
+                                            <!-- Default Modals -->
+                                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">Kabar Desa Desa</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <center>
+                                                                <img class='img-fluid' src="<?= base_url($f->path_file); ?>">
+                                                            </center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="hidden" name="file_name" value="<?= $file; ?>">
-                            <?php else : ?>
-                                <input type="hidden" name="file_name" value="" readonly>
-                        <?php endif;
+                                    <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
+                                <?php else : ?>
+                                    <input type="hidden" name="file_name[]" value="" readonly>
+                                <?php endif; ?>
+
+                        <?php endforeach;
                         endif; ?>
+
+                        <div class="col-12 tambah">
+                            <div class="mb-3">
+                                <a href="javascript:addItem()" class="btn btn-primary"><i class="mdi mdi-plus btn-icon-prepend"></i> Buat File Upload</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--end row-->
+
+                    <div class="row">
                         <!--end col-->
                         <div class="col-lg-12">
                             <div class="text-start">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="<?= base_url('admin/galeri_desa/index'); ?>" class="btn btn-primary">Cancel</a>
+                                <a href="<?= base_url('admin/kabar_desa/index'); ?>" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
                         <!--end col-->
                     </div>
-                    <!--end row-->
                 </form>
             </div>
         </div>
@@ -78,12 +95,26 @@
     $(document).ready(function() {
 
         ajaxSelectFromApi({
-            id: '.jenis_galeri',
+            id: '.jenis_berita',
             headers: {
                 "Authorization": "Bearer <?= $token ?>"
             },
-            url: '<?= $apiDomain . '/api/select2/jenis_galeri' ?>',
-            selected: '<?= set_value('jenis_galeri', $jenis_galeri) ?>',
+            url: '<?= $apiDomain . '/api/select2/jenis_berita' ?>',
+            selected: '<?= set_value('jenis_berita', $jenis_berita) ?>',
         });
     })
+
+    let clicks = 0;
+
+    function addItem() {
+        clicks += 1;
+        $('.tambah').after(`
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Foto ` + clicks + `</label>
+                    <input class="form-control" type="file" name="file[]" required>
+                </div>
+            </div>
+        `);
+    }
 </script>
