@@ -56,12 +56,11 @@ class AuthController extends BaseAdminController
 
         $session = session();
         //konek ke api
-        $url = "http://api-e-smades.dcdrcpiak.id:80/api/auth/login";
+        $url = getenv('API_DOMAIN') . "/api/auth/login";
         $data = [
-            'email' => 'klien01@gmail.com',
-            'password' => 'klien01'
+            'email' => getenv('KLIEN_EMAIL'),
+            'password' => getenv('KLIEN_PASS'),
         ];
-
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
