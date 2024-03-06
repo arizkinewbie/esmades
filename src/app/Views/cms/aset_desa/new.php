@@ -19,14 +19,6 @@
                 <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1">
                     
                     <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Tahun Pengadaan</label>
-                                <input type="text" class="form-control " name="" value="<?= set_value('tahun_pengadaan') ?>" placeholder="Masukan tahun pengadaan">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nama Barang</label>
@@ -313,6 +305,16 @@
 <script>
 var tableBarang;
 
+
+$(document).on('change', '.tanggal_perolehan', function(data){
+    var tahunPengadaan = $('.tahun_pengadaan')
+    var val = $(this).val()
+    var year = val.split('-')[0];
+    if(year != tahunPengadaan.val()) {
+        alert('Tahun harus sama dengan tahun pengadaan');
+        $(this).val('');
+    }
+});
 
 $(document).on('click', '.btnModalMap1', function(data){
     $('.modalMap1').modal('show')
