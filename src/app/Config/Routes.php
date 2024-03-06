@@ -28,6 +28,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('datatable', 'AsetDesaController::indexDataTable');
         $routes->get('new', 'AsetDesaController::new');
         $routes->post('create', 'AsetDesaController::create');
+        $routes->post('upload_file', 'AsetDesaController::uploadFile');
     });
 
     $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {

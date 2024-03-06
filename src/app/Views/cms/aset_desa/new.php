@@ -33,8 +33,8 @@
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalBarang">Cari Kode Barang</button>
                                     <input type="text" class="form-control barang_kode" name="barang_kode" value="<?= set_value('barang_kode') ?>" readonly placeholder="Kode barang">
-                                    <!-- <input type="text" class="form-control barang_nama" name="barang_nama" value="<?= set_value('barang_nama') ?>" readonly placeholder="Nama barang"> -->
-                                    <input type="text" class="form-control nomor_urut" name="nomor_urut" value="<?= set_value('nomor_urut') ?>" readonly placeholder="Nomor Urut">
+                                    <input type="text" class="form-control barang_nama" name="barang_nama" value="<?= set_value('barang_nama') ?>" readonly placeholder="Nama barang">
+                                    <!-- <input type="text" class="form-control nomor_urut" name="nomor_urut" value="<?= set_value('nomor_urut') ?>" readonly placeholder="Nomor Urut"> -->
                                 </div>
                             </div>
                         </div>
@@ -381,7 +381,7 @@ if(dropzonePreviewNode){
         previewTemplate: previewTemplate,
         previewsContainer: "#dropzone-preview",
         success: function(file, response) {
-            
+
             // dataFiles.push({uuid: file.upload.uuid, file: file.upload.filename});
             // textareaFiles.val(JSON.stringify(file.upload));
             // alert('File uploaded successfully!');
