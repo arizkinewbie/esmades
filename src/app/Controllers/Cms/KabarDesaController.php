@@ -52,7 +52,7 @@ class KabarDesaController extends BaseAdminController
             'subTitle' => 'Tambah ' . $this->titleHeader,
             'token' => session('jwtToken'),
             'select2' => true,
-            'filepond' => true,
+            'dropzone' => true,
             'token' => session('jwtToken'),
             'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'new',
