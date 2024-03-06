@@ -5,6 +5,7 @@ namespace App\Controllers\Cms;
 use App\Controllers\Cms\BaseAdminController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Config\Services;
+use CodeIgniter\Files\File;
 
 class AsetDesaController extends BaseAdminController
 {
@@ -75,6 +76,19 @@ class AsetDesaController extends BaseAdminController
     }
     
     public function create() {
+
+        $dataRequest = [
+            'method'            => 'POST',
+            'api_path'          => '/api/aset_desa',
+            'form_params'       => array_merge($this->request->getPost(), ['desa_id' => '29198']),
+        ];
+
+        $response = $this->request($dataRequest);
+
+        echo $response->getBody();
+
+        return $this->respond($this->request->getPost());
+        
         $dataRequest = [
             'method'            => 'POST',
             'api_path'          => '/api/aset_desa',
@@ -158,6 +172,28 @@ class AsetDesaController extends BaseAdminController
             
         } else {
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
+        }
+    }
+
+    public function uploadFile() {
+        $validationRules      = [
+            'file' => [
+                'uploaded[file]',
+                'mime_in[file,image/png,image/jpg,image/jpeg]',
+            ],
+        ];
+        if (! $this->validate($validationRules)) {
+            return $this->respond([
+                'status' => false,
+                'message' => $this->validator->getErrors(),
+            ], 400);
+        }
+
+        $file = $this->request->getFile('file');
+        if(!$file->hasMoved()) {
+            $filename = $file->getRandomName();
+            $file->move('uploads/temp/images', $filename);
+            return $this->respond(['filename' => $filename]);
         }
     }
 }

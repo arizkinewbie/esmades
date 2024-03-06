@@ -49,22 +49,28 @@
                                 <textarea name="identitas_barang" class="form-control" placeholder="Masukan identitas barang"><?= set_value('identitas_barang') ?></textarea>
                             </div>
                         </div>
-                        <div class="col-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Tahun Pengadaan</label>
-                                <input type="text" class="form-control tahun_pengadaan" data-provider="flatpickr" data-date-format="Y-m-d" name="tahun_pengadaan" value="<?= set_value('tahun_pengadaan') ?>" placeholder="Masukan tahun pengadaan">
+                                <input type="text" class="form-control tahun_pengadaan yearpicker" readonly name="tahun_pengadaan" value="<?= set_value('tahun_pengadaan') ?>" placeholder="Masukan tahun pengadaan">
                             </div>
                         </div>
-                        <div class="col-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Tanggal Perolehan</label>
-                                <input type="text" class="form-control tanggal_perolehan" data-provider="flatpickr" data-date-format="Y-m-d" name="tanggal_perolehan" value="<?= set_value('tanggal_perolehan') ?>" placeholder="Masukan Tanggal Perolehan">
+                                <input type="text" class="form-control tanggal_perolehan datepicker" readonly name="tanggal_perolehan" value="<?= set_value('tanggal_perolehan') ?>" placeholder="Masukan Tanggal Perolehan">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nilai</label>
-                                <input type="text" class="form-control nilai_satuan" name="nilai_satuan" value="<?= set_value('nilai_satuan') ?>" placeholder="Masukan nilai">
+                                <input type="text" class="form-control nilai_satuan" id="cleave-numeral" name="nilai_satuan" value="<?= set_value('nilai_satuan') ?>" placeholder="Masukan nilai">
                             </div>
                         </div>
                         <div class="col-2">
@@ -73,6 +79,8 @@
                                 <select class="form-control js-example-basic-single aset_satuan_id" name="aset_satuan_id"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nilai Kekayaan</label>
@@ -87,18 +95,34 @@
                                 <select class="form-control js-example-basic-single aset_asal_usul_id" name="aset_asal_usul_id"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 aset_bidang">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Bidang</label>
-                                <select class="form-control js-example-basic-single aset_bidang_id" name="aset_bidang_id"></select>
+                                <select class="form-control js-example-basic-single aset_bidang_kode" name="aset_bidang_kode"></select>
                             </div>
                         </div>
-                        <div class="col-md-6 aset_sub_bidang" hidden>
-                            <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Sub Bidang</label>
-                                <select class="form-control js-example-basic-single aset_sub_bidang_id" name="aset_sub_bidang_id"></select>
+                    </div>
+                    <div class="aset_sub_bidang" hidden>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="firstNameinput" class="form-label">Sub Bidang</label>
+                                    <select class="form-control js-example-basic-single aset_subbidang_kode" name="aset_subbidang_kode"></select>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="firstNameinput" class="form-label">Sub Bidang Kegiatan</label>
+                                    <select class="form-control js-example-basic-single aset_subbidang_kegiatan_kode" name="aset_subbidang_kegiatan_kode"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Kondisi Barang</label>
@@ -106,6 +130,8 @@
                                     name="kondisi_barang"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Fisik Barang</label>
@@ -131,7 +157,7 @@
                                 <label class="form-label">Polygon</label>
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalPoligon">Tampilkan Peta</button>
-                                    <textarea class="form-control poligon" name="poligin" id="poligon" readonly cols="30" rows="10"></textarea>
+                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"></textarea>
                                     <!-- <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang"> -->
                                 </div>
                             </div>
@@ -148,7 +174,6 @@
                                     <div class="mb-3">
                                         <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
                                     </div>
-
                                     <h4>Drop files here or click to upload.</h4>
                                 </div>
                             </div>
@@ -279,6 +304,8 @@
 
 <script>
 var tableBarang;
+
+
 $(document).on('click', '.btnModalMap1', function(data){
     $('.modalMap1').modal('show')
 });
@@ -321,24 +348,6 @@ $('#tblBarang tbody').on('click', 'tr', function () {
 });
 
 ajaxSelectFromApi({
-    id: '.aset_asal_usul_id',
-    headers: {
-        "Authorization": "Bearer <?= $token ?>"
-    },
-    url: '<?= $apiDomain . '/api/select2/asal_usul_aset' ?>',
-    selected: '<?= set_value('aset_asal_usul_id') ?>',
-});
-
-ajaxSelectFromApi({
-    id: '.aset_bidang_id',
-    headers: {
-        "Authorization": "Bearer <?= $token ?>"
-    },
-    url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
-    selected: '<?= set_value('aset_bidang_id') ?>',
-});
-
-ajaxSelectFromApi({
     id: '.aset_satuan_id',
     headers: {
         "Authorization": "Bearer <?= $token ?>"
@@ -351,38 +360,73 @@ $(document).on('change', '.aset_satuan_id', function(data) {
     var val = $(this).val()
     if(val == '2') {
         $('.poligonInput').attr('hidden', true)
+        $('.poligon').val('')
     } else {
         $('.poligonInput').attr('hidden', false)
     }
 });
 
-$(document).on('change', '.aset_bidang_id', function(data) {
+ajaxSelectFromApi({
+    id: '.aset_asal_usul_id',
+    headers: {
+        "Authorization": "Bearer <?= $token ?>"
+    },
+    url: '<?= $apiDomain . '/api/select2/asal_usul_aset' ?>',
+    selected: '<?= set_value('aset_asal_usul_id') ?>',
+});
+
+ajaxSelectFromApi({
+    id: '.aset_bidang_kode',
+    headers: {
+        "Authorization": "Bearer <?= $token ?>"
+    },
+    url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
+    selected: '<?= set_value('aset_bidang_kode') ?>',
+});
+
+
+
+$('.aset_subbidang_kode').select2({placeholder: 'Pilih Opsi'});
+$('.aset_subbidang_kegiatan_kode').select2({placeholder: 'Pilih Opsi'});
+
+$(document).on('change', '.aset_bidang_kode', function(data) {
     var val = $(this).val()
-    if(val == '2') {
-        ajaxSelectFromApi({
-            id: '.aset_sub_bidang_id',
-            headers: {
-                "Authorization": "Bearer <?= $token ?>"
-            },
-            url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
-            selected: '<?= set_value('aset_sub_bidang_id') ?>',
-            optionalSearch: {aset_bidang_kode : val}
-        });
-    }
+    $('.aset_subbidang_kode').val('').trigger('change');
+    ajaxSelectFromApi({
+        id: '.aset_subbidang_kode',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
+        selected: '<?= set_value('aset_subbidang_kode') ?>',
+        optionalSearch: {aset_bidang_kode : val}
+    });
+})
+
+$(document).on('change', '.aset_subbidang_kode', function(data) {
+    var val = $(this).val()
+    $('.aset_subbidang_kegiatan_kode').val('').trigger('change');
+    ajaxSelectFromApi({
+        id: '.aset_subbidang_kegiatan_kode',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/sub_bidang_kegiatan_aset' ?>',
+        selected: '<?= set_value('aset_subbidang_kegiatan_kode') ?>',
+        optionalSearch: {aset_subbidang_kode : val}
+    });
 })
 
 $(document).on('change', '.aset_asal_usul_id', function(data) {
     var val = $(this).val()
     if(val == '2') {
-        $('.aset_sub_bidang').attr('hidden', false).removeClass('col-md-6').addClass('col-md-3')
-        $('.aset_bidang').removeClass('col-md-6').addClass('col-md-3')
-        $('.aset_sub_bidang_id').select2({
+        $('.aset_sub_bidang').attr('hidden', false)
+        $('.aset_subbidang_kode').select2({
             placeholder: 'Pilih Opsi'
         }).val('').trigger('change');
     } else {
-        $('.aset_sub_bidang').attr('hidden', true).removeClass('col-md-3').addClass('col-md-6')
-        $('.aset_bidang').removeClass('col-md-3').addClass('col-md-6')
-        $('.aset_sub_bidang_id').select2().val('').trigger('change');
+        $('.aset_sub_bidang').attr('hidden', true)
+        $('.aset_subbidang_kode').select2().val('').trigger('change');
     }
 })
 
@@ -426,16 +470,22 @@ if(dropzonePreviewNode){
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
     var dropzone = new Dropzone(".dropzone", {
-        autoQueue: false,
-        url: 'https://httpbin.org/post',
+        autoQueue: true,
+        url: '<?= site_url('admin/aset_desa/') ?>upload_file',
         method: "post",
         previewTemplate: previewTemplate,
         previewsContainer: "#dropzone-preview",
         success: function(file, response) {
-
-            // dataFiles.push({uuid: file.upload.uuid, file: file.upload.filename});
-            // textareaFiles.val(JSON.stringify(file.upload));
-            // alert('File uploaded successfully!');
+            dataFiles.push(response);
+            textareaFiles.val(JSON.stringify(dataFiles));
+        },
+        error: function(file, respon) {
+            this.removeFile(file)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: respon.message.file,
+            });
         },
 
         init: function() {
@@ -444,16 +494,12 @@ if(dropzonePreviewNode){
                 console.log(file.upload.uuid);
             });
             this.on("addedfile", function (file) {
-                var myForm = document.getElementById('form1');
-                formData = new FormData(myForm);
-                console.log(formData);
+                // var myForm = document.getElementById('form1');
+                // formData = new FormData(myForm);
+                // console.log(formData);
             });
             this.on("sendingmultiple", function (file, xhr, formData) {
-                formData.append('name', jQuery('#name').val());
-
-                $("form").find("input").each(function(){
-                    formData.append($(this).attr("name"), $(this).val());
-                });
+                
             });
         }
     });

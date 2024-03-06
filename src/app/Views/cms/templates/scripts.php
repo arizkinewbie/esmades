@@ -27,6 +27,7 @@
 <?php if(isset($select2)): ?>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <?php endif ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 <?php if(isset($dataTable)): ?>
     <!--datatable js-->
@@ -45,7 +46,34 @@
 <?php endif ?>
 
 <script src="<?= base_url('dist/') ?>assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<!-- cleave.js -->
+<script src="<?= base_url('dist/') ?>assets/libs/cleave.js/cleave.min.js"></script>
 
 <!-- App js -->
 <script src="<?= base_url('dist/') ?>assets/js/app.js"></script>
 <script src="<?= base_url('dist/') ?>assets/js/custom.js"></script>
+
+<script>
+    $(document).ready(function(){
+
+        $('.datepicker').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            todayHighlight: true,
+        });
+        
+        $('.yearpicker').datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years",
+            autoclose: true,
+        });
+
+        if (document.querySelector("#cleave-numeral")) {
+            var cleaveNumeral = new Cleave('#cleave-numeral', {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        }
+    })
+</script>
