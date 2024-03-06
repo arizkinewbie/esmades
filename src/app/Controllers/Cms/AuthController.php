@@ -8,8 +8,16 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class AuthController extends BaseAdminController
 {
+    public function index()
+    {
+        return redirect()->to('/admin/auth/signin');
+    }
     public function signIn()
     {
+        // Cek jika session sudah ada
+        if (session()->get('isLoggedIn')) {
+            return redirect()->to('/admin/dashboard/index');
+        }
         $data = [
             'title' => 'Sign In',
         ];
@@ -31,8 +39,8 @@ class AuthController extends BaseAdminController
         $email    = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        
-        
+
+
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
@@ -41,19 +49,18 @@ class AuthController extends BaseAdminController
         $user = $userModel->getUserByEmail($email);
 
         // Periksa apakah pengguna ditemukan dan password sesuai
-        if (!$user || !password_verify((String) $password, $user['password'])) {
+        if (!$user || !password_verify((string) $password, $user['password'])) {
             // Jika tidak, kembali ke halaman login dengan pesan kesalahan
             return redirect()->back()->with('error', 'Email atau password salah.');
         }
 
         $session = session();
         //konek ke api
-        $url = "http://api-e-smades.dcdrcpiak.id:80/api/auth/login";
+        $url = getenv('API_DOMAIN') . "/api/auth/login";
         $data = [
-            'email' => 'klien01@gmail.com',
-            'password' => 'klien01'
+            'email' => getenv('KLIEN_EMAIL'),
+            'password' => getenv('KLIEN_PASS'),
         ];
-
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -65,15 +72,16 @@ class AuthController extends BaseAdminController
         curl_close($ch);
 
         // buat session user 
-        
+
         $session->set('isLoggedIn', TRUE);
         $session->set('sessionUserID', $user['id']);
-        
+
         // Redirect ke halaman dashboard atau halaman setelah login
         return redirect()->to('admin/dashboard/index');
     }
 
-    public function signOut(){
+    public function signOut()
+    {
         $session = session();
         $session->destroy();
         return redirect()->to('/admin/auth/signin');
