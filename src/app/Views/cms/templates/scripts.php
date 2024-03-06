@@ -74,7 +74,7 @@
             autoclose: true,
         });
 
-        document.querySelectorAll('input').forEach(function(el) {
+        document.querySelectorAll('.cleave-numeral').forEach(function(el) {
             new Cleave(el, {
                 numeral: true,
                 numeralThousandsGroupStyle: 'thousand'

@@ -19,6 +19,14 @@
                 <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1">
                     
                     <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Tahun Pengadaan</label>
+                                <input type="text" class="form-control " name="" value="<?= set_value('tahun_pengadaan') ?>" placeholder="Masukan tahun pengadaan">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nama Barang</label>
