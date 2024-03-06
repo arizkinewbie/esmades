@@ -15,20 +15,20 @@
 
 
 
-<?php if(isset($dropzone)): ?>
+<?php if (isset($dropzone)) : ?>
     <script src="<?= base_url('dist/') ?>assets/libs/dropzone/dropzone-min.js"></script>
 <?php endif ?>
 
 <script src="<?= base_url('dist/') ?>assets/libs/@simonwep/pickr/pickr.min.js"></script>
 <script src="<?= base_url('dist/') ?>assets/js/pages/form-pickers.init.js"></script>
-<?php if(isset($pickr)): ?>
+<?php if (isset($pickr)) : ?>
 <?php endif ?>
 
-<?php if(isset($select2)): ?>
+<?php if (isset($select2)) : ?>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <?php endif ?>
 
-<?php if(isset($dataTable)): ?>
+<?php if (isset($dataTable)) : ?>
     <!--datatable js-->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
@@ -41,7 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
     <script src="<?= base_url('dist/') ?>assets/js/pages/datatables.init.js"></script>
-    
+
 <?php endif ?>
 
 <script src="<?= base_url('dist/') ?>assets/libs/sweetalert2/sweetalert2.min.js"></script>
