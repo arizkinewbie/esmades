@@ -23,7 +23,7 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label">Isi Berita</label>
-                                <textarea name="isi_berita" class="form-control isi_berita"><?= $isi_berita; ?></textarea>
+                                <textarea name="isi_berita" class="form-control ckeditor-classic"><?= $isi_berita; ?></textarea>
                             </div>
                         </div>
 
@@ -126,5 +126,18 @@
             }
         })
         $(this).parents('.show_data').remove();
+    });
+
+    //script ckeditor
+    var ckClassicEditor = document.querySelectorAll(".ckeditor-classic")
+    ckClassicEditor.forEach(function() {
+        ClassicEditor
+            .create(document.querySelector('.ckeditor-classic'))
+            .then(function(editor) {
+                editor.ui.view.editable.element.style.height = '200px';
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
     });
 </script>

@@ -24,6 +24,11 @@
 <?php if (isset($pickr)) : ?>
 <?php endif ?>
 
+<?php if (isset($ckeditor)) : ?>
+    <!-- ckeditor -->
+    <script src="<?= base_url('dist/') ?>/assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+<?php endif ?>
+
 <?php if (isset($select2)) : ?>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <?php endif ?>
