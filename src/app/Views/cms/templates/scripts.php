@@ -74,8 +74,8 @@
             autoclose: true,
         });
 
-        if (document.querySelector("#cleave-numeral")) {
-            var cleaveNumeral = new Cleave('#cleave-numeral', {
+        if (document.querySelector(".cleave-numeral")) {
+            var cleaveNumeral = new Cleave('.cleave-numeral', {
                 numeral: true,
                 numeralThousandsGroupStyle: 'thousand'
             });
