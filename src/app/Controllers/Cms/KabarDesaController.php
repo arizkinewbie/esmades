@@ -269,7 +269,9 @@ class KabarDesaController extends BaseAdminController
 
     public function hapus_gambar()
     {
-        $lokasi_file = $this->request->getPost('lokasi_file');
-        @unlink($lokasi_file);
+        $nama_file = $this->request->getPost('nama_file');
+        if (file_exists('uploads/kabar_desa/images/' . $nama_file)) :
+            unlink('uploads/kabar_desa/images/' . $nama_file);
+        endif;
     }
 }
