@@ -9,8 +9,8 @@ $routes->get('/', 'Home::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
     // Routes inside the 'admin' group with controllers in the 'Admin' namespace
-    $routes->get('dashboard', 'AdminController::dashboard');
-    $routes->get('users', 'AdminController::users');
+    // $routes->get('dashboard', 'AdminController::dashboard');
+    // $routes->get('users', 'AdminController::users');
     // Add more routes specific to the 'admin' group as needed
 
     $routes->group('auth', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
@@ -19,11 +19,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('signout', 'AuthController::signOut');
     });
 
-    $routes->group('dashboard', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('dashboard', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'DashboardController::index');
     });
 
-    $routes->group('aset_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('aset_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'AsetDesaController::index');
         $routes->get('datatable', 'AsetDesaController::indexDataTable');
         $routes->get('new', 'AsetDesaController::new');
@@ -31,7 +31,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('upload_file', 'AsetDesaController::uploadFile');
     });
 
-    $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'JabatanController::index');
         $routes->get('new', 'JabatanController::new');
         $routes->post('create', 'JabatanController::create');
@@ -40,7 +40,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JabatanController::delete/$1');
     });
 
-    $routes->group('agama', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('agama', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'AgamaController::index');
         $routes->get('new', 'AgamaController::new');
         $routes->post('create', 'AgamaController::create');
@@ -49,7 +49,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'AgamaController::delete/$1');
     });
 
-    $routes->group('jenis_pekerjaan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('jenis_pekerjaan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'JenisPekerjaanController::index');
         $routes->get('new', 'JenisPekerjaanController::new');
         $routes->post('create', 'JenisPekerjaanController::create');
@@ -58,7 +58,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JenisPekerjaanController::delete/$1');
     });
 
-    $routes->group('lembaga', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('lembaga', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'LembagaController::index');
         $routes->get('new', 'LembagaController::new');
         $routes->post('create', 'LembagaController::create');
@@ -67,7 +67,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'LembagaController::delete/$1');
     });
 
-    $routes->group('provinsi', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('provinsi', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'ProvinsiController::index');
         $routes->get('new', 'ProvinsiController::new');
         $routes->post('create', 'ProvinsiController::create');
@@ -76,7 +76,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'ProvinsiController::delete/$1');
     });
 
-    $routes->group('perangkat_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('perangkat_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'PerangkatDesaController::index');
         $routes->get('new', 'PerangkatDesaController::new');
         $routes->post('create', 'PerangkatDesaController::create');
@@ -85,7 +85,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('update/(:num)', 'PerangkatDesaController::update/$1');
     });
 
-    $routes->group('select2', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('select2', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('jabatan', 'Select2Controller::jabatan');
         $routes->get('jabatan/(:num)', 'Select2Controller::jabatan/$1');
         $routes->get('pendidikan', 'Select2Controller::pendidikan');
@@ -100,7 +100,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('jenis_berita/(:num)', 'Select2Controller::jenis_berita/$1');
     });
 
-    $routes->group('pendidikan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('pendidikan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'PendidikanController::index');
         $routes->get('new', 'PendidikanController::new');
         $routes->post('create', 'PendidikanController::create');
@@ -109,7 +109,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'PendidikanController::delete/$1');
     });
 
-    $routes->group('kabupaten', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('kabupaten', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'KabupatenController::index');
         $routes->get('new', 'KabupatenController::new');
         $routes->post('create', 'KabupatenController::create');
@@ -118,7 +118,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'KabupatenController::delete/$1');
     });
 
-    $routes->group('kecamatan', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('kecamatan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'KecamatanController::index');
         $routes->get('new', 'KecamatanController::new');
         $routes->post('create', 'KecamatanController::create');
@@ -127,7 +127,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'KecamatanController::delete/$1');
     });
 
-    $routes->group('jenis_berita', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('jenis_berita', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'JenisBeritaController::index');
         $routes->get('new', 'JenisBeritaController::new');
         $routes->post('create', 'JenisBeritaController::create');
@@ -136,7 +136,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JenisBeritaController::delete/$1');
     });
 
-    $routes->group('jenis_galeri', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('jenis_galeri', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'JenisGaleriController::index');
         $routes->get('new', 'JenisGaleriController::new');
         $routes->post('create', 'JenisGaleriController::create');
@@ -145,7 +145,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JenisGaleriController::delete/$1');
     });
 
-    $routes->group('galeri_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('galeri_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'GaleriDesaController::index');
         $routes->get('new', 'GaleriDesaController::new');
         $routes->post('create', 'GaleriDesaController::create');
@@ -154,7 +154,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'GaleriDesaController::delete/$1');
     });
 
-    $routes->group('kabar_desa', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('kabar_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'KabarDesaController::index');
         $routes->get('new', 'KabarDesaController::new');
         $routes->post('create', 'KabarDesaController::create');
@@ -164,7 +164,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('hapus_gambar', 'KabarDesaController::hapus_gambar');
     });
 
-    $routes->group('profil', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+    $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
     });
