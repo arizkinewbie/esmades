@@ -32,7 +32,7 @@
                                 <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
                                     <div class="col-3 show_data">
                                         <div class="md-3">
-                                            <label data-id="<?= $nama_file; ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
+                                            <label data-id="<?= $f->nama_file; ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
                                             <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
                                             <!-- Default Modals -->
                                             <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
