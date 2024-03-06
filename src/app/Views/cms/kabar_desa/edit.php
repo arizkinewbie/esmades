@@ -57,8 +57,6 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
-                                <?php else : ?>
-                                    <input type="hidden" name="file_name[]" value="" readonly>
                                 <?php endif; ?>
 
                         <?php endforeach;

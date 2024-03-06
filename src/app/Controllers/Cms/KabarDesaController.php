@@ -165,6 +165,18 @@ class KabarDesaController extends BaseAdminController
     {
 
         $file_name = $this->request->getPost('file_name');
+
+        if (!empty($file_name)) :
+            for ($i = 0; $i < count($file_name); $i++) :
+                $file_array[$i] = array(
+                    'nama_file' => $file_name[$i],
+                    'path_file' => 'uploads/kabar_desa/images/' . $file_name[$i]
+                );
+            endfor;
+        else :
+            $file_array = '';
+        endif;
+
         if (!empty($_FILES['file']['name'])) :
             $validationRules = [
                 'file' => [
@@ -174,13 +186,19 @@ class KabarDesaController extends BaseAdminController
                         'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
                     ]
                 ],
-                'jenis_galeri' => [
+                'jenis_berita' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} wajib diupload.'
                     ]
                 ],
-                'keterangan' => [
+                'judul_berita' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib diupload.'
+                    ]
+                ],
+                'isi_berita' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} wajib diupload.'
@@ -193,33 +211,42 @@ class KabarDesaController extends BaseAdminController
                 return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
             }
 
-            //menghapus file sebelumnya atau di replace
-            if (!empty($file_name)) {
-                unlink('uploads/kabar_desa/images/' . $file_name);
+
+            // Grab the file by name given in HTML form
+            $files = $this->request->getFileMultiple('file');
+
+            $no = 1;
+
+            foreach ($files as $file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $newName = $file->getRandomName();
+                    $file->move('uploads/kabar_desa/images', $newName);
+
+                    $hasil[$no] = array(
+                        'nama_file' => $newName,
+                        'path_file' => 'uploads/kabar_desa/images/' . $newName
+                    );
+                }
+                $no++;
             }
 
-
-            $fotoNama = '';
-            $foto = $this->request->getFile('file');
-            if (!$foto->hasMoved()) :
-                $filenameFoto = $foto->getRandomName();
-                $foto->move('uploads/kabar_desa/images', $filenameFoto);
-                $fotoNama = $filenameFoto;
-            endif;
+            $hasil_array = json_encode(array_merge($hasil, $file_array));
         else :
-            $fotoNama = $file_name;
+            $hasil_array = json_encode($file_array);
         endif;
 
-        $jenis_galeri = $this->request->getPost('jenis_galeri');
-        $Keterangan = $this->request->getPost('keterangan');
+        $jenis_berita   = $this->request->getPost('jenis_berita');
+        $judul_berita   = $this->request->getPost('judul_berita');
+        $isi_berita     = $this->request->getPost('isi_berita');
 
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/kabar_desa/update/' . $id,
             'form_params' => [
-                'jenis_galeri' => $jenis_galeri,
-                'keterangan' => $Keterangan,
-                'file' => $fotoNama
+                'jenis_berita' => $jenis_berita,
+                'judul_berita' => $judul_berita,
+                'isi_berita' => $isi_berita,
+                'foto' => $hasil_array
             ],
         ];
 
@@ -245,8 +272,12 @@ class KabarDesaController extends BaseAdminController
             if ($response1->getStatusCode() == 200) {
                 $result = json_decode($response1->getBody(), true);
 
-                if (file_exists('uploads/kabar_desa/images/' . $result['file'])) :
-                    unlink('uploads/kabar_desa/images/' . $result['file']);
+                if (!empty($result['foto'])) :
+                    foreach (json_decode($result['foto']) as $f) :
+                        if (file_exists('uploads/kabar_desa/images/' . $f->nama_file)) :
+                            unlink('uploads/kabar_desa/images/' . $f->nama_file);
+                        endif;
+                    endforeach;
                 endif;
             }
             //end hapus gambar dlu sebelum hapus record 
