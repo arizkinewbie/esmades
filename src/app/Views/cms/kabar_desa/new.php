@@ -6,7 +6,7 @@
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
             </div>
             <div class="card-body">
-                <form action="<?= site_url('admin/kabar_desa/create') ?>" method="post" enctype="multipart/form-data">
+                <form id="form1" action="<?= site_url('admin/kabar_desa/create') ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
