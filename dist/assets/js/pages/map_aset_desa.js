@@ -1,4 +1,6 @@
 var map;
+var polygonString = [];
+var polygonArray = [];
 
 function initialize() {
     var mapOptions = {
@@ -207,7 +209,7 @@ function initialize() {
         }
         polygonString.push(string);
         polygonArray.push(polygon);
-        document.getElementById('polygon_array').value = JSON.stringify(arrLatLng);
+        document.getElementById('poligon').value = JSON.stringify(arrLatLng);
     });
 }
 
