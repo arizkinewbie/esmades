@@ -62,8 +62,6 @@ class KabarDesaController extends BaseAdminController
 
     public function create()
     {
-
-        die();
         $validationRules = [
             'file' => [
                 'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
@@ -72,40 +70,61 @@ class KabarDesaController extends BaseAdminController
                     'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
                 ]
             ],
-            'jenis_galeri' => [
+            'jenis_berita' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} wajib diupload.'
                 ]
             ],
-            'keterangan' => [
+            'judul_berita' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} wajib diupload.'
                 ]
             ],
-
+            'isi_berita' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
         ];
 
         if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
 
+        // Grab the file by name given in HTML form
+        $files = $this->request->getFileMultiple('file');
 
-        $fotoNama = '';
-        $foto = $this->request->getFile('file');
-        if (!$foto->hasMoved()) {
-            $filenameFoto = $foto->getRandomName();
-            $foto->move('uploads/kabar_desa/images', $filenameFoto);
-            $fotoNama = $filenameFoto;
+        $no = 1;
+
+        foreach ($files as $file) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+                $file->move('uploads/kabar_desa/images', $newName);
+
+                $hasil[$no] = array(
+                    'nama_file' => $newName,
+                    'path_file' => 'uploads/kabar_desa/images/' . $newName
+                );
+            }
+            $no++;
         }
+
+        $jenis_berita   = $this->request->getPost('jenis_berita');
+        $judul_berita   = $this->request->getPost('judul_berita');
+        $isi_berita     = $this->request->getPost('isi_berita');
 
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/kabar_desa/create',
-            'form_params' => array_merge($this->request->getPost(), [
-                'file' => $fotoNama,
-            ]),
+            'form_params' => [
+                'jenis_berita'  => $jenis_berita,
+                'judul_berita'  => $judul_berita,
+                'isi_berita'    => $isi_berita,
+                'foto'          => json_encode($hasil),
+            ],
         ];
 
         $response = $this->request($dataRequest);
