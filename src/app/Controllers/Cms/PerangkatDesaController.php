@@ -22,22 +22,13 @@ class PerangkatDesaController extends BaseAdminController
 
     public function index()
     {
-
-        $dataRequest = [
-            'method' => 'GET',
-            'api_path' => '/api/perangkat_desa',
-        ];
-        $response = $this->request($dataRequest);
-
-        $result = json_decode($response->getBody());
-
         $data = [
             'title' => 'Aset Desa',
             'subTitle' => 'Index '.$this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'index',
-            'result' => $result
         ];
         return $this->render($data);
     }
