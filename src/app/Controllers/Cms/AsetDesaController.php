@@ -24,26 +24,13 @@ class AsetDesaController extends BaseAdminController
     public function index()
     {
 
-        $dataRequest = [
-            'method' => 'GET',
-            'api_path' => '/api/aset_desa',
-        ];
-        $response = $this->request($dataRequest);
-
-        if ($response->getStatusCode() == 200) {
-            $result = json_decode($response->getBody());
-
-        } else {
-            $result = "";
-        }
-
         $data = [
             'title' => $this->titleHeader,
             'subTitle' => 'Index '. $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'index',
-            'result' => $result
         ];
         return $this->render($data);
     }
@@ -77,17 +64,22 @@ class AsetDesaController extends BaseAdminController
     
     public function create() {
 
-        $dataRequest = [
-            'method'            => 'POST',
-            'api_path'          => '/api/aset_desa',
-            'form_params'       => array_merge($this->request->getPost(), ['desa_id' => '29198']),
-        ];
+        helper('filesystem');
 
-        $response = $this->request($dataRequest);
-
-        echo $response->getBody();
-
-        return $this->respond($this->request->getPost());
+        $files = json_decode( (String) $this->request->getPost('files'));
+        $countFiles = count($files);
+        if($countFiles > 0) {
+            foreach($files as $row) {
+                $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
+                $file = new File($fileToMove);
+                
+                $destinationFolder = FCPATH . 'uploads/aset_desa/';
+                if (!is_dir($destinationFolder)) {
+                    mkdir($destinationFolder, 0777, true);
+                }
+                $file->move($destinationFolder, $row->filename);
+            }
+        }
         
         $dataRequest = [
             'method'            => 'POST',

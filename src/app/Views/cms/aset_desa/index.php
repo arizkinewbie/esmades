@@ -14,8 +14,11 @@
                 <table id="table" class="table table-bordered nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>No.</th>
-                            <th class="w-75">Nama</th>
+                            <th class="w-50">Nama Barang</th>
+                            <th>Kode Barang</th>
+                            <th>Register</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,7 +31,47 @@
 <!--end row-->
 
 <script>
-    $('#table').DataTable();
+    var table;
+
+    table = $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '<?= $apiDomain ?>/api/datatable/aset_desa',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
+            }
+        },
+        columns: [
+            { data: 'id', visible: false},
+            { data: 'no', orderable: false, searchable: false},
+            { data: 'nama_barang'},
+            { data: 'barang_kode'},
+            {
+                data: 'nomor_urut_barang',
+                render: function(data, type, row) {
+                    return row.barang_kode + ' | ' + data;
+                }
+            },
+            {
+                data: 'id',
+                orderable: false,
+                className: 'text-center',
+                width: '100px',
+                render: function(data, type, row) {
+                    var html = `<div class="dropdown d-inline-block">
+                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ri-more-fill align-middle"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">`;
+                    html += `<li><a href="<?= site_url('admin/kecamatan/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
+                    html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
+                    html += `</ul></div>`;
+                    return html;
+                }
+            },
+        ]
+    });
     function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
