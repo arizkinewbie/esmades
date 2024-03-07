@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <textarea name="files" id="files" cols="30" rows="10"><?= set_value('files', $files) ?></textarea>
+                        <textarea name="files" id="files" cols="30" rows="10" hidden><?= set_value('files', $files) ?></textarea>
                         <div class="col-md-6">
                             <div class="dropzone">
                                 <div class="fallback">
