@@ -16,7 +16,7 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public string $baseURL = '';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -108,7 +108,7 @@ class App extends BaseConfig
      *
      * @see https://www.php.net/manual/en/timezones.php for list of timezones supported by PHP.
      */
-    public string $appTimezone = 'UTC';
+    public string $appTimezone = 'Asia/Jakarta';
 
     /**
      * --------------------------------------------------------------------------
