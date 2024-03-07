@@ -28,6 +28,7 @@ class AsetDesaController extends BaseAdminController
             'title' => $this->titleHeader,
             'subTitle' => 'Index '. $this->titleHeader,
             'dataTable' => true,
+            'select2' => true,
             'token' => session('jwtToken'),
             'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'index',

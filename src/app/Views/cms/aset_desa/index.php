@@ -7,14 +7,68 @@
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
+                    <a data-bs-toggle="collapse" href="#multiCollapseExample1"
+                    role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="btn btn-success">Pencarian</a>
                     <a href="<?= site_url('admin/aset_desa/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>
             </div>
             <div class="card-body">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <form action="#">
+                        <div class="card card-body mb-5">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tahun Pengadaan</label>
+                                        <select class="form-control js-example-basic-single tahun_pengadaan" name="tahun_pengadaan"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Golongan</label>
+                                        <select class="form-control js-example-basic-single barang_golongan_kode" name="barang_golongan_kode"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Bidang</label>
+                                        <select class="form-control js-example-basic-single barang_bidang_kode" name="barang_bidang_kode"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Kelompok</label>
+                                        <select class="form-control js-example-basic-single barang_kelompok_kode" name="barang_kelompok_kode"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sub Kelompok</label>
+                                        <select class="form-control js-example-basic-single barang_kode" name="barang_kode"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Register</label>
+                                        <select class="form-control js-example-basic-single status_registrasi" name="status_registrasi"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table id="table" class="table table-bordered nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
                             <th>No.</th>
                             <th class="w-50">Nama Barang</th>
                             <th>Kode Barang</th>
@@ -36,6 +90,7 @@
     table = $('#table').DataTable({
         processing: true,
         serverSide: true,
+        draw: true,
         ajax: {
             url: '<?= $apiDomain ?>/api/datatable/aset_desa',
             beforeSend: function(xhr) {
@@ -44,6 +99,12 @@
         },
         columns: [
             { data: 'id', visible: false},
+            { data: 'barang_golongan_kode', visible: false},
+            { data: 'barang_bidang_kode', visible: false},
+            { data: 'barang_kelompok_kode', visible: false},
+            { data: 'barang_kode', visible: false},
+            { data: 'tahun_pengadaan', visible: false},
+            { data: 'status_registrasi', visible: false},
             { data: 'no', orderable: false, searchable: false},
             { data: 'nama_barang'},
             { data: 'barang_kode'},
@@ -72,6 +133,84 @@
             },
         ]
     });
+
+    $('.barang_golongan_kode').on('change', function() {
+        table.column(1).search(this.value).draw();
+    });
+    $('.barang_bidang_kode').on('change', function() {
+        table.column(2).search(this.value).draw();
+    });
+    $('.barang_kelompok_kode').on('change', function() {
+        table.column(3).search(this.value).draw();
+    });
+    $('.barang_kode').on('change', function() {
+        table.column(4).search(this.value).draw();
+    });
+    $('.tahun_pengadaan').on('change', function() {
+        table.column(5).search(this.value).draw();
+    });
+    $('.status_registrasi').on('change', function() {
+        table.column(6).search(this.value).draw();
+    });
+
+
+    // create select2 years 
+    var currentYear = new Date().getFullYear();
+    var data = [];
+    for (var i = currentYear - 5; i <= currentYear; i++) {
+        data.push({ id: i, text: i });
+    }
+    $('.tahun_pengadaan').select2({
+        placeholder: 'Pilih Opsi',
+        data: data,
+    }).val(currentYear).trigger('change')
+    
+    // create select2 registrasi
+    $('.status_registrasi').select2({
+        placeholder: 'Pilih Opsi',
+        data: [{id: '1', text: 'Sudah'},{id: '0', text: 'Belum'}],
+    }).val('1').trigger('change')
+
+    var barang_bidang_kode = $('.barang_bidang_kode').select2({placeholder: 'Pilih Opsi'});
+    var barang_kelompok_kode = $('.barang_kelompok_kode').select2({placeholder: 'Pilih Opsi'});
+    var barang_kode = $('.barang_kode').select2({placeholder: 'Pilih Opsi'});
+
+    ajaxSelectFromApi({
+        id: '.barang_golongan_kode',
+        headers: { "Authorization": "Bearer <?= $token ?>"},
+        url: '<?= $apiDomain . '/api/select2/barang_golongan' ?>',
+    });
+    $(document).on('change', '.barang_golongan_kode', function(){
+        barang_bidang_kode.val('').trigger('change');
+        barang_kelompok_kode.val('').trigger('change');
+        barang_kode.val('').trigger('change');
+        ajaxSelectFromApi({
+            id: '.barang_bidang_kode',
+            headers: { "Authorization": "Bearer <?= $token ?>"},
+            url: '<?= $apiDomain . '/api/select2/barang_bidang' ?>',
+            optionalSearch: {barang_golongan_kode: $(this).val()},
+        });
+    })
+    $(document).on('change', '.barang_bidang_kode', function(){
+        barang_kelompok_kode.val('').trigger('change');
+        barang_kode.val('').trigger('change');
+        ajaxSelectFromApi({
+            id: '.barang_kelompok_kode',
+            headers: { "Authorization": "Bearer <?= $token ?>"},
+            url: '<?= $apiDomain . '/api/select2/barang_kelompok' ?>',
+            optionalSearch: {barang_bidang_kode: $(this).val()},
+        });
+    })
+    $(document).on('change', '.barang_kelompok_kode', function(){
+        barang_kode.val('').trigger('change');
+        ajaxSelectFromApi({
+            id: '.barang_kode',
+            headers: { "Authorization": "Bearer <?= $token ?>"},
+            url: '<?= $apiDomain . '/api/select2/barang' ?>',
+            optionalSearch: {barang_kelompok_kode: $(this).val()},
+        });
+    })
+    
     function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
