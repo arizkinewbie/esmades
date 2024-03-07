@@ -110,7 +110,10 @@ class AsetDesaController extends BaseAdminController
                     'title' => $this->titleHeader,
                     'subTitle' => 'Edit '. $this->titleHeader,
                     'select2' => true,
+                    'dropzone' => true,
+                    'dataTable' => true,
                     'token' => session('jwtToken'),
+                    'apiDomain' => getenv('API_DOMAIN'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
                 $data = array_merge($data, $result);

@@ -29,6 +29,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('new', 'AsetDesaController::new');
         $routes->post('create', 'AsetDesaController::create');
         $routes->post('upload_file', 'AsetDesaController::uploadFile');
+        $routes->get('edit/(:num)', 'AsetDesaController::edit/$1');
+        $routes->post('update/(:num)', 'AsetDesaController::update/$1');
     });
 
     $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
