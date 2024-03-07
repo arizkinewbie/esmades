@@ -146,8 +146,8 @@ class AsetDesaController extends BaseAdminController
 
         $validationRules      = [
             'file_surat_kepemilikan' => [
-                'uploaded[file_surat_kepemilikan]',
-                'mime_in[file_surat_kepemilikan,image/png,image/jpg,image/jpeg]',
+                'uploaded[file_surat_kepemilikan]|max_size[file,2048]',
+                'mime_in[file_surat_kepemilikan,application/pdf]',
             ],
         ];
         

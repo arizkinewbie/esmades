@@ -265,6 +265,7 @@
                                     <div>
                                         <label for="formFile" class="form-label">Upload Surat</label>
                                         <input class="form-control" type="file" name="file_surat_kepemilikan">
+                                        <span class="text-muted">File pdf maksimal size 2mb</span>
                                     </div>
                                 </div>
                             </div>
