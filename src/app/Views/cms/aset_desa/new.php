@@ -116,7 +116,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="firstNameinput" class="form-label">Sub Bidang Kegiatan</label>
+                                    <label for="firstNameinput" class="form-label">Nama Kegiatan</label>
                                     <select class="form-control js-example-basic-single aset_subbidang_kegiatan_kode" name="aset_subbidang_kegiatan_kode"></select>
                                 </div>
                             </div>
