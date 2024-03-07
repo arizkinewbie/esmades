@@ -66,30 +66,50 @@ class AsetDesaController extends BaseAdminController
 
         helper('filesystem');
 
-        $files = json_decode( (String) $this->request->getPost('files'));
-        $countFiles = count($files);
-        if($countFiles > 0) {
-            foreach($files as $row) {
-                $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                $file = new File($fileToMove);
-                
-                $destinationFolder = FCPATH . 'uploads/aset_desa/';
-                if (!is_dir($destinationFolder)) {
-                    mkdir($destinationFolder, 0777, true);
-                }
-                $file->move($destinationFolder, $row->filename);
-            }
+        $validationRules      = [
+            'file_surat_kepemilikan' => [
+                'uploaded[file_surat_kepemilikan]',
+                'mime_in[file_surat_kepemilikan,image/png,image/jpg,image/jpeg]',
+            ],
+        ];
+        if (! $this->validate($validationRules)) {
+            return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
+        }
+        $fileSuratKepemilikanNama = '';
+        $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
+        if (! $fileSuratKepemilikan->hasMoved()) {
+            $filename = $fileSuratKepemilikan->getRandomName();
+            $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
+            $fileSuratKepemilikanNama = $filename;
         }
         
         $dataRequest = [
             'method'            => 'POST',
             'api_path'          => '/api/aset_desa',
-            'form_params'       => array_merge($this->request->getPost(), ['desa_id' => '29198']),
+            'form_params'       => array_merge(
+                $this->request->getPost(),
+                ['desa_id' => '29198', 'file_surat_kepemilikan' => $fileSuratKepemilikanNama]
+            ),
         ];
 
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
+            $files = json_decode( (String) $this->request->getPost('files'));
+            $countFiles = count($files);
+            if($countFiles > 0) {
+                foreach($files as $row) {
+                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
+                    $file = new File($fileToMove);
+                    
+                    $destinationFolder = FCPATH . 'uploads/aset_desa/';
+                    if (!is_dir($destinationFolder)) {
+                        mkdir($destinationFolder, 0777, true);
+                    }
+                    $file->move($destinationFolder, $row->filename);
+                }
+            }
+
             return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
@@ -123,26 +143,40 @@ class AsetDesaController extends BaseAdminController
     }
 
     public function update($id = null) {
-        $nama = $this->request->getPost('nama');
-        $provinsiKode   = $this->request->getPost('provinsiKode');
-        $kabupatenKode  = $this->request->getPost('kabupatenKode');
-        $kode   = $this->request->getPost('kode');
+
+        $validationRules      = [
+            'file_surat_kepemilikan' => [
+                'uploaded[file_surat_kepemilikan]',
+                'mime_in[file_surat_kepemilikan,image/png,image/jpg,image/jpeg]',
+            ],
+        ];
+        
+        $fileSuratKepemilikanNama = '';
+        $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
+        if($fileSuratKepemilikan->isValid()) {
+            if (! $this->validate($validationRules)) {
+                return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
+            }
+
+            if (! $fileSuratKepemilikan->hasMoved()) {
+                $filename = $fileSuratKepemilikan->getRandomName();
+                $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
+                $fileSuratKepemilikanNama = $filename;
+            }
+        }
+
+        $addPost['desa_id'] = '29198';
+        if($fileSuratKepemilikanNama) $addPost['file_surat_kepemilikan'] = $fileSuratKepemilikanNama;
 
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/aset_desa/update/' . $id,
-            'form_params' => [
-                'id'                => $id,
-                'nama'              => $nama,
-                'provinsiKode'      => $provinsiKode,
-                'kabupatenKode'     => $kabupatenKode,
-                'kode'              => $kode
-            ],
+            'form_params' => array_merge($this->request->getPost(), $addPost),
         ];
 
         $response = $this->request($dataRequest);
 
-        if ($response->getStatusCode() == 201) {
+        if ($response->getStatusCode() == 200) {
             return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();

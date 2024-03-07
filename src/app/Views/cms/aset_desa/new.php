@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-                <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1">
+                <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1" enctype='multipart/form-data'>
                     
                     <div class="row">
                         <div class="col-md-6">
@@ -135,11 +135,11 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Fisik Barang</label>
-                                <select class="form-control js-example-basic-single fisik_barang"
-                                    name="fisik_barang"></select>
+                                <select class="form-control js-example-basic-single fisik_barang" name="fisik_barang"></select>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -204,11 +204,91 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="row mb-3 mt-3">
+                        <div class="col-md-6">
+                            <hr>
+                        </div>
+                    </div>
+                    <h5 class="fs-5 mb-5">Pengamanan</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <!-- Base Radios -->
+                                <label class="form-label">Fisik</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input fisik" type="radio" name="fisik" value="1">
+                                        <label class="form-check-label"> Ada</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input fisik" type="radio" name="fisik" value="0">
+                                        <label class="form-check-label"> Tidak Ada</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Keterangan</label>
+                                <textarea name="keterangan_fisik" class="form-control keterangan_fisik" placeholder="Masukan keterangan hukum"><?= set_value('keterangan_fisik') ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <!-- Base Radios -->
+                                <label class="form-label">Hukum</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input hukum" type="radio" name="hukum" value="1">
+                                        <label class="form-check-label"> Sudah</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input hukum" type="radio" name="hukum" value="0">
+                                        <label class="form-check-label"> Belum</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_hukum" hidden>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Nomor Surat Bukti Kemelikan</label>
+                                    <input type="text" class="form-control nomor_bukti_kepemilikan" name="nomor_bukti_kepemilikan" value="<?= set_value('nomor_bukti_kepemilikan') ?>" placeholder="Masukan nomor sertifikat">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div>
+                                        <label for="formFile" class="form-label">Upload Surat</label>
+                                        <input class="form-control" type="file" name="file_surat_kepemilikan">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Keterangan</label>
+                                <textarea name="keterangan_hukum" class="form-control keterangan_hukum" placeholder="Masukan keterangan hukum"><?= set_value('keterangan_hukum') ?></textarea>
+                            </div>
+                        </div>
+                    </div>
                     <!--end row-->
                     <div class="row mt-5">
                         <div class="col-md-12">
                             <div class="text-start">
                                 <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                                <a href="<?= site_url('admin/aset_desa/index') ?>" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
                     </div>
@@ -305,6 +385,13 @@
 <script>
 var tableBarang;
 
+$('.hukum').change(function() {
+    if ($(this).val() === '1') {
+        $('.form_hukum').attr('hidden', false);
+    } else {
+        $('.form_hukum').attr('hidden', true);
+    }
+});
 
 $(document).on('change', '.tanggal_perolehan', function(data){
     var tahunPengadaan = $('.tahun_pengadaan')
@@ -368,11 +455,11 @@ ajaxSelectFromApi({
 
 $(document).on('change', '.aset_satuan_id', function(data) {
     var val = $(this).val()
-    if(val == '2') {
+    if(val == '1' || val == '3') {
+        $('.poligonInput').attr('hidden', false)
+    } else {
         $('.poligonInput').attr('hidden', true)
         $('.poligon').val('')
-    } else {
-        $('.poligonInput').attr('hidden', false)
     }
 });
 
