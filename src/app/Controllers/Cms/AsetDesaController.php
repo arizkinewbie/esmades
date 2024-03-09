@@ -26,7 +26,7 @@ class AsetDesaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index '. $this->titleHeader,
+            'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'select2' => true,
             'token' => session('jwtToken'),
@@ -36,7 +36,8 @@ class AsetDesaController extends BaseAdminController
         return $this->render($data);
     }
 
-    public function new() {
+    public function new()
+    {
         $dataRequest = [
             'method' => 'GET',
             'api_path' => '/api/provinsi',
@@ -44,8 +45,7 @@ class AsetDesaController extends BaseAdminController
         $response = $this->request($dataRequest);
         if ($response->getStatusCode() == 200) {
             $result = json_decode($response->getBody(), true);
-        }
-        else{
+        } else {
             $result = "";
         }
 
@@ -62,8 +62,9 @@ class AsetDesaController extends BaseAdminController
         ];
         return $this->render($data);
     }
-    
-    public function create() {
+
+    public function create()
+    {
 
         helper('filesystem');
 
@@ -73,17 +74,17 @@ class AsetDesaController extends BaseAdminController
                 'mime_in[file_surat_kepemilikan,image/png,image/jpg,image/jpeg]',
             ],
         ];
-        if (! $this->validate($validationRules)) {
+        if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
         $fileSuratKepemilikanNama = '';
         $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
-        if (! $fileSuratKepemilikan->hasMoved()) {
+        if (!$fileSuratKepemilikan->hasMoved()) {
             $filename = $fileSuratKepemilikan->getRandomName();
             $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
             $fileSuratKepemilikanNama = $filename;
         }
-        
+
         $dataRequest = [
             'method'            => 'POST',
             'api_path'          => '/api/aset_desa',
@@ -96,13 +97,13 @@ class AsetDesaController extends BaseAdminController
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 201) {
-            $files = json_decode( (String) $this->request->getPost('files'));
+            $files = json_decode((string) $this->request->getPost('files'));
             $countFiles = count($files);
-            if($countFiles > 0) {
-                foreach($files as $row) {
+            if ($countFiles > 0) {
+                foreach ($files as $row) {
                     $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
                     $file = new File($fileToMove);
-                    
+
                     $destinationFolder = FCPATH . 'uploads/aset_desa/';
                     if (!is_dir($destinationFolder)) {
                         mkdir($destinationFolder, 0777, true);
@@ -116,10 +117,11 @@ class AsetDesaController extends BaseAdminController
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
-    
-    public function edit($id = null) {
 
-        if($id) {
+    public function edit($id = null)
+    {
+
+        if ($id) {
             $dataRequest = [
                 'method' => 'GET',
                 'api_path' => '/api/aset_desa/edit/' . $id,
@@ -129,7 +131,7 @@ class AsetDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit '. $this->titleHeader,
+                    'subTitle' => 'Edit ' . $this->titleHeader,
                     'select2' => true,
                     'dropzone' => true,
                     'dataTable' => true,
@@ -143,7 +145,8 @@ class AsetDesaController extends BaseAdminController
         }
     }
 
-    public function update($id = null) {
+    public function update($id = null)
+    {
 
         $validationRules      = [
             'file_surat_kepemilikan' => [
@@ -151,15 +154,15 @@ class AsetDesaController extends BaseAdminController
                 'mime_in[file_surat_kepemilikan,application/pdf]',
             ],
         ];
-        
+
         $fileSuratKepemilikanNama = '';
         $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
-        if($fileSuratKepemilikan->isValid()) {
-            if (! $this->validate($validationRules)) {
+        if ($fileSuratKepemilikan->isValid()) {
+            if (!$this->validate($validationRules)) {
                 return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
             }
 
-            if (! $fileSuratKepemilikan->hasMoved()) {
+            if (!$fileSuratKepemilikan->hasMoved()) {
                 $filename = $fileSuratKepemilikan->getRandomName();
                 $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
                 $fileSuratKepemilikanNama = $filename;
@@ -167,7 +170,7 @@ class AsetDesaController extends BaseAdminController
         }
 
         $addPost['desa_id'] = '29198';
-        if($fileSuratKepemilikanNama) $addPost['file_surat_kepemilikan'] = $fileSuratKepemilikanNama;
+        if ($fileSuratKepemilikanNama) $addPost['file_surat_kepemilikan'] = $fileSuratKepemilikanNama;
 
         $dataRequest = [
             'method' => 'POST',
@@ -184,9 +187,10 @@ class AsetDesaController extends BaseAdminController
         }
     }
 
-    public function delete($id = null) {
+    public function delete($id = null)
+    {
 
-        if($id) {
+        if ($id) {
             $dataRequest = [
                 'method' => 'POST',
                 'api_path' => '/api/aset_desa/delete/' . $id,
@@ -194,25 +198,25 @@ class AsetDesaController extends BaseAdminController
 
             $response = $this->request($dataRequest);
 
-            if($response->getStatusCode() == 200) {
+            if ($response->getStatusCode() == 200) {
                 return $this->respond(['status' => true, 'message' => 'Data berhasil dihapus']);
             } else {
                 return $this->respond(['status' => false, 'message' => 'Data gagal dihapus']);
             }
-            
         } else {
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }
     }
 
-    public function uploadFile() {
+    public function uploadFile()
+    {
         $validationRules      = [
             'file' => [
                 'uploaded[file]',
                 'mime_in[file,image/png,image/jpg,image/jpeg]',
             ],
         ];
-        if (! $this->validate($validationRules)) {
+        if (!$this->validate($validationRules)) {
             return $this->respond([
                 'status' => false,
                 'message' => $this->validator->getErrors(),
@@ -220,7 +224,7 @@ class AsetDesaController extends BaseAdminController
         }
 
         $file = $this->request->getFile('file');
-        if(!$file->hasMoved()) {
+        if (!$file->hasMoved()) {
             $filename = $file->getRandomName();
             $file->move('uploads/temp/images', $filename);
             return $this->respond(['filename' => $filename]);
