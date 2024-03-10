@@ -164,6 +164,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('update/(:num)', 'KabarDesaController::update/$1');
         $routes->get('delete/(:num)', 'KabarDesaController::delete/$1');
         $routes->post('hapus_gambar', 'KabarDesaController::hapus_gambar');
+        $routes->post('upload_file', 'KabarDesaController::uploadFile');
     });
 
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
