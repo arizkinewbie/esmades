@@ -109,6 +109,20 @@
         });
     })
 
+    //script ckeditor
+    var ckClassicEditor = document.querySelectorAll(".ckeditor-classic")
+    ckClassicEditor.forEach(function() {
+        ClassicEditor
+            .create(document.querySelector('.ckeditor-classic'))
+            .then(function(editor) {
+                editor.ui.view.editable.element.style.height = '200px';
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+    });
+
+
     var formData = new FormData();
     var dataFiles = [];
     var textareaFiles = $("#files");
@@ -147,7 +161,7 @@
                         size: 0
                     }; // Jika ukuran file tidak diketahui, atur ke 0 atau sesuaikan dengan kebutuhan Anda
                     thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?= base_url() ?>/uploads/kabar_desa/" + value.filename);
+                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?= base_url() ?>/uploads/kabar_desa/images/" + value.filename);
                 });
 
 

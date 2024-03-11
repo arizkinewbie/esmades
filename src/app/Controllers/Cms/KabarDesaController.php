@@ -86,7 +86,7 @@ class KabarDesaController extends BaseAdminController
                     $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
                     $file = new File($fileToMove);
 
-                    $destinationFolder = FCPATH . 'uploads/kabardesa/';
+                    $destinationFolder = FCPATH . 'uploads/kabar_desa/images/';
                     if (!is_dir($destinationFolder)) {
                         mkdir($destinationFolder, 0777, true);
                     }
@@ -151,7 +151,7 @@ class KabarDesaController extends BaseAdminController
                     $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
                     $file = new File($fileToMove);
 
-                    $destinationFolder = FCPATH . 'uploads/kabardesa/';
+                    $destinationFolder = FCPATH . 'uploads/kabar_desa/images/';
                     if (!is_dir($destinationFolder)) {
                         mkdir($destinationFolder, 0777, true);
                     }
@@ -182,8 +182,8 @@ class KabarDesaController extends BaseAdminController
 
                 if (!empty($result['foto'])) :
                     foreach (json_decode($result['foto']) as $f) :
-                        if (file_exists('uploads/kabar_desa/images/' . $f->nama_file)) :
-                            unlink('uploads/kabar_desa/images/' . $f->nama_file);
+                        if (file_exists('uploads/kabar_desa/images/' . $f->filename)) :
+                            unlink('uploads/kabar_desa/images/' . $f->filename);
                         endif;
                     endforeach;
                 endif;
