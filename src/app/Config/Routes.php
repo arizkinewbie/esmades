@@ -187,6 +187,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'StatusPemilikController::delete/$1');
     });
 
+    $routes->group('jenis_aset', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'JenisAsetController::index');
+        $routes->get('new', 'JenisAsetController::new');
+        $routes->post('create', 'JenisAsetController::create');
+        $routes->get('edit/(:num)', 'JenisAsetController::edit/$1');
+        $routes->post('update/(:num)', 'JenisAsetController::update/$1');
+        $routes->get('delete/(:num)', 'JenisAsetController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
