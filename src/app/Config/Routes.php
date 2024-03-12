@@ -167,6 +167,17 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('upload_file', 'KabarDesaController::uploadFile');
     });
 
+    $routes->group('aset_di_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'AsetDiDesaController::index');
+        $routes->get('new', 'AsetDiDesaController::new');
+        $routes->post('create', 'AsetDiDesaController::create');
+        $routes->get('edit/(:num)', 'AsetDiDesaController::edit/$1');
+        $routes->post('update/(:num)', 'AsetDiDesaController::update/$1');
+        $routes->get('delete/(:num)', 'AsetDiDesaController::delete/$1');
+        $routes->post('hapus_gambar', 'AsetDiDesaController::hapus_gambar');
+        $routes->post('upload_file', 'AsetDiDesaController::uploadFile');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
