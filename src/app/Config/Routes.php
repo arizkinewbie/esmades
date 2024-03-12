@@ -178,6 +178,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('upload_file', 'AsetDiDesaController::uploadFile');
     });
 
+    $routes->group('status_pemilik', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'StatusPemilikController::index');
+        $routes->get('new', 'StatusPemilikController::new');
+        $routes->post('create', 'StatusPemilikController::create');
+        $routes->get('edit/(:num)', 'StatusPemilikController::edit/$1');
+        $routes->post('update/(:num)', 'StatusPemilikController::update/$1');
+        $routes->get('delete/(:num)', 'StatusPemilikController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');

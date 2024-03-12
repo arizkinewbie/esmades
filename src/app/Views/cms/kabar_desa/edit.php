@@ -27,47 +27,40 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <textarea name="files" id="files" cols="30" rows="10" hidden><?= set_value('files', $foto) ?></textarea>
-                            <div class="col-md-6">
-                                <div class="dropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple="multiple">
-                                    </div>
-                                    <div class="dz-message needsclick">
-                                        <div class="mb-3">
-                                            <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
-                                        </div>
-                                        <h4>Drop files here or click to upload.</h4>
-                                    </div>
-                                </div>
+                        <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
 
-                                <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                    <li class="mt-2" id="dropzone-preview-list">
-                                        <!-- This is used as the file preview template -->
-                                        <div class="border rounded">
-                                            <div class="d-flex p-2">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar-sm bg-light rounded">
-                                                        <img data-dz-thumbnail class="img-fluid rounded d-block" src="assets/images/new-document.png" alt="Dropzone-Image" />
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <div class="pt-1">
-                                                        <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
-                                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                                        <strong class="error text-danger" data-dz-errormessage></strong>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-shrink-0 ms-3">
-                                                    <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
-                                                </div>
-                                            </div>
+                                <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
+                                    <div class="col-3 show_data">
+                                        <div class="md-3">
+                                            <label data-id="<?= $f->nama_file; ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
+                                            <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
+                                            <!-- Default Modals -->
+                                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">Kabar Desa Desa</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <center>
+                                                                <img class='img-fluid' src="<?= base_url($f->path_file); ?>">
+                                                            </center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
                                         </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                    </div>
+                                    <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
+                                <?php endif; ?>
+
+                        <?php endforeach;
+                        endif; ?>
 
                         <div class="col-12 tambah">
                             <div class="mb-3">
@@ -109,6 +102,32 @@
         });
     })
 
+    let clicks = 0;
+
+    function addItem() {
+        clicks += 1;
+        $('.tambah').after(`
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Foto ` + clicks + `</label>
+                    <input class="form-control" type="file" name="file[]" required>
+                </div>
+            </div>
+        `);
+    }
+
+    $("body").on("click", ".hapus", function(e) {
+        var nama_file = $(this).attr("data-id");
+        $.ajax({
+            url: '<?php echo site_url("admin/kabar_desa/hapus_gambar"); ?>',
+            type: 'POST',
+            data: {
+                nama_file: nama_file,
+            }
+        })
+        $(this).parents('.show_data').remove();
+    });
+
     //script ckeditor
     var ckClassicEditor = document.querySelectorAll(".ckeditor-classic")
     ckClassicEditor.forEach(function() {
@@ -121,61 +140,4 @@
                 console.error(error);
             });
     });
-
-
-    var formData = new FormData();
-    var dataFiles = [];
-    var textareaFiles = $("#files");
-    var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
-    if (dropzonePreviewNode) {
-        var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
-        dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
-        var dropzone = new Dropzone(".dropzone", {
-            autoQueue: true,
-            url: '<?= site_url('admin/kabar_desa/') ?>upload_file',
-            method: "post",
-            previewTemplate: previewTemplate,
-            previewsContainer: "#dropzone-preview",
-            success: function(file, response) {
-                dataFiles.push(response);
-                textareaFiles.val(JSON.stringify(dataFiles));
-            },
-            error: function(file, respon) {
-                this.removeFile(file)
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: respon.message.file,
-                });
-            },
-
-            init: function() {
-
-                thisDropzone = this;
-                var jsonString = '<?= $foto ?>';
-                var data = JSON.parse(jsonString);
-
-                $.each(data, function(key, value) {
-                    var mockFile = {
-                        name: value.filename,
-                        size: 0
-                    }; // Jika ukuran file tidak diketahui, atur ke 0 atau sesuaikan dengan kebutuhan Anda
-                    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "<?= base_url() ?>/uploads/kabar_desa/images/" + value.filename);
-                });
-
-
-                this.on("removedfile", function(file) {
-                    var jsonString = $('#files').val();
-                    var data = JSON.parse(jsonString);
-                    // Filter array untuk menghapus elemen dengan filename yang sesuai
-                    var newData = data.filter(function(item) {
-                        return item.filename !== file.name;
-                    });
-                    // newData sekarang berisi array yang telah dihapus
-                    $('#files').val(JSON.stringify(newData));
-                });
-            }
-        });
-    }
 </script>

@@ -5,7 +5,6 @@ namespace App\Controllers\Cms;
 use App\Controllers\Cms\BaseAdminController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Config\Services;
-use CodeIgniter\Files\File;
 
 class KabarDesaController extends BaseAdminController
 {
@@ -64,36 +63,73 @@ class KabarDesaController extends BaseAdminController
 
     public function create()
     {
-        helper('filesystem');
+        $validationRules = [
+            'file' => [
+                'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'gambar wajib diupload.',
+                    'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
+                ]
+            ],
+            'jenis_berita' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
+            'judul_berita' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
+            'isi_berita' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diupload.'
+                ]
+            ],
+        ];
+
+        if (!$this->validate($validationRules)) {
+            return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
+        }
+
+        // Grab the file by name given in HTML form
+        $files = $this->request->getFileMultiple('file');
+
+        $no = 1;
+
+        foreach ($files as $file) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+                $file->move('uploads/kabar_desa/images', $newName);
+
+                $hasil[$no] = array(
+                    'nama_file' => $newName,
+                    'path_file' => 'uploads/kabar_desa/images/' . $newName
+                );
+            }
+            $no++;
+        }
+
+        $jenis_berita   = $this->request->getPost('jenis_berita');
+        $judul_berita   = $this->request->getPost('judul_berita');
+        $isi_berita     = $this->request->getPost('isi_berita');
 
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/kabar_desa/create',
             'form_params' => [
-                'jenis_berita'  => $this->request->getPost('jenis_berita'),
-                'judul_berita'  => $this->request->getPost('judul_berita'),
-                'isi_berita'    => $this->request->getPost('isi_berita'),
-                'foto'          => $this->request->getPost('files'),
+                'jenis_berita'  => $jenis_berita,
+                'judul_berita'  => $judul_berita,
+                'isi_berita'    => $isi_berita,
+                'foto'          => json_encode($hasil),
             ],
         ];
 
         $response = $this->request($dataRequest);
         if ($response->getStatusCode() == 201) {
-            $files = json_decode((string) $this->request->getPost('files'));
-            $countFiles = count($files);
-            if ($countFiles > 0) {
-                foreach ($files as $row) {
-                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    $file = new File($fileToMove);
-
-                    $destinationFolder = FCPATH . 'uploads/kabar_desa/images/';
-                    if (!is_dir($destinationFolder)) {
-                        mkdir($destinationFolder, 0777, true);
-                    }
-                    $file->move($destinationFolder, $row->filename);
-                }
-            }
-
             return redirect()->to('/admin/kabar_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
@@ -117,7 +153,6 @@ class KabarDesaController extends BaseAdminController
                     'token' => session('jwtToken'),
                     'select2' => true,
                     'ckeditor' => true,
-                    'dropzone' => true,
                     'token' => session('jwtToken'),
                     'apiDomain' => getenv('API_DOMAIN'),
                     'view' => $this->var['viewPath'] . 'edit',
@@ -130,37 +165,96 @@ class KabarDesaController extends BaseAdminController
 
     public function update($id = null)
     {
+
+        $file_name = $this->request->getPost('file_name');
+
+        if (!empty($file_name)) :
+            for ($i = 0; $i < count($file_name); $i++) :
+                $file_array[$i] = array(
+                    'nama_file' => $file_name[$i],
+                    'path_file' => 'uploads/kabar_desa/images/' . $file_name[$i]
+                );
+            endfor;
+        else :
+            $file_array = '';
+        endif;
+
+        if (!empty($_FILES['file']['name'])) :
+            $validationRules = [
+                'file' => [
+                    'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'gambar wajib diupload.',
+                        'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
+                    ]
+                ],
+                'jenis_berita' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib diupload.'
+                    ]
+                ],
+                'judul_berita' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib diupload.'
+                    ]
+                ],
+                'isi_berita' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib diupload.'
+                    ]
+                ],
+
+            ];
+
+            if (!$this->validate($validationRules)) {
+                return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
+            }
+
+
+            // Grab the file by name given in HTML form
+            $files = $this->request->getFileMultiple('file');
+
+            $no = 1;
+
+            foreach ($files as $file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $newName = $file->getRandomName();
+                    $file->move('uploads/kabar_desa/images', $newName);
+
+                    $hasil[$no] = array(
+                        'nama_file' => $newName,
+                        'path_file' => 'uploads/kabar_desa/images/' . $newName
+                    );
+                }
+                $no++;
+            }
+
+            $hasil_array = (!empty($file_array)) ? json_encode(array_merge($hasil, $file_array)) : json_encode($hasil);
+        else :
+            $hasil_array = (!empty($file_array)) ? json_encode($file_array) : '';
+        endif;
+
+        $jenis_berita   = $this->request->getPost('jenis_berita');
+        $judul_berita   = $this->request->getPost('judul_berita');
+        $isi_berita     = $this->request->getPost('isi_berita');
+
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/kabar_desa/update/' . $id,
             'form_params' => [
-                'jenis_berita'  => $this->request->getPost('jenis_berita'),
-                'judul_berita'  => $this->request->getPost('judul_berita'),
-                'isi_berita'    => $this->request->getPost('isi_berita'),
-                'foto'          => $this->request->getPost('files'),
+                'jenis_berita' => $jenis_berita,
+                'judul_berita' => $judul_berita,
+                'isi_berita' => $isi_berita,
+                'foto' => $hasil_array
             ],
         ];
 
         $response = $this->request($dataRequest);
 
         if ($response->getStatusCode() == 200) {
-            $files = json_decode((string) $this->request->getPost('files'));
-            $countFiles = count($files);
-            if ($countFiles > 0) {
-                foreach ($files as $row) {
-                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    $file = new File($fileToMove);
-
-                    $destinationFolder = FCPATH . 'uploads/kabar_desa/images/';
-                    if (!is_dir($destinationFolder)) {
-                        mkdir($destinationFolder, 0777, true);
-                    }
-                    if (file_exists('uploads/temp/images/' . $row->filename)) :
-                        $file->move($destinationFolder, $row->filename);
-                    endif;
-                }
-            }
-
             return redirect()->to('/admin/kabar_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
@@ -182,8 +276,8 @@ class KabarDesaController extends BaseAdminController
 
                 if (!empty($result['foto'])) :
                     foreach (json_decode($result['foto']) as $f) :
-                        if (file_exists('uploads/kabar_desa/images/' . $f->filename)) :
-                            unlink('uploads/kabar_desa/images/' . $f->filename);
+                        if (file_exists('uploads/kabar_desa/images/' . $f->nama_file)) :
+                            unlink('uploads/kabar_desa/images/' . $f->nama_file);
                         endif;
                     endforeach;
                 endif;
@@ -212,31 +306,5 @@ class KabarDesaController extends BaseAdminController
         if (file_exists('uploads/kabar_desa/images/' . $nama_file)) :
             unlink('uploads/kabar_desa/images/' . $nama_file);
         endif;
-    }
-
-    public function uploadFile()
-    {
-        $validationRules = [
-            'file' => [
-                'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
-                'errors' => [
-                    'uploaded' => 'gambar wajib diupload.',
-                    'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
-                ]
-            ],
-        ];
-        if (!$this->validate($validationRules)) {
-            return $this->respond([
-                'status' => false,
-                'message' => $this->validator->getErrors(),
-            ], 400);
-        }
-
-        $file = $this->request->getFile('file');
-        if (!$file->hasMoved()) {
-            $filename = $file->getRandomName();
-            $file->move('uploads/temp/images', $filename);
-            return $this->respond(['filename' => $filename]);
-        }
     }
 }
