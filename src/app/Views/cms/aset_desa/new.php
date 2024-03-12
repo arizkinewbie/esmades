@@ -1,5 +1,6 @@
 <style>
-    .pac-container, .pac-container2 {
+    .pac-container,
+    .pac-container2 {
         z-index: 1099;
         position: fixed !important;
         top: 25% !important;
@@ -17,7 +18,7 @@
 
             <div class="card-body">
                 <form action="<?= site_url('admin/aset_desa/create') ?>" method="post" id="form1" enctype='multipart/form-data'>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -40,8 +41,8 @@
                         </div>
                     </div>
 
-                    
-                        
+
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -126,8 +127,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Kondisi Barang</label>
-                                <select class="form-control js-example-basic-single kondisi_barang"
-                                    name="kondisi_barang"></select>
+                                <select class="form-control js-example-basic-single kondisi_barang" name="kondisi_barang"></select>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -300,8 +300,7 @@
 </div>
 
 
-<div class="modal fade modalBarang" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade modalBarang" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -310,7 +309,7 @@
             </div>
             <div class="modal-body">
                 <h6 class="fs-15 text-info mb-5">Silahkan klik pada baris barang yang akan dipilih</h6>
-                
+
                 <table class="table w-100 table-borderd table-striped table-hover table-sm" id="tblBarang">
                     <thead>
                         <th>ID</th>
@@ -323,14 +322,12 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none"
-                    data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div class="modal fade modalMap1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade modalMap1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -346,15 +343,13 @@
                 <div style="height:350px;" id="map1"></div>
             </div>
             <div class="modal-footer">
-                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none"
-                    data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade modalPoligon" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade modalPoligon" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -370,8 +365,7 @@
                 <div style="height:350px;" id="polygonmap"></div>
             </div>
             <div class="modal-footer">
-                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none"
-                    data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -384,232 +378,250 @@
 <script src="<?= base_url('dist/') ?>assets/js/pages/map_aset_desa.js"></script>
 
 <script>
-var tableBarang;
+    var tableBarang;
 
-$('.hukum').change(function() {
-    if ($(this).val() === '1') {
-        $('.form_hukum').attr('hidden', false);
-    } else {
-        $('.form_hukum').attr('hidden', true);
-    }
-});
-
-$(document).on('change', '.tanggal_perolehan', function(data){
-    var tahunPengadaan = $('.tahun_pengadaan')
-    var val = $(this).val()
-    var year = val.split('-')[0];
-    if(year != tahunPengadaan.val()) {
-        alert('Tahun harus sama dengan tahun pengadaan');
-        $(this).val('');
-    }
-});
-
-$(document).on('click', '.btnModalMap1', function(data){
-    $('.modalMap1').modal('show')
-});
-
-$(document).on('click', '.btnModalPoligon', function(data){
-    $('.modalPoligon').modal('show')
-});
-
-$(document).on('click', '.btnModalBarang', function(data){
-    $('.modalBarang').modal('show')
-
-    tableBarang = $('#tblBarang').DataTable({
-        processing: true,
-        serverSide: true,
-        autoWidth: true,
-        destroy: true,
-        ajax: {
-            url: '<?= $apiDomain ?>/api/datatable/barang_bantu',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
-            }
-        },
-        columns: [
-            {data: 'id', visible: false},
-            {data: 'barang_kode'},
-            {data: 'barang_nama'},
-            {data: 'nama'},
-            {data: 'kode'},
-        ]
-    });
-})
-
-$('#tblBarang tbody').on('click', 'tr', function () {
-    var data = tableBarang.row(this).data();
-    var barangKode = data['barang_kode'];
-    var barangNama = data['barang_nama'];
-    $('.barang_kode').val(barangKode);
-    $('.barang_nama').val(barangNama);
-    $('.modalBarang').modal('hide')
-});
-
-ajaxSelectFromApi({
-    id: '.aset_satuan_id',
-    headers: {
-        "Authorization": "Bearer <?= $token ?>"
-    },
-    url: '<?= $apiDomain . '/api/select2/satuan_aset' ?>',
-    selected: '<?= set_value('aset_satuan_id') ?>',
-});
-
-$(document).on('change', '.aset_satuan_id', function(data) {
-    var val = $(this).val()
-    if(val == '1' || val == '3') {
-        $('.poligonInput').attr('hidden', false)
-    } else {
-        $('.poligonInput').attr('hidden', true)
-        $('.poligon').val('')
-    }
-});
-
-ajaxSelectFromApi({
-    id: '.aset_asal_usul_id',
-    headers: {
-        "Authorization": "Bearer <?= $token ?>"
-    },
-    url: '<?= $apiDomain . '/api/select2/asal_usul_aset' ?>',
-    selected: '<?= set_value('aset_asal_usul_id') ?>',
-});
-
-ajaxSelectFromApi({
-    id: '.aset_bidang_kode',
-    headers: {
-        "Authorization": "Bearer <?= $token ?>"
-    },
-    url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
-    selected: '<?= set_value('aset_bidang_kode') ?>',
-});
-
-
-
-$('.aset_subbidang_kode').select2({placeholder: 'Pilih Opsi'});
-$('.aset_subbidang_kegiatan_kode').select2({placeholder: 'Pilih Opsi'});
-
-$(document).on('change', '.aset_bidang_kode', function(data) {
-    var val = $(this).val()
-    $('.aset_subbidang_kode').val('').trigger('change');
-    ajaxSelectFromApi({
-        id: '.aset_subbidang_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
-        selected: '<?= set_value('aset_subbidang_kode') ?>',
-        optionalSearch: {aset_bidang_kode : val}
-    });
-})
-
-$(document).on('change', '.aset_subbidang_kode', function(data) {
-    var val = $(this).val()
-    $('.aset_subbidang_kegiatan_kode').val('').trigger('change');
-    ajaxSelectFromApi({
-        id: '.aset_subbidang_kegiatan_kode',
-        headers: {
-            "Authorization": "Bearer <?= $token ?>"
-        },
-        url: '<?= $apiDomain . '/api/select2/sub_bidang_kegiatan_aset' ?>',
-        selected: '<?= set_value('aset_subbidang_kegiatan_kode') ?>',
-        optionalSearch: {aset_subbidang_kode : val}
-    });
-})
-
-$(document).on('change', '.aset_asal_usul_id', function(data) {
-    var val = $(this).val()
-    if(val == '2') {
-        $('.aset_sub_bidang').attr('hidden', false)
-        $('.aset_subbidang_kode').select2({
-            placeholder: 'Pilih Opsi'
-        }).val('').trigger('change');
-    } else {
-        $('.aset_sub_bidang').attr('hidden', true)
-        $('.aset_subbidang_kode').select2().val('').trigger('change');
-    }
-})
-
-
-
-$('.kondisi_barang').select2({
-    placeholder: 'Pilih Opsi',
-    data: [{
-            id: 'Baik',
-            text: 'Baik'
-        },
-        {
-            id: 'Rusak Ringan',
-            text: 'Rusak Ringan'
-        },
-        {
-            id: 'Rusak Berat',
-            text: 'Rusak Berat'
-        },
-    ]
-}).val('<?= set_value('kondisi_barang') ?>').trigger('change');
-
-$('.fisik_barang').select2({
-    placeholder: 'Pilih Opsi',
-    data: [{
-            id: 'Ada',
-            text: 'Ada'
-        },
-        {
-            id: 'Tidak Ada',
-            text: 'Tidak Ada'
-        },
-    ]
-}).val('<?= set_value('fisik_barang') ?>').trigger('change');
-
-var formData = new FormData();
-var dataFiles = [];
-var textareaFiles = $("#files");
-var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
-if(dropzonePreviewNode){
-    var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
-    dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
-    var dropzone = new Dropzone(".dropzone", {
-        autoQueue: true,
-        url: '<?= site_url('admin/aset_desa/') ?>upload_file',
-        method: "post",
-        previewTemplate: previewTemplate,
-        previewsContainer: "#dropzone-preview",
-        success: function(file, response) {
-            dataFiles.push(response);
-            textareaFiles.val(JSON.stringify(dataFiles));
-        },
-        error: function(file, respon) {
-            this.removeFile(file)
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: respon.message.file,
-            });
-        },
-
-        init: function() {
-            
-            this.on("removedfile", function (file) {
-                console.log(file.upload.uuid);
-            });
-            this.on("addedfile", function (file) {
-                // var myForm = document.getElementById('form1');
-                // formData = new FormData(myForm);
-                // console.log(formData);
-            });
-            this.on("sendingmultiple", function (file, xhr, formData) {
-                
-            });
+    $('.hukum').change(function() {
+        if ($(this).val() === '1') {
+            $('.form_hukum').attr('hidden', false);
+        } else {
+            $('.form_hukum').attr('hidden', true);
         }
     });
-}
 
-function base64ToImage(base64Image, filename) {
-    // Buat elemen <a> untuk menampilkan file
-    var a = document.createElement('a');
-    a.href = base64Image;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
+    $(document).on('change', '.tanggal_perolehan', function(data) {
+        var tahunPengadaan = $('.tahun_pengadaan')
+        var val = $(this).val()
+        var year = val.split('-')[0];
+        if (year != tahunPengadaan.val()) {
+            alert('Tahun harus sama dengan tahun pengadaan');
+            $(this).val('');
+        }
+    });
+
+    $(document).on('click', '.btnModalMap1', function(data) {
+        $('.modalMap1').modal('show')
+    });
+
+    $(document).on('click', '.btnModalPoligon', function(data) {
+        $('.modalPoligon').modal('show')
+    });
+
+    $(document).on('click', '.btnModalBarang', function(data) {
+        $('.modalBarang').modal('show')
+
+        tableBarang = $('#tblBarang').DataTable({
+            processing: true,
+            serverSide: true,
+            autoWidth: true,
+            destroy: true,
+            ajax: {
+                url: '<?= $apiDomain ?>/api/datatable/barang_bantu',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
+                }
+            },
+            columns: [{
+                    data: 'id',
+                    visible: false
+                },
+                {
+                    data: 'barang_kode'
+                },
+                {
+                    data: 'barang_nama'
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'kode'
+                },
+            ]
+        });
+    })
+
+    $('#tblBarang tbody').on('click', 'tr', function() {
+        var data = tableBarang.row(this).data();
+        var barangKode = data['barang_kode'];
+        var barangNama = data['barang_nama'];
+        $('.barang_kode').val(barangKode);
+        $('.barang_nama').val(barangNama);
+        $('.modalBarang').modal('hide')
+    });
+
+    ajaxSelectFromApi({
+        id: '.aset_satuan_id',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/satuan_aset' ?>',
+        selected: '<?= set_value('aset_satuan_id') ?>',
+    });
+
+    $(document).on('change', '.aset_satuan_id', function(data) {
+        var val = $(this).val()
+        if (val == '1' || val == '3') {
+            $('.poligonInput').attr('hidden', false)
+        } else {
+            $('.poligonInput').attr('hidden', true)
+            $('.poligon').val('')
+        }
+    });
+
+    ajaxSelectFromApi({
+        id: '.aset_asal_usul_id',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/asal_usul_aset' ?>',
+        selected: '<?= set_value('aset_asal_usul_id') ?>',
+    });
+
+    ajaxSelectFromApi({
+        id: '.aset_bidang_kode',
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
+        url: '<?= $apiDomain . '/api/select2/bidang_aset' ?>',
+        selected: '<?= set_value('aset_bidang_kode') ?>',
+    });
+
+
+
+    $('.aset_subbidang_kode').select2({
+        placeholder: 'Pilih Opsi'
+    });
+    $('.aset_subbidang_kegiatan_kode').select2({
+        placeholder: 'Pilih Opsi'
+    });
+
+    $(document).on('change', '.aset_bidang_kode', function(data) {
+        var val = $(this).val()
+        $('.aset_subbidang_kode').val('').trigger('change');
+        ajaxSelectFromApi({
+            id: '.aset_subbidang_kode',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/sub_bidang_aset' ?>',
+            selected: '<?= set_value('aset_subbidang_kode') ?>',
+            optionalSearch: {
+                aset_bidang_kode: val
+            }
+        });
+    })
+
+    $(document).on('change', '.aset_subbidang_kode', function(data) {
+        var val = $(this).val()
+        $('.aset_subbidang_kegiatan_kode').val('').trigger('change');
+        ajaxSelectFromApi({
+            id: '.aset_subbidang_kegiatan_kode',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/sub_bidang_kegiatan_aset' ?>',
+            selected: '<?= set_value('aset_subbidang_kegiatan_kode') ?>',
+            optionalSearch: {
+                aset_subbidang_kode: val
+            }
+        });
+    })
+
+    $(document).on('change', '.aset_asal_usul_id', function(data) {
+        var val = $(this).val()
+        if (val == '2') {
+            $('.aset_sub_bidang').attr('hidden', false)
+            $('.aset_subbidang_kode').select2({
+                placeholder: 'Pilih Opsi'
+            }).val('').trigger('change');
+        } else {
+            $('.aset_sub_bidang').attr('hidden', true)
+            $('.aset_subbidang_kode').select2().val('').trigger('change');
+        }
+    })
+
+
+
+    $('.kondisi_barang').select2({
+        placeholder: 'Pilih Opsi',
+        data: [{
+                id: 'Baik',
+                text: 'Baik'
+            },
+            {
+                id: 'Rusak Ringan',
+                text: 'Rusak Ringan'
+            },
+            {
+                id: 'Rusak Berat',
+                text: 'Rusak Berat'
+            },
+        ]
+    }).val('<?= set_value('kondisi_barang') ?>').trigger('change');
+
+    $('.fisik_barang').select2({
+        placeholder: 'Pilih Opsi',
+        data: [{
+                id: 'Ada',
+                text: 'Ada'
+            },
+            {
+                id: 'Tidak Ada',
+                text: 'Tidak Ada'
+            },
+        ]
+    }).val('<?= set_value('fisik_barang') ?>').trigger('change');
+
+    var formData = new FormData();
+    var dataFiles = [];
+    var textareaFiles = $("#files");
+    var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
+    if (dropzonePreviewNode) {
+        var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
+        dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
+        var dropzone = new Dropzone(".dropzone", {
+            autoQueue: true,
+            url: '<?= site_url('admin/aset_desa/') ?>upload_file',
+            method: "post",
+            previewTemplate: previewTemplate,
+            previewsContainer: "#dropzone-preview",
+            success: function(file, response) {
+                dataFiles.push(response);
+                textareaFiles.val(JSON.stringify(dataFiles));
+            },
+            error: function(file, respon) {
+                this.removeFile(file)
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: respon.message.file,
+                });
+            },
+
+            init: function() {
+
+                this.on("removedfile", function(file) {
+                    console.log(file.upload.uuid);
+                });
+                this.on("addedfile", function(file) {
+                    // var myForm = document.getElementById('form1');
+                    // formData = new FormData(myForm);
+                    // console.log(formData);
+                });
+                this.on("sendingmultiple", function(file, xhr, formData) {
+
+                });
+            }
+        });
+    }
+
+    function base64ToImage(base64Image, filename) {
+        // Buat elemen <a> untuk menampilkan file
+        var a = document.createElement('a');
+        a.href = base64Image;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
 </script>

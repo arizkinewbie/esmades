@@ -5,7 +5,7 @@
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
-                    <a href="<?= site_url('admin/kabar_desa/new') ?>" class="btn btn-primary">Add New Row</a>
+                    <a href="<?= site_url('admin/aset_di_desa/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>
             </div>
             <div class="card-body">
@@ -13,9 +13,11 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Jenis Berita</th>
-                            <th>Judul Berita</th>
-                            <th>Isi Berita</th>
+                            <th>Nik</th>
+                            <th>Nama Pemilik</th>
+                            <th>Jenis Aset</th>
+                            <th>Status Pemilik</th>
+                            <th>Penduduk Asli Desa</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -24,9 +26,11 @@
                             foreach ($result as $k) : ?>
                                 <tr>
                                     <td><?= $no; ?></td>
-                                    <td><?= $k->jenis_berita; ?></td>
-                                    <td><?= $k->judul_berita; ?></td>
-                                    <td><?= $k->isi_berita; ?></td>
+                                    <td><?= $k->nik; ?></td>
+                                    <td><?= $k->nama_pemilik; ?></td>
+                                    <td><?= $k->jenis_aset; ?></td>
+                                    <td><?= $k->status_pemilik; ?></td>
+                                    <td><?= $k->penduduk_asli; ?></td>
                                     <td>
                                         <div class="dropdown d-inline-block">
                                             <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +38,7 @@
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a href="<?= site_url('admin/kabar_desa/edit/' . $k->id) ?>" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
+                                                    <a href="<?= site_url('admin/aset_di_desa/edit/' . $k->id) ?>" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
@@ -74,7 +78,7 @@
             preConfirm: function(email) {
                 return new Promise(function(resolve, reject) {
                     $.ajax({
-                        url: "<?= site_url('admin/kabar_desa/delete/') ?>" + id,
+                        url: "<?= site_url('admin/aset_di_desa/delete/') ?>" + id,
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },
