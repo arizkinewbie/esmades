@@ -64,41 +64,128 @@ class AsetDiDesaController extends BaseAdminController
     public function create()
     {
         $validationRules = [
-            'file' => [
-                'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]',
+            'foto' => [
+                'rules' => 'uploaded[foto]|mime_in[foto,image/png,image/jpg,image/jpeg]',
                 'errors' => [
                     'uploaded' => 'gambar wajib diupload.',
                     'mime_in' => 'gambar harus bertipe (PNG, JPG, JPEG).'
                 ]
             ],
-            'jenis_berita' => [
-                'rules' => 'required',
+            'nik' => [
+                'rules' => 'required|max_length[15]',
                 'errors' => [
-                    'required' => '{field} wajib diupload.'
+                    'required' => '{field} wajib di isi.',
+                    'max_length' => '{field} tidak boleh lebih dari 15 karakter.'
                 ]
             ],
-            'judul_berita' => [
+            'nama_pemilik' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} wajib diupload.'
+                    'required' => '{field} wajib di isi.'
                 ]
             ],
-            'isi_berita' => [
+            'jenis_aset' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} wajib diupload.'
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'status_pemilik' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'penduduk_asli' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'luas_lahan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'koordinat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'koordinat wajib di isi.'
+                ]
+            ],
+
+            'poligon' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'pengamanan_fisik' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
+            'keterangan_fisik' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+            'pengamanan_fisik' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+            'keterangan_hukum' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
                 ]
             ],
         ];
+
+        if ($this->request->getPost('pengamanan_hukum') == 'ada') :
+            $validationRules += [
+                'file_surat_kepemilikan' => [
+                    'rules' => 'uploaded[file_surat_kepemilikan]|mime_in[file_surat_kepemilikan,application/pdf]|max_size[file_surat_kepemilikan,2048]',
+                    'errors' => [
+                        'uploaded' => 'File Surat Kepemilikan wajib diupload.',
+                        'mime_in' => 'File Surat Kepemilikan harus bertipe (PDF).',
+                        'max_size' => 'Ukuran file PDF tidak boleh lebih dari 2 MB.'
+                    ]
+                ],
+                'nomor_bukti_kepemilikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib di isi.'
+                    ]
+                ],
+                'nomor_bukti_kepemilikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} wajib di isi.'
+                    ]
+                ],
+            ];
+        endif;
 
         if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
 
         // Grab the file by name given in HTML form
-        $files = $this->request->getFileMultiple('file');
+        $files = $this->request->getFileMultiple('foto');
 
-        $no = 1;
+        $no = 0;
 
         foreach ($files as $file) {
             if ($file->isValid() && !$file->hasMoved()) {
@@ -113,18 +200,37 @@ class AsetDiDesaController extends BaseAdminController
             $no++;
         }
 
-        $jenis_berita   = $this->request->getPost('jenis_berita');
-        $judul_berita   = $this->request->getPost('judul_berita');
-        $isi_berita     = $this->request->getPost('isi_berita');
+        if ($this->request->getPost('pengamanan_hukum') == 'ada') :
+            $pdfNama = '';
+            $pdf_file = $this->request->getFile('file_surat_kepemilikan');
+            if (!$pdf_file->hasMoved()) :
+                $filenamepdf_file = $pdf_file->getRandomName();
+                $pdf_file->move('uploads/aset_di_desa/pdf', $filenamepdf_file);
+                $file_surat_kepemilikan = $filenamepdf_file;
+            endif;
+        else :
+            $file_surat_kepemilikan = '';
+        endif;
 
         $dataRequest = [
             'method' => 'POST',
             'api_path' => '/api/aset_di_desa/create',
             'form_params' => [
-                'jenis_berita'  => $jenis_berita,
-                'judul_berita'  => $judul_berita,
-                'isi_berita'    => $isi_berita,
-                'foto'          => json_encode($hasil),
+                'nik'           => $this->request->getPost('nik'),
+                'nama_pemilik'  => $this->request->getPost('nama_pemilik'),
+                'jenis_aset'    => $this->request->getPost('jenis_aset'),
+                'status_pemilik' => $this->request->getPost('status_pemilik'),
+                'penduduk_asli' => $this->request->getPost('penduduk_asli'),
+                'luas_lahan' => $this->request->getPost('luas_lahan'),
+                'koordinat' => $this->request->getPost('koordinat'),
+                'poligon' => $this->request->getPost('poligon'),
+                'pengamanan_fisik' => $this->request->getPost('pengamanan_fisik'),
+                'keterangan_fisik' => $this->request->getPost('keterangan_fisik'),
+                'pengamanan_hukum' => $this->request->getPost('pengamanan_hukum'),
+                'keterangan_hukum' => $this->request->getPost('keterangan_hukum'),
+                'nomor_bukti_kepemilikan' => $this->request->getPost('nomor_bukti_kepemilikan'),
+                'foto' => json_encode($hasil),
+                'file_surat_kepemilikan' => $file_surat_kepemilikan
             ],
         ];
 

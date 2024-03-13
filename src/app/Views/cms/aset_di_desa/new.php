@@ -46,11 +46,11 @@
                                 <label class="form-label">Penduduk Asli Desa</label>
                                 <div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input penduduk_asli" type="radio" name="penduduk_asli" value="ya">
+                                        <input <?= (set_value('penduduk_asli') == 'ya') ? 'checked' : ''; ?> class="form-check-input penduduk_asli" type="radio" name="penduduk_asli" value="ya">
                                         <label class="form-check-label"> Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input penduduk_asli" type="radio" name="penduduk_asli" value="tidak">
+                                        <input <?= (set_value('penduduk_asli') == 'tidak') ? 'checked' : ''; ?> class="form-check-input penduduk_asli" type="radio" name="penduduk_asli" value="tidak">
                                         <label class="form-check-label"> Tidak</label>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Luas Lahan</label>
-                                <input type="text" class="form-control luas_lahan" name="luas_lahan" placeholder="Masukan Luas Lahan">
+                                <input type="text" class="form-control luas_lahan" name="luas_lahan" value="<?= set_value('luas_lahan'); ?>" placeholder="Masukan Luas Lahan">
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                 <label class="form-label">Koordinat</label>
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalMap1">Tampilkan Peta</button>
-                                    <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang">
+                                    <input type="text" class="form-control lat_lng" name="koordinat" value="<?= set_value('koordinat') ?>" placeholder="Garis Bujur & lintang">
                                 </div>
                             </div>
                         </div>
@@ -85,9 +85,86 @@
                                 <label class="form-label">Polygon</label>
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalPoligon">Tampilkan Peta</button>
-                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"></textarea>
+                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"><?= set_value('poligon'); ?></textarea>
                                     <!-- <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang"> -->
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <!-- Base Radios -->
+                                <label class="form-label">Pengamanan Fisik</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input <?= (set_value('pengamanan_fisik') == 'ada') ? 'checked' : ''; ?> class="form-check-input pengamanan_fisik" type="radio" name="pengamanan_fisik" value="ada">
+                                        <label class="form-check-label"> Ada</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input <?= (set_value('pengamanan_fisik') == 'tidak') ? 'checked' : ''; ?> class="form-check-input pengamanan_fisik" type="radio" name="pengamanan_fisik" value="tidak">
+                                        <label class="form-check-label"> Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Keterangan</label>
+                                <textarea name="keterangan_fisik" class="form-control keterangan_fisik"><?php echo set_value('keterangan_fisik') ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <!-- Base Radios -->
+                                <label class="form-label">Pengamanan Hukum</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input <?= (set_value('pengamanan_hukum') == 'ada') ? 'checked' : ''; ?> class="form-check-input pengamanan_hukum" type="radio" name="pengamanan_hukum" value="ada">
+                                        <label class="form-check-label"> Ada</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input <?= (set_value('pengamanan_hukum') == 'tidak') ? 'checked' : ''; ?> class="form-check-input pengamanan_hukum" type="radio" name="pengamanan_hukum" value="tidak">
+                                        <label class="form-check-label"> Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form_hukum" <?= (set_value('pengamanan_hukum') == 'tidak') ? 'hidden' : ''; ?>>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Nomor Surat Bukti Kemelikan</label>
+                                    <input type="text" class="form-control nomor_bukti_kepemilikan" name="nomor_bukti_kepemilikan" value="<?= set_value('nomor_bukti_kepemilikan') ?>" placeholder="Masukan nomor sertifikat">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div>
+                                        <label for="formFile" class="form-label">Upload Surat</label>
+                                        <input class="form-control" type="file" name="file_surat_kepemilikan">
+                                        <span class="text-muted">File pdf maksimal size 2mb</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Keterangan</label>
+                                <textarea name="keterangan_hukum" class="form-control keterangan_hukum" placeholder="Masukan keterangan hukum"><?= set_value('keterangan_hukum') ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -172,12 +249,21 @@
 <script>
     $(document).ready(function() {
 
+        $('.pengamanan_hukum').change(function() {
+            if ($(this).val() === 'ada') {
+                $('.form_hukum').attr('hidden', false);
+            } else {
+                $('.form_hukum').attr('hidden', true);
+            }
+        });
+
         ajaxSelectFromApi({
             id: '.jenis_aset',
             headers: {
                 "Authorization": "Bearer <?= $token ?>"
             },
             url: '<?= $apiDomain . '/api/select2/jenis_aset' ?>',
+            selected: '<?= set_value('jenis_aset') ?>',
         });
 
         ajaxSelectFromApi({
@@ -186,6 +272,7 @@
                 "Authorization": "Bearer <?= $token ?>"
             },
             url: '<?= $apiDomain . '/api/select2/status_pemilik' ?>',
+            selected: '<?= set_value('status_pemilik') ?>',
         });
     })
 
@@ -206,7 +293,7 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label class="form-label">Foto ` + clicks + `</label>
-                        <input class="form-control" type="file" name="file[]">
+                        <input class="form-control" type="file" name="foto[]">
                     </div>
                 </div>
             </div>

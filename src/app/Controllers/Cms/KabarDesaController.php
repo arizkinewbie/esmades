@@ -98,7 +98,7 @@ class KabarDesaController extends BaseAdminController
         // Grab the file by name given in HTML form
         $files = $this->request->getFileMultiple('file');
 
-        $no = 1;
+        $no = 0;
 
         foreach ($files as $file) {
             if ($file->isValid() && !$file->hasMoved()) {
@@ -217,7 +217,7 @@ class KabarDesaController extends BaseAdminController
             // Grab the file by name given in HTML form
             $files = $this->request->getFileMultiple('file');
 
-            $no = 1;
+            $no = 0;
 
             foreach ($files as $file) {
                 if ($file->isValid() && !$file->hasMoved()) {

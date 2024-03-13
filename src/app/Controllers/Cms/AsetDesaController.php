@@ -35,7 +35,7 @@ class AsetDesaController extends BaseAdminController
         ];
         return $this->render($data);
     }
-    
+
     public function show($id = null)
     {
         if ($id) {
@@ -213,9 +213,9 @@ class AsetDesaController extends BaseAdminController
             if ($countFiles > 0) {
                 foreach ($files as $row) {
                     $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    if(file_exists($fileToMove)) {
+                    if (file_exists($fileToMove)) {
                         $file = new File($fileToMove);
-    
+
                         $destinationFolder = FCPATH . 'uploads/aset_desa/';
                         if (!is_dir($destinationFolder)) {
                             mkdir($destinationFolder, 0777, true);
@@ -251,7 +251,7 @@ class AsetDesaController extends BaseAdminController
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }
     }
-    
+
     public function register($id = null)
     {
 
