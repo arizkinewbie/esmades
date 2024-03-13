@@ -79,6 +79,19 @@
                         </div>
                     </div>
 
+                    <div class="row poligonInput">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Polygon</label>
+                                <div class="input-group">
+                                    <button type="button" class="input-group-text btnModalPoligon">Tampilkan Peta</button>
+                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"></textarea>
+                                    <!-- <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-12 tambah">
                             <div class="mb-3">
@@ -105,6 +118,50 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade modalMap1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Peta</h5>
+            </div>
+            <div class="modal-body">
+                <p class="fs-15 text-info mb-5">Klik pada peta atau lakukan pencarian lokasi untuk mendapatkan koordinat</p>
+                <div class="mb-5" id="pac-card">
+                    <div class="input-group" id="pac-container">
+                        <input type="text" class="form-control" id="pac-input" placeholder="address...">
+                    </div>
+                </div>
+                <div style="height:350px;" id="map1"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modalPoligon" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Peta</h5>
+            </div>
+            <div class="modal-body">
+                <p class="fs-15 text-info mb-5">Klik pada peta atau lakukan pencarian lokasi untuk mendapatkan koordinat</p>
+                <div class="mb-5" id="pac-card3">
+                    <div class="input-group" id="pac-container">
+                        <input type="text" class="form-control" id="pac-input3" placeholder="address...">
+                    </div>
+                </div>
+                <div style="height:350px;" id="polygonmap"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script src="<?= base_url('dist/') ?>assets/js/app.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -134,6 +191,10 @@
 
     $(document).on('click', '.btnModalMap1', function(data) {
         $('.modalMap1').modal('show')
+    });
+
+    $(document).on('click', '.btnModalPoligon', function(data) {
+        $('.modalPoligon').modal('show')
     });
 
     let clicks = 0;
