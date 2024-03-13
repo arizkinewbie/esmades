@@ -213,16 +213,18 @@ class AsetDesaController extends BaseAdminController
             if ($countFiles > 0) {
                 foreach ($files as $row) {
                     $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    $file = new File($fileToMove);
-
-                    $destinationFolder = FCPATH . 'uploads/aset_desa/';
-                    if (!is_dir($destinationFolder)) {
-                        mkdir($destinationFolder, 0777, true);
+                    if(file_exists($fileToMove)) {
+                        $file = new File($fileToMove);
+    
+                        $destinationFolder = FCPATH . 'uploads/aset_desa/';
+                        if (!is_dir($destinationFolder)) {
+                            mkdir($destinationFolder, 0777, true);
+                        }
+                        $file->move($destinationFolder, $row->filename);
                     }
-                    $file->move($destinationFolder, $row->filename);
                 }
             }
-            
+
             return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();

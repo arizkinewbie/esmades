@@ -144,6 +144,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">`;
                     html += `<li><a href="javascript:detailData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a></li>`;
+                    html += `<li><a href="javascript:registerData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-external-link-fill align-bottom me-2 text-muted"></i> Register</a></li>`;
                     html += `<li><a href="<?= site_url('admin/aset_desa/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
                     html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
                     html += `</ul></div>`;
@@ -240,6 +241,40 @@
         });
     })
     
+    function registerData(id) {
+        Swal.fire({
+            title: "Apakah anda yakin?",
+            text: "Anda akan meregistrasi data aset!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+            cancelButtonClass: 'btn btn-danger w-xs mt-2',
+            confirmButtonText: "Ya, registrasi aset!",
+            cancelButtonText: "Batal",
+            buttonsStyling: false,
+            showCloseButton: true,
+            preConfirm: function (email) {
+                return new Promise(function (resolve, reject) {
+                    $.ajax({
+                        url: "<?= site_url('admin/aset_desa/delete/') ?>" + id,
+                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        success: function(res) {
+                            if(res.status) {
+                                resolve();
+                                Swal.fire('Success!', res.message, 'success').then((result) => {
+                                    location.reload();
+                                });
+                            } else {
+                                reject(res.message);
+                                Swal.fire('Error!', res.message, 'error');
+                            }
+                        }
+                    });
+                })
+            },
+            allowOutsideClick: false
+        });
+    }
     function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
