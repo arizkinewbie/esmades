@@ -53,7 +53,6 @@ class KabarDesaController extends BaseAdminController
             'token' => session('jwtToken'),
             'select2' => true,
             'ckeditor' => true,
-            'dropzone' => true,
             'token' => session('jwtToken'),
             'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'new',
@@ -153,7 +152,6 @@ class KabarDesaController extends BaseAdminController
                     'token' => session('jwtToken'),
                     'select2' => true,
                     'ckeditor' => true,
-                    'token' => session('jwtToken'),
                     'apiDomain' => getenv('API_DOMAIN'),
                     'view' => $this->var['viewPath'] . 'edit',
                 ];
