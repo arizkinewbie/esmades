@@ -17,6 +17,10 @@
             <td><?= date('d/m/Y', strtotime($tanggal_perolehan)) ?></td>
         </tr>
         <tr>
+            <td>Nilai Kekayaan</td>
+            <td><?= number_format($nilai_kekayaan) ?></td>
+        </tr>
+        <tr>
             <td>Jumlah & Satuan</td>
             <td><?= $nilai_satuan.' '.$aset_satuan_nama ?></td>
         </tr>
