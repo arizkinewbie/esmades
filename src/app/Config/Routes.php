@@ -32,7 +32,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->post('upload_file', 'AsetDesaController::uploadFile');
         $routes->get('edit/(:num)', 'AsetDesaController::edit/$1');
         $routes->post('update/(:num)', 'AsetDesaController::update/$1');
-        $routes->post('register/(:num)', 'AsetDesaController::register/$1');
+        $routes->get('register/(:num)', 'AsetDesaController::register/$1');
     });
 
     $routes->group('jabatan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {

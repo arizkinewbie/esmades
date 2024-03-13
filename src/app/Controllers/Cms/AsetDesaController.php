@@ -262,7 +262,6 @@ class AsetDesaController extends BaseAdminController
             ];
 
             $response = $this->request($dataRequest);
-
             if ($response->getStatusCode() == 200) {
                 return $this->respond(['status' => true, 'message' => 'Data berhasil registrasi']);
             } else {
