@@ -251,6 +251,27 @@ class AsetDesaController extends BaseAdminController
             return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
         }
     }
+    
+    public function register($id = null)
+    {
+
+        if ($id) {
+            $dataRequest = [
+                'method' => 'POST',
+                'api_path' => '/api/aset_desa/register/' . $id,
+            ];
+
+            $response = $this->request($dataRequest);
+
+            if ($response->getStatusCode() == 200) {
+                return $this->respond(['status' => true, 'message' => 'Data berhasil registrasi']);
+            } else {
+                return $this->respond(['status' => false, 'message' => 'Data gagal registrasi']);
+            }
+        } else {
+            return $this->respond(['status' => false, 'message' => 'Data tidak ditemukan']);
+        }
+    }
 
     public function uploadFile()
     {
