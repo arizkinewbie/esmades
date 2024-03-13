@@ -28,6 +28,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('datatable', 'AsetDesaController::indexDataTable');
         $routes->get('new', 'AsetDesaController::new');
         $routes->post('create', 'AsetDesaController::create');
+        $routes->get('show/(:num)', 'AsetDesaController::show/$1');
         $routes->post('upload_file', 'AsetDesaController::uploadFile');
         $routes->get('edit/(:num)', 'AsetDesaController::edit/$1');
         $routes->post('update/(:num)', 'AsetDesaController::update/$1');
