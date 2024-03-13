@@ -57,7 +57,7 @@ class AsetDesaController extends BaseAdminController
                     'view' => $this->var['viewPath'] . 'detail',
                 ];
                 $data = array_merge($data, $result);
-                return view('Cms/aset_desa/show', $data);
+                return view('cms/aset_desa/show', $data);
             }
         }
     }
