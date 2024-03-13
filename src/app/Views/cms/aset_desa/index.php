@@ -98,7 +98,7 @@
             }
         },
         columns: [
-            { data: 'id', visible: false},
+            { data: 'id', visible: false, searchable: false},
             { data: 'barang_golongan_kode', visible: false},
             { data: 'barang_bidang_kode', visible: false},
             { data: 'barang_kelompok_kode', visible: false},
@@ -106,10 +106,11 @@
             { data: 'tahun_pengadaan', visible: false},
             { data: 'status_registrasi', visible: false},
             { data: 'no', orderable: false, searchable: false},
-            { data: 'nama_barang'},
-            { data: 'barang_kode'},
+            { data: 'nama_barang', searchable: false},
+            { data: 'barang_kode', searchable: false},
             {
                 data: 'nomor_urut_barang',
+                searchable: false,
                 render: function(data, type, row) {
                     return row.barang_kode + ' | ' + data;
                 }
@@ -117,6 +118,7 @@
             {
                 data: 'id',
                 orderable: false,
+                searchable: false,
                 className: 'text-center',
                 width: '100px',
                 render: function(data, type, row) {
