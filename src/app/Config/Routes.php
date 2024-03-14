@@ -189,6 +189,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'StatusPemilikController::delete/$1');
     });
 
+    $routes->group('jenis_pajak', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'JenisPajakController::index');
+        $routes->get('new', 'JenisPajakController::new');
+        $routes->post('create', 'JenisPajakController::create');
+        $routes->get('edit/(:num)', 'JenisPajakController::edit/$1');
+        $routes->post('update/(:num)', 'JenisPajakController::update/$1');
+        $routes->get('delete/(:num)', 'JenisPajakController::delete/$1');
+    });
+
     $routes->group('jenis_aset', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'JenisAsetController::index');
         $routes->get('new', 'JenisAsetController::new');
