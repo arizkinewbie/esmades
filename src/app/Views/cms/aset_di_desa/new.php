@@ -23,6 +23,73 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">No NPWP</label>
+                                <input type="text" class="form-control no_npwp" name="no_npwp" value="<?= set_value('no_npwp') ?>" placeholder="Masukan No NPWP">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Letak Objek Pajak</label>
+                                <input type="text" class="form-control letak_objek_pajak" name="letak_objek_pajak" value="<?= set_value('letak_objek_pajak') ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Jenis Pajak</label>
+                                <select class="form-control js-example-basic-single jenis_pajak" name="jenis_pajak"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Perkiraan Nilai Objek Pajak</label>
+                                <input type="text" onkeyup="formatRupiah(this)" class="form-control perkiraan_nilai_objek_pajak" name="perkiraan_nilai_objek_pajak" placeholder="Masukan Perkiraan Nilai Objek Pajak" value="<?= set_value('perkiraan_nilai_objek_pajak') ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Bulan Jatuh Tempo</label>
+                                <select class="form-control js-example-basic-single bulan_jatuh_tempo" name="bulan_jatuh_tempo">
+                                    <?php
+                                    $bulan = array(
+                                        'Januari',
+                                        'Februari',
+                                        'Maret',
+                                        'April',
+                                        'Mei',
+                                        'Juni',
+                                        'Juli',
+                                        'Agustus',
+                                        'September',
+                                        'Oktober',
+                                        'November',
+                                        'Desember'
+                                    );
+
+                                    for ($i = 0; $i < count($bulan); $i++) :
+                                    ?>
+                                        <option value="<?= $bulan[$i]; ?>"><?= $bulan[$i]; ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
@@ -249,12 +316,23 @@
 <script>
     $(document).ready(function() {
 
+        $('.bulan_jatuh_tempo').select2();
+
         $('.pengamanan_hukum').change(function() {
             if ($(this).val() === 'ada') {
                 $('.form_hukum').attr('hidden', false);
             } else {
                 $('.form_hukum').attr('hidden', true);
             }
+        });
+
+        ajaxSelectFromApi({
+            id: '.jenis_pajak',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/jenis_pajak' ?>',
+            selected: '<?= set_value('jenis_pajak') ?>',
         });
 
         ajaxSelectFromApi({
@@ -298,5 +376,20 @@
                 </div>
             </div>
         `);
+    }
+
+    function formatRupiah(input) {
+        var angka = input.value.replace(/[^\d]/g, '');
+
+        var rupiah = '';
+        var angkaRev = angka.toString().split('').reverse().join('');
+        for (var i = 0; i < angkaRev.length; i++) {
+            if (i % 3 == 0) rupiah += '.';
+            rupiah += angkaRev[i];
+        }
+
+        var result = 'Rp ' + rupiah.split('').reverse().join('');
+
+        input.value = result;
     }
 </script>
