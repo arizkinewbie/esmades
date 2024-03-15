@@ -29,7 +29,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">No NPWP</label>
-                                <input type="text" class="form-control no_npwp" name="no_npwp" value="<?= set_value('no_npwp', $no_npwp) ?>" placeholder="Masukan No NPWP">
+                                <input type="text" readonly class="form-control no_npwp" name="no_npwp" value="<?= set_value('no_npwp', $no_npwp) ?>" placeholder="Masukan No NPWP">
                             </div>
                         </div>
                     </div>
