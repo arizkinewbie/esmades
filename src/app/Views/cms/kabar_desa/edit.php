@@ -14,23 +14,29 @@
                                 <select class="form-control js-example-basic-single jenis_berita" name="jenis_berita"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Judul Berita</label>
                                 <input type="text" class="form-control judul_berita" name="judul_berita" value="<?= $judul_berita; ?>" placeholder="Masukan judul berita">
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label">Isi Berita</label>
                                 <textarea name="isi_berita" class="form-control ckeditor-classic"><?= $isi_berita; ?></textarea>
                             </div>
                         </div>
+                    </div>
+                    <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
 
-                        <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
-
-                                <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
-                                    <div class="col-3 show_data">
+                            <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
+                                <div class="row">
+                                    <div class="col-6 show_data">
                                         <div class="md-3">
                                             <label data-id="<?= $f->nama_file; ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
                                             <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
@@ -56,13 +62,15 @@
                                             </div><!-- /.modal -->
                                         </div>
                                     </div>
-                                    <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
-                                <?php endif; ?>
+                                </div>
+                                <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
+                            <?php endif; ?>
 
-                        <?php endforeach;
-                        endif; ?>
+                    <?php endforeach;
+                    endif; ?>
 
-                        <div class="col-12 tambah">
+                    <div class="row tambah">
+                        <div class="col-12 ">
                             <div class="mb-3">
                                 <a href="javascript:addItem()" class="btn btn-primary"><i class="mdi mdi-plus btn-icon-prepend"></i> Buat File Upload</a>
                             </div>
@@ -107,10 +115,12 @@
     function addItem() {
         clicks += 1;
         $('.tambah').after(`
-            <div class="col-6">
-                <div class="mb-3">
-                    <label class="form-label">Foto ` + clicks + `</label>
-                    <input class="form-control" type="file" name="file[]" required>
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label class="form-label">Foto ` + clicks + `</label>
+                        <input class="form-control" type="file" name="file[]">
+                    </div>
                 </div>
             </div>
         `);

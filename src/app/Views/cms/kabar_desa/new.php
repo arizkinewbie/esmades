@@ -14,20 +14,25 @@
                                 <select class="form-control js-example-basic-single jenis_berita" name="jenis_berita"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Judul Berita</label>
                                 <input type="text" class="form-control judul_berita" name="judul_berita" placeholder="Masukan judul berita">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label">Isi Berita</label>
                                 <textarea name="isi_berita" class="form-control ckeditor-classic"></textarea>
                             </div>
                         </div>
-
-                        <div class="col-12 tambah">
+                    </div>
+                    <div class="row tambah">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <a href="javascript:addItem()" class="btn btn-primary"><i class="mdi mdi-plus btn-icon-prepend"></i> Buat File Upload</a>
                             </div>
@@ -72,10 +77,12 @@
     function addItem() {
         clicks += 1;
         $('.tambah').after(`
-            <div class="col-6">
-                <div class="mb-3">
-                    <label class="form-label">Foto ` + clicks + `</label>
-                    <input class="form-control" type="file" name="file[]">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label class="form-label">Foto ` + clicks + `</label>
+                        <input class="form-control" type="file" name="file[]">
+                    </div>
                 </div>
             </div>
         `);
