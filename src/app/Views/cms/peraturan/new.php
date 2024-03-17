@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Judul Peraturan</label>
+                                <label class="form-label">Judul Peraturan</label>
                                 <input type="text" class="form-control judul_peraturan" value="<?= set_value('judul_peraturan'); ?>" name="judul_peraturan" placeholder="Masukan Judul Peraturan">
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Nomor Peraturan</label>
+                                <label class="form-label">Nomor Peraturan</label>
                                 <input type="text" class="form-control nomor_peraturan" value="<?= set_value('nomor_peraturan'); ?>" name="nomor_peraturan" placeholder="Masukan Nomor Peraturan">
                             </div>
                         </div>
