@@ -101,8 +101,6 @@
                         </div>
                     </div>
 
-
-
                     <?php if (!empty($foto_wisata)) : ?>
                         <div class="row">
                             <div class="col-lg-12">
@@ -367,6 +365,5 @@
                 nama_file: nama_file,
             }
         })
-        $(this).parents('.show_data').remove();
     });
 </script>
