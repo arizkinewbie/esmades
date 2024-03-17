@@ -32,16 +32,17 @@
                             </div>
                         </div>
                     </div>
-                    <?php if (!empty($foto)) : foreach (json_decode($foto) as $f) : ?>
+                    <?php if (!empty($foto)) : $no = 1;
+                        foreach (json_decode($foto) as $f) : ?>
 
                             <?php if (file_exists("uploads/kabar_desa/images/" . $f->nama_file)) : ?>
                                 <div class="row">
                                     <div class="col-6 show_data">
                                         <div class="md-3">
                                             <label data-id="<?= $f->nama_file; ?>" for="varchar" class="btn btn-danger hapus la la-trash-o"></label>
-                                            <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
+                                            <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no; ?>" src="<?= base_url($f->path_file); ?>" class="rounded" alt="200x200" width="200">
                                             <!-- Default Modals -->
-                                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div id="myModal<?= $no; ?>" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -66,7 +67,8 @@
                                 <input type="hidden" name="file_name[]" value="<?= $f->nama_file; ?>">
                             <?php endif; ?>
 
-                    <?php endforeach;
+                    <?php $no++;
+                        endforeach;
                     endif; ?>
 
                     <div class="row tambah">

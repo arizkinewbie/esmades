@@ -250,6 +250,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('edit/(:num)', 'WisataController::edit/$1');
         $routes->post('update/(:num)', 'WisataController::update/$1');
         $routes->get('delete/(:num)', 'WisataController::delete/$1');
+        $routes->post('hapus_gambar', 'WisataController::hapus_gambar');
     });
 
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {

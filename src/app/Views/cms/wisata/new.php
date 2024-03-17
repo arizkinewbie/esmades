@@ -87,8 +87,16 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Whastapp</label>
-                                <input type="text" class="form-control whastapp" value="<?= set_value('whastapp'); ?>" name="whastapp" placeholder="Masukan Whastapp">
+                                <label for="firstNameinput" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control whatsapp" value="<?= set_value('whatsapp'); ?>" name="whatsapp" placeholder="Masukan Whatsapp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row tambah">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <a href="javascript:addItem()" class="btn btn-primary"><i class="mdi mdi-plus btn-icon-prepend"></i> Klik Untuk Upload Foto Wisata</a>
                             </div>
                         </div>
                     </div>
@@ -152,4 +160,20 @@
     $(document).on('click', '.btnModalMap1', function(data) {
         $('.modalMap1').modal('show')
     });
+
+    let clicks = 0;
+
+    function addItem() {
+        clicks += 1;
+        $('.tambah').after(`
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Foto ` + clicks + `</label>
+                    <input class="form-control" type="file" name="file[]">
+                </div>
+            </div>
+        </div>
+    `);
+    }
 </script>
