@@ -207,6 +207,24 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'JenisAsetController::delete/$1');
     });
 
+    $routes->group('jenis_peraturan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'JenisPeraturanController::index');
+        $routes->get('new', 'JenisPeraturanController::new');
+        $routes->post('create', 'JenisPeraturanController::create');
+        $routes->get('edit/(:num)', 'JenisPeraturanController::edit/$1');
+        $routes->post('update/(:num)', 'JenisPeraturanController::update/$1');
+        $routes->get('delete/(:num)', 'JenisPeraturanController::delete/$1');
+    });
+
+    $routes->group('peraturan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'PeraturanController::index');
+        $routes->get('new', 'PeraturanController::new');
+        $routes->post('create', 'PeraturanController::create');
+        $routes->get('edit/(:num)', 'PeraturanController::edit/$1');
+        $routes->post('update/(:num)', 'PeraturanController::update/$1');
+        $routes->get('delete/(:num)', 'PeraturanController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
