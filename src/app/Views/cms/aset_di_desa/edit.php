@@ -1,3 +1,9 @@
+<style>
+    img.rounded:hover {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-md-12">
         <?php echo view('cms/partials/show_alert') ?>
@@ -271,7 +277,7 @@
                                             <td width='200' height='200'>
                                                 <?php if (!empty($f[0]->nama_file)) : if (file_exists("uploads/aset_di_desa/images/" . $f[0]->nama_file)) :
                                                 ?>
-                                                        <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '0'; ?>" src="<?= base_url($f[0]->path_file); ?>" class="rounded form-control hapus<?= $no . '0'; ?>" alt="200x200" height="200">
+                                                        <img onmouseover="this.style.opacity = '0.7';" onmouseout="this.style.opacity = '1';" stye="transition: opacity 0.3s;" data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '0'; ?>" src="<?= base_url($f[0]->path_file); ?>" class="rounded form-control hapus<?= $no . '0'; ?>" alt="200x200" height="200">
                                                         <!-- Default Modals -->
                                                         <div id="myModal<?= $no . '0'; ?>" class="hapus<?= $no . '0'; ?> modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                             <div class="modal-dialog modal-xl">
@@ -301,7 +307,7 @@
                                             <td width='200' height='200'>
                                                 <?php if (!empty($f[1]->nama_file)) : if (file_exists("uploads/aset_di_desa/images/" . $f[1]->nama_file)) :
                                                 ?>
-                                                        <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '1'; ?>" src="<?= base_url($f[1]->path_file); ?>" class="rounded form-control hapus<?= $no . '1'; ?>" alt="200x200" height="200">
+                                                        <img onmouseover="this.style.opacity = '0.7';" onmouseout="this.style.opacity = '1';" stye="transition: opacity 0.3s;" data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '1'; ?>" src="<?= base_url($f[1]->path_file); ?>" class="rounded form-control hapus<?= $no . '1'; ?>" alt="200x200" height="200">
                                                         <!-- Default Modals -->
                                                         <div id="myModal<?= $no . '1'; ?>" class="modal fade hapus<?= $no . '1'; ?>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                             <div class="modal-dialog modal-xl">
@@ -331,7 +337,7 @@
                                             <td width='200' height='200'>
                                                 <?php if (!empty($f[2]->nama_file)) : if (file_exists("uploads/aset_di_desa/images/" . $f[2]->nama_file)) :
                                                 ?>
-                                                        <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '2'; ?>" src="<?= base_url($f[2]->path_file); ?>" class="rounded form-control hapus<?= $no . '2'; ?>" alt="200x200" height="200">
+                                                        <img onmouseover="this.style.opacity = '0.7';" onmouseout="this.style.opacity = '1';" stye="transition: opacity 0.3s;" data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '2'; ?>" src="<?= base_url($f[2]->path_file); ?>" class="rounded form-control hapus<?= $no . '2'; ?>" alt="200x200" height="200">
                                                         <!-- Default Modals -->
                                                         <div id="myModal<?= $no . '2'; ?>" class="modal fade hapus<?= $no . '2'; ?>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                             <div class="modal-dialog modal-xl">
@@ -361,7 +367,7 @@
                                             <td width='200' height='200'>
                                                 <?php if (!empty($f[3]->nama_file)) : if (file_exists("uploads/aset_di_desa/images/" . $f[3]->nama_file)) :
                                                 ?>
-                                                        <img data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '3'; ?>" src="<?= base_url($f[3]->path_file); ?>" class="rounded form-control hapus<?= $no . '3'; ?>" alt="200x200" height="200">
+                                                        <img onmouseover="this.style.opacity = '0.7';" onmouseout="this.style.opacity = '1';" stye="transition: opacity 0.3s;" data-bs-toggle="modal" data-bs-target="#myModal<?= $no . '3'; ?>" src="<?= base_url($f[3]->path_file); ?>" class="rounded form-control hapus<?= $no . '3'; ?>" alt="200x200" height="200">
                                                         <!-- Default Modals -->
                                                         <div id="myModal<?= $no . '3'; ?>" class="modal fade hapus<?= $no . '3'; ?>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                             <div class="modal-dialog modal-xl">
