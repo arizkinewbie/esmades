@@ -94,6 +94,15 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
+                                <label class="form-label">Penggunaan Lahan</label>
+                                <select class="form-control js-example-basic-single penggunaan_lahan" name="penggunaan_lahan"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
                                 <label class="form-label">Jenis Aset</label>
                                 <select class="form-control js-example-basic-single jenis_aset" name="jenis_aset"></select>
                             </div>
@@ -366,6 +375,15 @@
             } else {
                 $('.form_hukum').attr('hidden', true);
             }
+        });
+
+        ajaxSelectFromApi({
+            id: '.penggunaan_lahan',
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
+            url: '<?= $apiDomain . '/api/select2/penggunaan_lahan' ?>',
+            selected: '<?= set_value('penggunaan_lahan', $penggunaan_lahan) ?>',
         });
 
         ajaxSelectFromApi({

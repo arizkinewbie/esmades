@@ -225,6 +225,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'PeraturanController::delete/$1');
     });
 
+    $routes->group('penggunaan_lahan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'PenggunaanLahanController::index');
+        $routes->get('new', 'PenggunaanLahanController::new');
+        $routes->post('create', 'PenggunaanLahanController::create');
+        $routes->get('edit/(:num)', 'PenggunaanLahanController::edit/$1');
+        $routes->post('update/(:num)', 'PenggunaanLahanController::update/$1');
+        $routes->get('delete/(:num)', 'PenggunaanLahanController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');

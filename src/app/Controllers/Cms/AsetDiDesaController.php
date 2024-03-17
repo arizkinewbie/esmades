@@ -89,6 +89,13 @@ class AsetDiDesaController extends BaseAdminController
                 ]
             ],
 
+            'penggunaan_lahan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
             'status_pemilik' => [
                 'rules' => 'required',
                 'errors' => [
@@ -221,6 +228,7 @@ class AsetDiDesaController extends BaseAdminController
                 'jenis_pajak'  => $this->request->getPost('jenis_pajak'),
                 'perkiraan_nilai_objek_pajak'  => $this->request->getPost('perkiraan_nilai_objek_pajak'),
                 'bulan_jatuh_tempo'  => $this->request->getPost('bulan_jatuh_tempo'),
+                'penggunaan_lahan' => $this->request->getPost('penggunaan_lahan'),
                 'jenis_aset'    => $this->request->getPost('jenis_aset'),
                 'status_pemilik' => $this->request->getPost('status_pemilik'),
                 'penduduk_asli' => $this->request->getPost('penduduk_asli'),
@@ -299,6 +307,14 @@ class AsetDiDesaController extends BaseAdminController
                     'required' => '{field} wajib di isi.'
                 ]
             ],
+
+            'penggunaan_lahan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib di isi.'
+                ]
+            ],
+
             'jenis_aset' => [
                 'rules' => 'required',
                 'errors' => [
@@ -464,6 +480,7 @@ class AsetDiDesaController extends BaseAdminController
                 'nama_pemilik'  => $this->request->getPost('nama_pemilik'),
                 'no_npwp'  => $this->request->getPost('no_npwp'),
                 'letak_objek_pajak'  => $this->request->getPost('letak_objek_pajak'),
+                'penggunaan_lahan'  => $this->request->getPost('penggunaan_lahan'),
                 'jenis_pajak'  => $this->request->getPost('jenis_pajak'),
                 'perkiraan_nilai_objek_pajak'  => $this->request->getPost('perkiraan_nilai_objek_pajak'),
                 'bulan_jatuh_tempo'  => $this->request->getPost('bulan_jatuh_tempo'),
