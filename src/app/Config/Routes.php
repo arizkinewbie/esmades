@@ -257,6 +257,22 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
     });
+
+    $routes->group('kependudukan', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'KependudukanController::index');
+        $routes->get('datatable', 'KependudukanController::indexDataTable');
+        $routes->get('new', 'KependudukanController::new');
+        $routes->post('create', 'KependudukanController::create');
+        $routes->get('show/(:num)', 'KependudukanController::show/$1');
+        $routes->post('upload_file', 'KependudukanController::uploadFile');
+        $routes->get('edit/(:num)', 'KependudukanController::edit/$1');
+        $routes->post('update/(:num)', 'KependudukanController::update/$1');
+        $routes->get('register/(:num)', 'KependudukanController::register/$1');
+    });
+    
+    $routes->group('klien', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
+        $routes->get('/', 'KlienController::validasi');
+    });
 });
 
 $routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes) {
