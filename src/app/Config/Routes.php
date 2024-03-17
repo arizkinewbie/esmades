@@ -234,6 +234,24 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('delete/(:num)', 'PenggunaanLahanController::delete/$1');
     });
 
+    $routes->group('jenis_wisata', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'JenisWisataController::index');
+        $routes->get('new', 'JenisWisataController::new');
+        $routes->post('create', 'JenisWisataController::create');
+        $routes->get('edit/(:num)', 'JenisWisataController::edit/$1');
+        $routes->post('update/(:num)', 'JenisWisataController::update/$1');
+        $routes->get('delete/(:num)', 'JenisWisataController::delete/$1');
+    });
+
+    $routes->group('wisata', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
+        $routes->get('index', 'WisataController::index');
+        $routes->get('new', 'WisataController::new');
+        $routes->post('create', 'WisataController::create');
+        $routes->get('edit/(:num)', 'WisataController::edit/$1');
+        $routes->post('update/(:num)', 'WisataController::update/$1');
+        $routes->get('delete/(:num)', 'WisataController::delete/$1');
+    });
+
     $routes->group('profil', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('/', 'ProfilDesaController::edit');
         $routes->post('update/(:num)', 'ProfilDesaController::update/$1');
