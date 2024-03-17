@@ -9,7 +9,7 @@
                 <div>
                     <a data-bs-toggle="collapse" href="#multiCollapseExample1"
                     role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="btn btn-success">Pencarian</a>
-                    <a href="<?= site_url('admin/aset_desa/new') ?>" class="btn btn-primary">Add New Row</a>
+                    <a href="<?= site_url('admin/kependudukan/new') ?>" class="btn btn-primary">Tambah</a>
                 </div>
             </div>
             <div class="card-body">
@@ -19,40 +19,14 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Tahun Pengadaan</label>
-                                        <select class="form-control js-example-basic-single tahun_pengadaan" name="tahun_pengadaan"></select>
+                                        <label class="form-label">Nomor KK</label>
+                                        <input type="text" class="form-control nomor_kk" name="nomor_kk" placeholder="Cari berdasarkan nomor KK">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Golongan</label>
-                                        <select class="form-control js-example-basic-single barang_golongan_kode" name="barang_golongan_kode"></select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Bidang</label>
-                                        <select class="form-control js-example-basic-single barang_bidang_kode" name="barang_bidang_kode"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Kelompok</label>
-                                        <select class="form-control js-example-basic-single barang_kelompok_kode" name="barang_kelompok_kode"></select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sub Kelompok</label>
-                                        <select class="form-control js-example-basic-single barang_kode" name="barang_kode"></select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Register</label>
-                                        <select class="form-control js-example-basic-single status_registrasi" name="status_registrasi"></select>
+                                        <label class="form-label">Nama Kepala Keluarga</label>
+                                        <input type="text" class="form-control nama_kepala_keluarga" name="nama_kepala_keluarga" placeholder="Cari berdasarkan nama KK">
                                     </div>
                                 </div>
                             </div>
@@ -63,16 +37,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>#</th>
-                            <th>#</th>
-                            <th>#</th>
-                            <th>#</th>
-                            <th>#</th>
-                            <th>#</th>
                             <th>No.</th>
-                            <th class="w-50">Nama Barang</th>
-                            <th>Kode Barang</th>
-                            <th>Register</th>
+                            <th>Nomor KK</th>
+                            <th>Kepala Keluarga</th>
+                            <th>Jumlah Anggota Keluarga</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -108,27 +76,21 @@
         serverSide: true,
         draw: true,
         ajax: {
-            url: '<?= $apiDomain ?>/api/datatable/aset_desa',
+            url: '<?= $apiDomain ?>/api/datatable/kependudukan',
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
             }
         },
         columns: [
             { data: 'id', visible: false, searchable: false},
-            { data: 'barang_golongan_kode', visible: false},
-            { data: 'barang_bidang_kode', visible: false},
-            { data: 'barang_kelompok_kode', visible: false},
-            { data: 'barang_kode', visible: false},
-            { data: 'tahun_pengadaan', visible: false},
-            { data: 'status_registrasi', visible: false},
             { data: 'no', orderable: false, searchable: false},
-            { data: 'nama_barang', searchable: false},
-            { data: 'barang_kode', searchable: false},
+            { data: 'nomor_kk', searchable: true},
+            { data: 'nama_kepala_keluarga', searchable: true},
             {
-                data: 'nomor_urut_barang',
+                data: 'total_anggota_keluarga',
                 searchable: false,
                 render: function(data, type, row) {
-                    return row.barang_kode + ' | ' + data;
+                    return data;
                 }
             },
             {
@@ -144,11 +106,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">`;
                     html += `<li><a href="javascript:detailData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a></li>`;
-                    if(row.status_registrasi == '1') {
-                        html += `<li><a href="javascript:registerData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-external-link-fill align-bottom me-2 text-muted"></i> Register</a></li>`;
-                    }
-                    html += `<li><a href="javascript:tutupTransaksi(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-book-fill align-bottom me-2 text-muted"></i> Tutup Transaksi</a></li>`;
-                    html += `<li><a href="<?= site_url('admin/aset_desa/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
+                    html += `<li><a href="<?= site_url('admin/kependudukan/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
                     html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
                     html += `</ul></div>`;
                     return html;
@@ -158,7 +116,7 @@
     });
 
     function detailData(id) {
-        $('.formDetail').load('<?= site_url('admin/aset_desa/show/') ?>' + id, function(response, status, xhr) {
+        $('.formDetail').load('<?= site_url('admin/kependudukan/show/') ?>' + id, function(response, status, xhr) {
             if (status == "error") {
                 alert('Error:', xhr.statusText)
                 return;
@@ -167,23 +125,11 @@
         });
     }
 
-    $('.barang_golongan_kode').on('change', function() {
-        table.column(1).search(this.value).draw();
-    });
-    $('.barang_bidang_kode').on('change', function() {
+    $('.nomor_kk').on('keyup', function() {
         table.column(2).search(this.value).draw();
     });
-    $('.barang_kelompok_kode').on('change', function() {
+    $('.nama_kepala_keluarga').on('keyup', function() {
         table.column(3).search(this.value).draw();
-    });
-    $('.barang_kode').on('change', function() {
-        table.column(4).search(this.value).draw();
-    });
-    $('.tahun_pengadaan').on('change', function() {
-        table.column(5).search(this.value).draw();
-    });
-    $('.status_registrasi').on('change', function() {
-        table.column(6).search(this.value).draw();
     });
 
 
@@ -259,7 +205,7 @@
             preConfirm: function (email) {
                 return new Promise(function (resolve, reject) {
                     $.ajax({
-                        url: "<?= site_url('admin/aset_desa/register/') ?>" + id,
+                        url: "<?= site_url('admin/kependudukan/register/') ?>" + id,
                         headers: {'X-Requested-With': 'XMLHttpRequest'},
                         success: function(res) {
                             if(res.status) {
@@ -293,7 +239,7 @@
             preConfirm: function (email) {
                 return new Promise(function (resolve, reject) {
                     $.ajax({
-                        url: "<?= site_url('admin/aset_desa/delete/') ?>" + id,
+                        url: "<?= site_url('admin/kependudukan/delete/') ?>" + id,
                         headers: {'X-Requested-With': 'XMLHttpRequest'},
                         success: function(res) {
                             if(res.status) {

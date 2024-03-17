@@ -26,7 +26,7 @@ class KependudukanController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index ' . $this->titleHeader,
+            'subTitle' => 'Daftar ' . $this->titleHeader,
             'dataTable' => true,
             'select2' => true,
             'token' => session('jwtToken'),
@@ -41,7 +41,7 @@ class KependudukanController extends BaseAdminController
         if ($id) {
             $dataRequest = [
                 'method' => 'GET',
-                'api_path' => '/api/aset_desa/show/' . $id,
+                'api_path' => '/api/kependudukan/show/' . $id,
             ];
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
@@ -57,7 +57,7 @@ class KependudukanController extends BaseAdminController
                     'view' => $this->var['viewPath'] . 'detail',
                 ];
                 $data = array_merge($data, $result);
-                return view('cms/aset_desa/show', $data);
+                return view('cms/kependudukan/show', $data);
             }
         }
     }
@@ -92,53 +92,20 @@ class KependudukanController extends BaseAdminController
     public function create()
     {
 
-        helper('filesystem');
-
-        $validationRules      = [
-            'file_surat_kepemilikan' => [
-                'uploaded[file_surat_kepemilikan]',
-                'mime_in[file_surat_kepemilikan,image/png,image/jpg,image/jpeg]',
-            ],
-        ];
-        if (!$this->validate($validationRules)) {
-            return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
-        }
-        $fileSuratKepemilikanNama = '';
-        $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
-        if (!$fileSuratKepemilikan->hasMoved()) {
-            $filename = $fileSuratKepemilikan->getRandomName();
-            $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
-            $fileSuratKepemilikanNama = $filename;
-        }
+        
 
         $dataRequest = [
             'method'            => 'POST',
-            'api_path'          => '/api/aset_desa',
+            'api_path'          => '/api/kependudukan',
             'form_params'       => array_merge(
                 $this->request->getPost(),
-                ['desa_id' => '29198', 'file_surat_kepemilikan' => $fileSuratKepemilikanNama]
+                ['desa_id' => '29198']
             ),
         ];
 
         $response = $this->request($dataRequest);
-
         if ($response->getStatusCode() == 201) {
-            $files = json_decode((string) $this->request->getPost('files'));
-            $countFiles = count($files);
-            if ($countFiles > 0) {
-                foreach ($files as $row) {
-                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    $file = new File($fileToMove);
-
-                    $destinationFolder = FCPATH . 'uploads/aset_desa/';
-                    if (!is_dir($destinationFolder)) {
-                        mkdir($destinationFolder, 0777, true);
-                    }
-                    $file->move($destinationFolder, $row->filename);
-                }
-            }
-
-            return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/kependudukan/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
@@ -150,7 +117,7 @@ class KependudukanController extends BaseAdminController
         if ($id) {
             $dataRequest = [
                 'method' => 'GET',
-                'api_path' => '/api/aset_desa/edit/' . $id,
+                'api_path' => '/api/kependudukan/edit/' . $id,
             ];
 
             $response = $this->request($dataRequest);
@@ -175,57 +142,23 @@ class KependudukanController extends BaseAdminController
     public function update($id = null)
     {
 
-        $validationRules      = [
-            'file_surat_kepemilikan' => [
-                'uploaded[file_surat_kepemilikan]|max_size[file,2048]',
-                'mime_in[file_surat_kepemilikan,application/pdf]',
-            ],
-        ];
-
-        $fileSuratKepemilikanNama = '';
-        $fileSuratKepemilikan = $this->request->getFile('file_surat_kepemilikan');
-        if ($fileSuratKepemilikan->isValid()) {
-            if (!$this->validate($validationRules)) {
-                return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
-            }
-
-            if (!$fileSuratKepemilikan->hasMoved()) {
-                $filename = $fileSuratKepemilikan->getRandomName();
-                $fileSuratKepemilikan->move('uploads/aset_desa/hukum', $filename);
-                $fileSuratKepemilikanNama = $filename;
-            }
-        }
+        
 
         $addPost['desa_id'] = '29198';
-        if ($fileSuratKepemilikanNama) $addPost['file_surat_kepemilikan'] = $fileSuratKepemilikanNama;
 
         $dataRequest = [
             'method' => 'POST',
-            'api_path' => '/api/aset_desa/update/' . $id,
+            'api_path' => '/api/kependudukan/update/' . $id,
             'form_params' => array_merge($this->request->getPost(), $addPost),
         ];
 
         $response = $this->request($dataRequest);
 
+        // return $this->respond($response->getBody());
+
         if ($response->getStatusCode() == 200) {
-            $files = json_decode((string) $this->request->getPost('files'));
-            $countFiles = count($files);
-            if ($countFiles > 0) {
-                foreach ($files as $row) {
-                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
-                    if (file_exists($fileToMove)) {
-                        $file = new File($fileToMove);
 
-                        $destinationFolder = FCPATH . 'uploads/aset_desa/';
-                        if (!is_dir($destinationFolder)) {
-                            mkdir($destinationFolder, 0777, true);
-                        }
-                        $file->move($destinationFolder, $row->filename);
-                    }
-                }
-            }
-
-            return redirect()->to('/admin/aset_desa/index')->with('success', 'Data berhasil disimpan.');
+            return redirect()->to('/admin/kependudukan/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
@@ -237,7 +170,7 @@ class KependudukanController extends BaseAdminController
         if ($id) {
             $dataRequest = [
                 'method' => 'POST',
-                'api_path' => '/api/aset_desa/delete/' . $id,
+                'api_path' => '/api/kependudukan/delete/' . $id,
             ];
 
             $response = $this->request($dataRequest);
@@ -258,7 +191,7 @@ class KependudukanController extends BaseAdminController
         if ($id) {
             $dataRequest = [
                 'method' => 'POST',
-                'api_path' => '/api/aset_desa/register/' . $id,
+                'api_path' => '/api/kependudukan/register/' . $id,
             ];
 
             $response = $this->request($dataRequest);
