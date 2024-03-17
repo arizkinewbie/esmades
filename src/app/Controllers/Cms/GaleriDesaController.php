@@ -173,7 +173,9 @@ class GaleriDesaController extends BaseAdminController
 
             //menghapus file sebelumnya atau di replace
             if (!empty($file_name)) {
-                unlink('uploads/galeri_desa/images/' . $file_name);
+                if (file_exists('uploads/galeri_desa/images/' . $file_name)) :
+                    unlink('uploads/galeri_desa/images/' . $file_name);
+                endif;
             }
 
 

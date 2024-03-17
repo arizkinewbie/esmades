@@ -63,6 +63,7 @@
                 "Authorization": "Bearer <?= $token ?>"
             },
             url: '<?= $apiDomain . '/api/select2/jenis_berita' ?>',
+            selected: '<?= set_value('jenis_berita') ?>',
         });
     })
 
