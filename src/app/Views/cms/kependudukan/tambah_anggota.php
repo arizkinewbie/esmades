@@ -100,7 +100,7 @@
                 <div class="col-md-12">
                     <div class="text-start">
                         <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                        <a href="<?= site_url('admin/kependudukan/index') ?>" class="btn btn-danger">Batal</a>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Batal</button>
                     </div>
                 </div>
             </div>
