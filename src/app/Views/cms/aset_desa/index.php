@@ -8,7 +8,7 @@
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
                     <a data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="btn btn-success">Pencarian</a>
-                    <a href="<?= site_url('admin/aset_desa/new') ?>" class="btn btn-primary">Add New Row</a>
+                    <a href="<?= site_url('admin/aset_desa/new') ?>" class="btn btn-primary">Tambah</a>
                 </div>
             </div>
             <div class="card-body">
