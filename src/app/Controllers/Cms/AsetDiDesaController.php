@@ -53,7 +53,7 @@ class AsetDiDesaController extends BaseAdminController
                     'view' => $this->var['viewPath'] . 'detail',
                 ];
                 $data = array_merge($data, $result);
-                return view('cms/kabar_desa/show', $data);
+                return view('cms/aset_di_desa/show', $data);
             }
         }
     }

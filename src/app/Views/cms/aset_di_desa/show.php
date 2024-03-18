@@ -1,20 +1,100 @@
 <table class="table w-100 table-borderd table-striped table-hover table-sm">
     <tbody>
         <tr>
-            <td>Jenis Galeri</td>
-            <td><?= $nama_jenis_galeri ?></td>
+            <td>Nik</td>
+            <td><?= $nik ?></td>
         </tr>
         <tr>
-            <td>Keterangan</td>
-            <td><?= $keterangan ?></td>
+            <td>Nama Pemilik</td>
+            <td><?= $nama_pemilik ?></td>
         </tr>
         <tr>
-            <td>File</td>
+            <td>No Npwp</td>
+            <td><?= $no_npwp ?></td>
+        </tr>
+        <tr>
+            <td>Letak Objek Pajak</td>
+            <td><?= $letak_objek_pajak ?></td>
+        </tr>
+        <tr>
+            <td>Jenis Pajak</td>
+            <td><?= $nama_jenis_pajak; ?></td>
+        </tr>
+        <tr>
+            <td>Perkiraan Nilai Objek Pajak</td>
+            <td><?= $perkiraan_nilai_objek_pajak; ?></td>
+        </tr>
+        <tr>
+            <td>Bulan Jatuh Tempo</td>
+            <td><?= $bulan_jatuh_tempo; ?></td>
+        </tr>
+        <tr>
+            <td>Penggunaan Lahan Desa</td>
+            <td><?= $nama_penggunaan_lahan; ?></td>
+        </tr>
+        <tr>
+            <td>Jenis Aset Desa</td>
+            <td><?= $nama_jenis_aset; ?></td>
+        </tr>
+        <tr>
+            <td>Status Pemilik</td>
+            <td><?= $nama_status_pemilik; ?></td>
+        </tr>
+        <tr>
+            <td>Penduduk Asli</td>
+            <td><?= $penduduk_asli; ?></td>
+        </tr>
+        <tr>
+            <td>Luas Lahan</td>
+            <td><?= $luas_lahan; ?></td>
+        </tr>
+        <tr>
+            <td>Koordinat</td>
+            <td><?= $koordinat; ?></td>
+        </tr>
+        <tr>
+            <td>Poligon</td>
+            <td><?= $poligon; ?></td>
+        </tr>
+        <tr>
+            <td>Pengamanan Fisik</td>
+            <td><?= $pengamanan_fisik; ?></td>
+        </tr>
+        <tr>
+            <td>Keterangan Fisik</td>
+            <td><?= $keterangan_fisik; ?></td>
+        </tr>
+        <tr>
+            <td>Pengamanan Hukum</td>
+            <td><?= $pengamanan_hukum; ?></td>
+        </tr>
+        <tr>
+            <td>Keterangan Hukum</td>
+            <td><?= $keterangan_hukum; ?></td>
+        </tr>
+        <tr>
+            <td>Nomor Bukti Kepemilikan</td>
+            <td><?= $nomor_bukti_kepemilikan; ?></td>
+        </tr>
+        <tr>
+            <td>File Surat Kepemilikan</td>
             <td>
-                <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
-                        <img widht="80" height="80" src="<?= base_url('uploads/galeri_desa/images/' . $file) ?>" onclick="return showImage(this.src)">
-                <?php endif;
-                endif; ?>
+                <?php if (file_exists("uploads/aset_di_desa/pdf/" . $file_surat_kepemilikan)) : ?>
+                    <a href="<?= base_url('uploads/aset_di_desa/pdf/' . $file_surat_kepemilikan) ?>">Lihat File Kepemilikan</a>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Foto Kabar Desa</td>
+            <td>
+                <?php if (!empty($foto)) : ?>
+                    <?php $arrayFiles = json_decode($foto, true); ?>
+                    <?php foreach ($arrayFiles as $row) : ?>
+                        <?php if (file_exists("uploads/aset_di_desa/images/" . $row['nama_file'])) : ?>
+                            <img widht="80" height="80" src="<?= base_url('uploads/aset_di_desa/images/' . $row['nama_file']) ?>" onclick="return showImage(this.src)">
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                <?php endif ?>
             </td>
         </tr>
     </tbody>
