@@ -12,7 +12,7 @@
             <td>File</td>
             <td>
                 <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
-                        <img widht="80" height="80" src="<?= base_url('uploads/galeri_desa/' . $file) ?>" onclick="return showImage(this.src)">
+                        <img widht="80" height="80" src="<?= base_url('uploads/galeri_desa/images/' . $file) ?>" onclick="return showImage(this.src)">
                 <?php endif;
                 endif; ?>
             </td>
