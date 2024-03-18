@@ -26,7 +26,7 @@ class AsetDesaController extends BaseAdminController
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index ' . $this->titleHeader,
+            'subTitle' => 'Daftar ' . $this->titleHeader,
             'dataTable' => true,
             'select2' => true,
             'token' => session('jwtToken'),
@@ -48,7 +48,7 @@ class AsetDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit ' . $this->titleHeader,
+                    'subTitle' => 'Ubah ' . $this->titleHeader,
                     'select2' => true,
                     'dropzone' => true,
                     'dataTable' => true,
@@ -158,7 +158,7 @@ class AsetDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit ' . $this->titleHeader,
+                    'subTitle' => 'Ubah ' . $this->titleHeader,
                     'select2' => true,
                     'dropzone' => true,
                     'dataTable' => true,

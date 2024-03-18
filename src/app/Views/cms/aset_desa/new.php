@@ -174,7 +174,7 @@
                                     <div class="mb-3">
                                         <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
                                     </div>
-                                    <h4>Drop files here or click to upload.</h4>
+                                    <h4>Unggah atau letakan gambar kesini.</h4>
                                 </div>
                             </div>
 
