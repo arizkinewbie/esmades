@@ -19,7 +19,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Keterangan</label>
-                                <textarea name="keterangan" class="form-control keterangan"><?= set_Value('keterangan', $keterangan); ?></textarea>
+                                <textarea name="keterangan" class="form-control keterangan"><?= set_Value('keterangan'); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -58,6 +58,7 @@
                 "Authorization": "Bearer <?= $token ?>"
             },
             url: '<?= $apiDomain . '/api/select2/jenis_galeri' ?>',
+            selected: '<?= set_value('jenis_galeri') ?>',
         });
     })
 </script>
