@@ -24,7 +24,7 @@ class PerangkatDesaController extends BaseAdminController
     {
         $data = [
             'title' => 'Aset Desa',
-            'subTitle' => 'Index '.$this->titleHeader,
+            'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'apiDomain' => getenv('API_DOMAIN'),
@@ -33,10 +33,11 @@ class PerangkatDesaController extends BaseAdminController
         return $this->render($data);
     }
 
-    public function new() {
+    public function new()
+    {
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Tambah Data '.$this->titleHeader,
+            'subTitle' => 'Tambah Data ' . $this->titleHeader,
             'select2' => true,
             'pickr' => true,
             'token' => session('jwtToken'),
@@ -44,8 +45,9 @@ class PerangkatDesaController extends BaseAdminController
         ];
         return $this->render($data);
     }
-    
-    public function testing() {
+
+    public function testing()
+    {
         $validationRules      = [
             'foto' => [
                 'uploaded[foto]',
@@ -57,7 +59,7 @@ class PerangkatDesaController extends BaseAdminController
             ],
         ];
 
-        if (! $this->validate($validationRules)) {
+        if (!$this->validate($validationRules)) {
             return $this->respond([
                 'status' => false,
                 'message' => $this->validator->getErrors(),
@@ -66,18 +68,17 @@ class PerangkatDesaController extends BaseAdminController
 
         $fotoNama = '';
         $foto = $this->request->getFile('foto');
-        if (! $foto->hasMoved()) {
+        if (!$foto->hasMoved()) {
             $filenameFoto = $foto->getRandomName();
             $foto->move('uploads/perangkat_desa/images', $filenameFoto);
             $fotoNama = $filenameFoto;
         }
         $suratKeputusanNama = '';
         $suratKeputusan = $this->request->getFile('surat_keputusan');
-        if (! $suratKeputusan->hasMoved()) {
+        if (!$suratKeputusan->hasMoved()) {
             $filenameSuratKeputusan = $suratKeputusan->getRandomName();
             $suratKeputusan->move('uploads/perangkat_desa/pdf', $filenameSuratKeputusan);
             $suratKeputusanNama = $filenameSuratKeputusan;
-            
         }
 
         $dataRequest = [
@@ -98,9 +99,10 @@ class PerangkatDesaController extends BaseAdminController
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
         }
     }
-    
-    public function create() {
-        
+
+    public function create()
+    {
+
         $validationRules      = [
             'foto' => [
                 'uploaded[foto]',
@@ -112,24 +114,23 @@ class PerangkatDesaController extends BaseAdminController
             ],
         ];
 
-        if (! $this->validate($validationRules)) {
+        if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
         }
 
         $fotoNama = '';
         $foto = $this->request->getFile('foto');
-        if (! $foto->hasMoved()) {
+        if (!$foto->hasMoved()) {
             $filenameFoto = $foto->getRandomName();
             $foto->move('uploads/perangkat_desa/images', $filenameFoto);
             $fotoNama = $filenameFoto;
         }
         $suratKeputusanNama = '';
         $suratKeputusan = $this->request->getFile('surat_keputusan');
-        if (! $suratKeputusan->hasMoved()) {
+        if (!$suratKeputusan->hasMoved()) {
             $filenameSuratKeputusan = $suratKeputusan->getRandomName();
             $suratKeputusan->move('uploads/perangkat_desa/pdf', $filenameSuratKeputusan);
             $suratKeputusanNama = $filenameSuratKeputusan;
-            
         }
 
         $dataRequest = [
@@ -149,10 +150,11 @@ class PerangkatDesaController extends BaseAdminController
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
         }
     }
-    
-    public function edit($id = null) {
 
-        if($id) {
+    public function edit($id = null)
+    {
+
+        if ($id) {
             $dataRequest = [
                 'method' => 'GET',
                 'api_path' => '/api/perangkat_desa/edit/' . $id,
@@ -162,7 +164,7 @@ class PerangkatDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit '.$this->titleHeader,
+                    'subTitle' => 'Edit ' . $this->titleHeader,
                     'select2' => true,
                     'token' => session('jwtToken'),
                     'view' => $this->var['viewPath'] . 'edit',
@@ -173,7 +175,8 @@ class PerangkatDesaController extends BaseAdminController
         }
     }
 
-    public function update($id = null) {
+    public function update($id = null)
+    {
 
         $dataRequest = [
             'method' => 'GET',
@@ -188,11 +191,11 @@ class PerangkatDesaController extends BaseAdminController
                     'mime_in[foto,image/png,image/jpg,image/jpeg]',
                 ],
             ];
-    
+
             $fotoNama = '';
             $foto = $this->request->getFile('foto');
-            if($foto->isValid()) {
-                if(!$this->validate($validationRulesFoto)) {
+            if ($foto->isValid()) {
+                if (!$this->validate($validationRulesFoto)) {
                     return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
                 }
                 $foto = $this->request->getFile('foto');
@@ -200,7 +203,7 @@ class PerangkatDesaController extends BaseAdminController
                 $fotoNama = $nama_foto;
 
                 $foto->move('uploads/perangkat_desa/foto', $nama_foto);
-                if(file_exists('uploads/perangkat_desa/foto/' . $findData['foto'])) {
+                if (file_exists('uploads/perangkat_desa/foto/' . $findData['foto'])) {
                     unlink('uploads/perangkat_desa/foto/' . $findData['foto']);
                 }
             }
@@ -211,11 +214,11 @@ class PerangkatDesaController extends BaseAdminController
                     'mime_in[surat_keputusan,application/pdf]',
                 ],
             ];
-            
+
             $suratKeputusanNama = '';
             $suratKeputusan = $this->request->getFile('surat_keputusan');
-            if($suratKeputusan->isValid()) {
-                if(!$this->validate($validationRulesSuratKeputusan)) {
+            if ($suratKeputusan->isValid()) {
+                if (!$this->validate($validationRulesSuratKeputusan)) {
                     return redirect()->back()->withInput()->with('listErrors', $this->validator->getErrors());
                 }
                 $suratKeputusan = $this->request->getFile('surat_keputusan');
@@ -223,20 +226,20 @@ class PerangkatDesaController extends BaseAdminController
                 $suratKeputusanNama = $namaSuratKeputusan;
 
                 $foto->move('uploads/perangkat_desa/pdf', $namaSuratKeputusan);
-                if(file_exists('uploads/perangkat_desa/pdf/' . $findData['surat_keputusan'])) {
+                if (file_exists('uploads/perangkat_desa/pdf/' . $findData['surat_keputusan'])) {
                     unlink('uploads/perangkat_desa/pdf/' . $findData['surat_keputusan']);
                 }
             }
-    
+
             $addPost['desa_id'] = '29198';
-            if($fotoNama) $addPost['foto'] = $fotoNama;
-            if($suratKeputusanNama) $addPost['foto'] = $suratKeputusanNama;
+            if ($fotoNama) $addPost['foto'] = $fotoNama;
+            if ($suratKeputusanNama) $addPost['foto'] = $suratKeputusanNama;
             $dataRequest = [
                 'method' => 'POST',
                 'api_path' => '/api/perangkat_desa/update/' . $id,
                 'form_params' => array_merge($this->request->getPost(), $addPost),
             ];
-    
+
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
                 return redirect()->to('/admin/perangkat_desa/index')->with('success', 'Data berhasil disimpan.');
@@ -244,6 +247,5 @@ class PerangkatDesaController extends BaseAdminController
                 return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages);
             }
         }
-        
     }
 }

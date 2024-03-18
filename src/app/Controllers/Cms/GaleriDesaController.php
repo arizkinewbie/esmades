@@ -22,28 +22,17 @@ class GaleriDesaController extends BaseAdminController
 
     public function index()
     {
-        $dataRequest = [
-            'method' => 'GET',
-            'api_path' => '/api/galeri_desa',
-        ];
-        $response = $this->request($dataRequest);
-
-        if ($response->getStatusCode() == 200) {
-            $result = json_decode($response->getBody());
-        } else {
-            $result = "";
-        }
-
         $data = [
-            'title' => $this->titleHeader,
+            'title' => 'Aset Desa',
             'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'index',
-            'result' => $result
         ];
         return $this->render($data);
     }
+
 
     public function new()
     {

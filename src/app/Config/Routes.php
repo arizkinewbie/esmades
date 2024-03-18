@@ -151,6 +151,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
 
     $routes->group('galeri_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'GaleriDesaController::index');
+        $routes->get('show/(:num)', 'GaleriDesaController::show/$1');
         $routes->get('new', 'GaleriDesaController::new');
         $routes->post('create', 'GaleriDesaController::create');
         $routes->get('edit/(:num)', 'GaleriDesaController::edit/$1');
@@ -270,7 +271,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('register/(:num)', 'KependudukanController::register/$1');
         $routes->get('tambah_anggota/(:num)', 'KependudukanController::tambah_anggota/$1');
     });
-    
+
     $routes->group('klien', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
         $routes->get('/', 'KlienController::validasi');
     });

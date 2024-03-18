@@ -15,19 +15,25 @@
                                 <select class="form-control js-example-basic-single jenis_galeri" name="jenis_galeri"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Keterangan</label>
-                                <textarea name="keterangan" class="form-control keterangan"><?= $keterangan; ?></textarea>
+                                <textarea name="keterangan" class="form-control keterangan"><?= set_value('keterangan', $keterangan); ?></textarea>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Foto</label>
                                 <input class="form-control" type="file" name="file">
                             </div>
                         </div>
-                        <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
+                    </div>
+                    <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
+                            <div class="row">
                                 <div class="col-6">
                                     <div class="md-3">
                                         <img data-bs-toggle="modal" data-bs-target="#myModal" src="<?= base_url('uploads/galeri_desa/images/' . $file); ?>" class="rounded" alt="200x200" width="200">
@@ -54,19 +60,22 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="file_name" value="<?= $file; ?>">
-                            <?php else : ?>
-                                <input type="hidden" name="file_name" value="" readonly>
-                        <?php endif;
-                        endif; ?>
-                        <!--end col-->
+                            </div>
+                        <?php else : ?>
+                            <input type="hidden" name="file_name" value="" readonly>
+                    <?php endif;
+                    endif; ?>
+                    <!--end col-->
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="text-start">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <a href="<?= base_url('admin/galeri_desa/index'); ?>" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
-                        <!--end col-->
                     </div>
+                    <!--end col-->
+
                     <!--end row-->
                 </form>
             </div>

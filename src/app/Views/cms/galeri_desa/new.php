@@ -14,19 +14,25 @@
                                 <select class="form-control js-example-basic-single jenis_galeri" name="jenis_galeri"></select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Keterangan</label>
-                                <textarea name="keterangan" class="form-control keterangan"></textarea>
+                                <textarea name="keterangan" class="form-control keterangan"><?= set_Value('keterangan', $keterangan); ?></textarea>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Foto</label>
                                 <input class="form-control" type="file" name="file">
                             </div>
                         </div>
-                        <!--end col-->
+                    </div>
+                    <!--end col-->
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="text-start">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -35,6 +41,7 @@
                         </div>
                         <!--end col-->
                     </div>
+
                     <!--end row-->
                 </form>
             </div>
