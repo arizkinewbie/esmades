@@ -23,7 +23,7 @@ class GaleriDesaController extends BaseAdminController
     public function index()
     {
         $data = [
-            'title' => 'Aset Desa',
+            'title' => $this->titleHeader,
             'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
@@ -45,7 +45,7 @@ class GaleriDesaController extends BaseAdminController
                 $result = json_decode($response->getBody(), true);
                 $data = [
                     'title' => $this->titleHeader,
-                    'subTitle' => 'Edit ' . $this->titleHeader,
+                    'subTitle' => 'Detail ' . $this->titleHeader,
                     'select2' => true,
                     'dropzone' => true,
                     'dataTable' => true,

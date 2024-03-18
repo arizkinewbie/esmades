@@ -161,6 +161,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
 
     $routes->group('kabar_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'KabarDesaController::index');
+        $routes->get('show/(:num)', 'KabarDesaController::show/$1');
         $routes->get('new', 'KabarDesaController::new');
         $routes->post('create', 'KabarDesaController::create');
         $routes->get('edit/(:num)', 'KabarDesaController::edit/$1');

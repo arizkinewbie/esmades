@@ -1,20 +1,28 @@
 <table class="table w-100 table-borderd table-striped table-hover table-sm">
     <tbody>
         <tr>
-            <td>Jenis Galeri</td>
-            <td><?= $nama_jenis_galeri ?></td>
+            <td>Jenis Berita</td>
+            <td><?= $nama_jenis_berita ?></td>
         </tr>
         <tr>
-            <td>Keterangan</td>
-            <td><?= $keterangan ?></td>
+            <td>Judul Berita</td>
+            <td><?= $judul_berita ?></td>
         </tr>
         <tr>
-            <td>File</td>
+            <td>Isi Berita</td>
+            <td><?= $isi_berita ?></td>
+        </tr>
+        <tr>
+            <td>Foto Kabar Desa</td>
             <td>
-                <?php if (!empty($file)) : if (file_exists("uploads/galeri_desa/images/" . $file)) : ?>
-                        <img widht="80" height="80" src="<?= base_url('uploads/galeri_desa/images/' . $file) ?>" onclick="return showImage(this.src)">
-                <?php endif;
-                endif; ?>
+                <?php if (!empty($foto)) : ?>
+                    <?php $arrayFiles = json_decode($foto, true); ?>
+                    <?php foreach ($arrayFiles as $row) : ?>
+                        <?php if (file_exists("uploads/kabar_desa/images/" . $row['nama_file'])) : ?>
+                            <img widht="80" height="80" src="<?= base_url('uploads/kabar_desa/images/' . $row['nama_file']) ?>" onclick="return showImage(this.src)">
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                <?php endif ?>
             </td>
         </tr>
     </tbody>
