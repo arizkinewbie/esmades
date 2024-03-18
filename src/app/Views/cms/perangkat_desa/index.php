@@ -31,7 +31,7 @@
 <!--end row-->
 
 <script>
-// $('#table').DataTable();
+    // $('#table').DataTable();
 
     var table;
 
@@ -44,15 +44,33 @@
                 xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
             }
         },
-        columns: [
-            { data: 'id', visible: false},
-            { data: 'no', orderable: false, searchable: false},
-            { data: 'nama'},
-            { data: 'tanggal_lahir'},
-            { data: 'tempat_lahir'},
-            { data: 'jabatan_nama'},
-            { data: 'telepon'},
-            { data: 'alamat'},
+        columns: [{
+                data: 'id',
+                visible: false
+            },
+            {
+                data: 'no',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'nama'
+            },
+            {
+                data: 'tanggal_lahir'
+            },
+            {
+                data: 'tempat_lahir'
+            },
+            {
+                data: 'jabatan_nama'
+            },
+            {
+                data: 'telepon'
+            },
+            {
+                data: 'alamat'
+            },
             {
                 data: 'id',
                 orderable: false,
