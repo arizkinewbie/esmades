@@ -173,6 +173,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
 
     $routes->group('aset_di_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'AsetDiDesaController::index');
+        $routes->get('show/(:num)', 'AsetDiDesaController::show/$1');
         $routes->get('new', 'AsetDiDesaController::new');
         $routes->post('create', 'AsetDiDesaController::create');
         $routes->get('edit/(:num)', 'AsetDiDesaController::edit/$1');
