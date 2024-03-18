@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-md-12">
-        <form action="<?= site_url('admin/kependudukan/update/' . $id) ?>" method="post" id="form1"
-            enctype='multipart/form-data'>
+        <form action="javascript:save()" method="post" id="form1">
+
+            <input type="hidden" value="<?= $id ?>" name="kependudukan_id">
 
             <div class="row">
                 <div class="col-md-12">
@@ -16,9 +17,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="firstNameinput" class="form-label">Nama Anggota</label>
-                        <input type="text" class="form-control nama_kepala_keluarga" name="nama_kepala_keluarga"
-                            value="<?= set_value('nama_kepala_keluarga') ?>" placeholder="Nama Kepala Keluarga">
+                        <label for="firstNameinput" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control nama" name="nama"
+                            value="<?= set_value('nama') ?>" placeholder="Nama">
                     </div>
                 </div>
             </div>
@@ -41,14 +42,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="firstNameinput" class="form-label">Tempat Lahir</label>
                         <input type="text" class="form-control tempat_lahir" name="tempat_lahir"
                             value="<?= set_value('tempat_lahir') ?>" placeholder="Tempat Lahir">
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="firstNameinput" class="form-label">Tanggal Lahir</label>
                         <input type="text" class="form-control tanggal_lahir datepicker" name="tanggal_lahir"
@@ -106,3 +107,96 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    function save() {
+        var form = $('#form1')[0];
+        var formData = new FormData(form);
+
+        btnSpinnerShow();
+
+        $.ajax({
+            url: '<?= $apiDomain ?>/api/kependudukan_detail/create',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
+            },
+            dataType: 'json',
+            method: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                swal.fire({
+                    allowOutsideClick: false,
+                    type: 'success',
+                    title: 'Sukses',
+                    text: 'Data berhasil disimpan',
+                }).then((res) => {
+                    $('.modalTambahAnggota').modal('hide');
+                    detailData('<?= $id ?>');
+                });
+            },
+            error: function() {
+                swal.fire({
+                    allowOutsideClick: false,
+                    type: 'error',
+                    title: 'Kesalahan',
+                    text: 'Internal server error',
+                }).then((res) => {
+                    btnSpinnerHide();
+                });
+            }
+        });
+    }
+
+    $('.datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true,
+    });
+
+    $('.modalTambahAnggota').on('hidden.bs.modal', function () {
+        detailData('<?= $id ?>');
+    })
+    
+    ajaxSelectFromApi({
+        id: '.jenis_pajak_id',
+        headers: { "Authorization": "Bearer <?= $token ?>" },
+        url: '<?= $apiDomain . '/api/select2/jenis_pajak' ?>',
+        selected: '<?= set_value('jenis_pajak_id') ?>',
+    });
+    ajaxSelectFromApi({
+        id: '.agama_id',
+        headers: { "Authorization": "Bearer <?= $token ?>" },
+        url: '<?= $apiDomain . '/api/select2/agama' ?>',
+        selected: '<?= set_value('agama_id') ?>',
+    });
+    ajaxSelectFromApi({
+        id: '.jenis_pekerjaan_id',
+        headers: { "Authorization": "Bearer <?= $token ?>" },
+        url: '<?= $apiDomain . '/api/select2/jenis_pekerjaan' ?>',
+        selected: '<?= set_value('jenis_pekerjaan_id') ?>',
+    });
+    ajaxSelectFromApi({
+        id: '.pendidikan_id',
+        headers: { "Authorization": "Bearer <?= $token ?>" },
+        url: '<?= $apiDomain . '/api/select2/pendidikan' ?>',
+        selected: '<?= set_value('pendidikan_id') ?>',
+    });
+    $('.jenis_kelamin').select2({
+        placeholder: 'Pilih Opsi',
+        data: [
+            {id: 'Laki-laki', text: 'Laki-laki'},
+            {id: 'Perempuan', text: 'Perempuan'},
+        ]
+    }).val('<?= set_value('jenis_kelamin') ?>').trigger('change')
+    $('.status_hubungan').select2({
+        placeholder: 'Pilih Opsi',
+        data: [
+            {id: 'Istri', text: 'Istri'},
+            {id: 'Anak', text: 'Anak'},
+        ]
+    }).val('<?= set_value('status_hubungan') ?>').trigger('change')
+    
+</script>

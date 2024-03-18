@@ -1,3 +1,13 @@
+function btnSpinnerShow(buttonID = 'button[type="submit"]') {
+    $(buttonID).prop('disabled', true);
+    setTimeout(() => {}, 1000);
+}
+
+function btnSpinnerHide(buttonID = 'button[type="submit"]') {
+    console.log('wait ... !');
+    $(buttonID).prop('disabled', false);
+}
+
 function templateResult(item, container) {
     // replace the placeholder with the break-tag and put it into an jquery object
     return $('<span>' + item.text

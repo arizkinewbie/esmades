@@ -52,7 +52,7 @@
 </div>
 <!--end row-->
 
-<div class="modal fade modalTambahAnggota" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade modalTambahAnggota" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -129,6 +129,8 @@
             },
         ]
     });
+
+    
 
     function tambahAnggota(id) {
         $('.modalDetail').modal('hide');
