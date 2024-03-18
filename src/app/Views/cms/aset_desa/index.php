@@ -2,13 +2,12 @@
     <div class="col-lg-12">
         <?php echo view('cms/partials/alerts', array('tipe' => 'success')) ?>
         <?php echo view('cms/partials/alerts', array('tipe' => 'error')) ?>
-        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>        
+        <?php echo view('cms/partials/alerts', array('tipe' => 'listErrors')) ?>
         <div class="card">
             <div class="card-header d-flex align-items-center">
                 <h5 class="card-title mb-0 flex-grow-1"><?= $subTitle; ?></h5>
                 <div>
-                    <a data-bs-toggle="collapse" href="#multiCollapseExample1"
-                    role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="btn btn-success">Pencarian</a>
+                    <a data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="btn btn-success">Pencarian</a>
                     <a href="<?= site_url('admin/aset_desa/new') ?>" class="btn btn-primary">Add New Row</a>
                 </div>
             </div>
@@ -113,17 +112,48 @@
                 xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
             }
         },
-        columns: [
-            { data: 'id', visible: false, searchable: false},
-            { data: 'barang_golongan_kode', visible: false},
-            { data: 'barang_bidang_kode', visible: false},
-            { data: 'barang_kelompok_kode', visible: false},
-            { data: 'barang_kode', visible: false},
-            { data: 'tahun_pengadaan', visible: false},
-            { data: 'status_registrasi', visible: false},
-            { data: 'no', orderable: false, searchable: false},
-            { data: 'nama_barang', searchable: false},
-            { data: 'barang_kode', searchable: false},
+        columns: [{
+                data: 'id',
+                visible: false,
+                searchable: false
+            },
+            {
+                data: 'barang_golongan_kode',
+                visible: false
+            },
+            {
+                data: 'barang_bidang_kode',
+                visible: false
+            },
+            {
+                data: 'barang_kelompok_kode',
+                visible: false
+            },
+            {
+                data: 'barang_kode',
+                visible: false
+            },
+            {
+                data: 'tahun_pengadaan',
+                visible: false
+            },
+            {
+                data: 'status_registrasi',
+                visible: false
+            },
+            {
+                data: 'no',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'nama_barang',
+                searchable: false
+            },
+            {
+                data: 'barang_kode',
+                searchable: false
+            },
             {
                 data: 'nomor_urut_barang',
                 searchable: false,
@@ -144,7 +174,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">`;
                     html += `<li><a href="javascript:detailData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a></li>`;
-                    if(row.status_registrasi == '1') {
+                    if (row.status_registrasi == '1') {
                         html += `<li><a href="javascript:registerData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-external-link-fill align-bottom me-2 text-muted"></i> Register</a></li>`;
                     }
                     html += `<li><a href="javascript:tutupTransaksi(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-book-fill align-bottom me-2 text-muted"></i> Tutup Transaksi</a></li>`;
@@ -191,59 +221,88 @@
     var currentYear = new Date().getFullYear();
     var data = [];
     for (var i = currentYear - 5; i <= currentYear; i++) {
-        data.push({ id: i, text: i });
+        data.push({
+            id: i,
+            text: i
+        });
     }
     $('.tahun_pengadaan').select2({
         placeholder: 'Pilih Opsi',
         data: data,
     }).val(currentYear).trigger('change')
-    
+
     // create select2 registrasi
     $('.status_registrasi').select2({
         placeholder: 'Pilih Opsi',
-        data: [{id: '2', text: 'Sudah'},{id: '1', text: 'Belum'}],
+        data: [{
+            id: '2',
+            text: 'Sudah'
+        }, {
+            id: '1',
+            text: 'Belum'
+        }],
     }).val('').trigger('change')
 
-    var barang_bidang_kode = $('.barang_bidang_kode').select2({placeholder: 'Pilih Opsi'});
-    var barang_kelompok_kode = $('.barang_kelompok_kode').select2({placeholder: 'Pilih Opsi'});
-    var barang_kode = $('.barang_kode').select2({placeholder: 'Pilih Opsi'});
+    var barang_bidang_kode = $('.barang_bidang_kode').select2({
+        placeholder: 'Pilih Opsi'
+    });
+    var barang_kelompok_kode = $('.barang_kelompok_kode').select2({
+        placeholder: 'Pilih Opsi'
+    });
+    var barang_kode = $('.barang_kode').select2({
+        placeholder: 'Pilih Opsi'
+    });
 
     ajaxSelectFromApi({
         id: '.barang_golongan_kode',
-        headers: { "Authorization": "Bearer <?= $token ?>"},
+        headers: {
+            "Authorization": "Bearer <?= $token ?>"
+        },
         url: '<?= $apiDomain . '/api/select2/barang_golongan' ?>',
     });
-    $(document).on('change', '.barang_golongan_kode', function(){
+    $(document).on('change', '.barang_golongan_kode', function() {
         barang_bidang_kode.val('').trigger('change');
         barang_kelompok_kode.val('').trigger('change');
         barang_kode.val('').trigger('change');
         ajaxSelectFromApi({
             id: '.barang_bidang_kode',
-            headers: { "Authorization": "Bearer <?= $token ?>"},
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
             url: '<?= $apiDomain . '/api/select2/barang_bidang' ?>',
-            optionalSearch: {barang_golongan_kode: $(this).val()},
+            optionalSearch: {
+                barang_golongan_kode: $(this).val()
+            },
         });
     })
-    $(document).on('change', '.barang_bidang_kode', function(){
+    $(document).on('change', '.barang_bidang_kode', function() {
         barang_kelompok_kode.val('').trigger('change');
         barang_kode.val('').trigger('change');
         ajaxSelectFromApi({
             id: '.barang_kelompok_kode',
-            headers: { "Authorization": "Bearer <?= $token ?>"},
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
             url: '<?= $apiDomain . '/api/select2/barang_kelompok' ?>',
-            optionalSearch: {barang_bidang_kode: $(this).val()},
+            optionalSearch: {
+                barang_bidang_kode: $(this).val()
+            },
         });
     })
-    $(document).on('change', '.barang_kelompok_kode', function(){
+    $(document).on('change', '.barang_kelompok_kode', function() {
         barang_kode.val('').trigger('change');
         ajaxSelectFromApi({
             id: '.barang_kode',
-            headers: { "Authorization": "Bearer <?= $token ?>"},
+            headers: {
+                "Authorization": "Bearer <?= $token ?>"
+            },
             url: '<?= $apiDomain . '/api/select2/barang' ?>',
-            optionalSearch: {barang_kelompok_kode: $(this).val()},
+            optionalSearch: {
+                barang_kelompok_kode: $(this).val()
+            },
         });
     })
-    
+
     function registerData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
@@ -256,13 +315,15 @@
             cancelButtonText: "Batal",
             buttonsStyling: false,
             showCloseButton: true,
-            preConfirm: function (email) {
-                return new Promise(function (resolve, reject) {
+            preConfirm: function(email) {
+                return new Promise(function(resolve, reject) {
                     $.ajax({
                         url: "<?= site_url('admin/aset_desa/register/') ?>" + id,
-                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
                         success: function(res) {
-                            if(res.status) {
+                            if (res.status) {
                                 resolve();
                                 Swal.fire('Success!', res.message, 'success').then((result) => {
                                     location.reload();
@@ -278,6 +339,7 @@
             allowOutsideClick: false
         });
     }
+
     function deleteData(id) {
         Swal.fire({
             title: "Apakah anda yakin?",
@@ -290,13 +352,15 @@
             cancelButtonText: "Batal",
             buttonsStyling: false,
             showCloseButton: true,
-            preConfirm: function (email) {
-                return new Promise(function (resolve, reject) {
+            preConfirm: function(email) {
+                return new Promise(function(resolve, reject) {
                     $.ajax({
                         url: "<?= site_url('admin/aset_desa/delete/') ?>" + id,
-                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
                         success: function(res) {
-                            if(res.status) {
+                            if (res.status) {
                                 resolve();
                                 Swal.fire('Success!', res.message, 'success').then((result) => {
                                     location.reload();
