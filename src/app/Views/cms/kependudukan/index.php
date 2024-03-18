@@ -121,7 +121,6 @@
                     <ul class="dropdown-menu dropdown-menu-end">`;
                     html += `<li><a href="javascript:detailData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a></li>`;
                     html += `<li><a href="<?= site_url('admin/kependudukan/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
-                    html += `<li><a href="<?= site_url('admin/kependudukan/') ?>tambah_anggota/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-user-fill align-bottom me-2 text-muted"></i> Tambah Anggota Keluarga</a></li>`;
                     html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
                     html += `</ul></div>`;
                     return html;
