@@ -51,22 +51,36 @@
     </div>
 </div>
 <!--end row-->
+
+<div class="modal fade modalTambahAnggota" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Tambah Anggota</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="formTambahAnggota"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="modal fade modalDetail" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myExtraLargeModalLabel">Detail Aset</h5>
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Detail Kependudukan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="formDetail"></div>
             </div>
-            <div class="modal-footer">
-                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
-            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
 
 <script>
     var table;
@@ -116,6 +130,16 @@
         ]
     });
 
+    function tambahAnggota(id) {
+        $('.modalDetail').modal('hide');
+        $('.formTambahAnggota').load('<?= site_url('admin/kependudukan/tambah_anggota/') ?>' + id, function(response, status, xhr) {
+            if (status == "error") {
+                alert('Error:', xhr.statusText)
+                return;
+            }
+            $('.modalTambahAnggota').modal('show');
+        });
+    }
     function detailData(id) {
         $('.formDetail').load('<?= site_url('admin/kependudukan/show/') ?>' + id, function(response, status, xhr) {
             if (status == "error") {

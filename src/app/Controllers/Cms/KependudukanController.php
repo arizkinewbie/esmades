@@ -45,7 +45,9 @@ class KependudukanController extends BaseAdminController
             ];
             $response = $this->request($dataRequest);
             if ($response->getStatusCode() == 200) {
-                $result = json_decode($response->getBody(), true);
+                $dataResult = json_decode($response->getBody(), true);
+                $result = $dataResult['kependudukan'];
+                $resultDetail = $dataResult['kependudukan_detail'];
                 $data = [
                     'title' => $this->titleHeader,
                     'subTitle' => 'Edit ' . $this->titleHeader,
@@ -55,9 +57,41 @@ class KependudukanController extends BaseAdminController
                     'token' => session('jwtToken'),
                     'apiDomain' => getenv('API_DOMAIN'),
                     'view' => $this->var['viewPath'] . 'detail',
+                    'resultDetail' => $resultDetail,
                 ];
                 $data = array_merge($data, $result);
                 return view('cms/kependudukan/show', $data);
+            }
+        }
+    }
+
+    public function tambah_anggota($id = null)
+    {
+
+        if ($id) {
+            $dataRequest = [
+                'method' => 'GET',
+                'api_path' => '/api/kependudukan/show/' . $id,
+            ];
+
+            $response = $this->request($dataRequest);
+            if ($response->getStatusCode() == 200) {
+                $dataResult = json_decode($response->getBody(), true);
+                $result = $dataResult['kependudukan'];
+                $resultDetail = $dataResult['kependudukan_detail'];
+                $data = [
+                    'title' => $this->titleHeader,
+                    'subTitle' => 'Edit ' . $this->titleHeader,
+                    'select2' => true,
+                    'dropzone' => true,
+                    'dataTable' => true,
+                    'token' => session('jwtToken'),
+                    'apiDomain' => getenv('API_DOMAIN'),
+                    'view' => $this->var['viewPath'] . 'detail',
+                    'resultDetail' => $resultDetail,
+                ];
+                $data = array_merge($data, $result);
+                return view('cms/kependudukan/tambah_anggota', $data);
             }
         }
     }
@@ -190,6 +224,8 @@ class KependudukanController extends BaseAdminController
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
         }
     }
+
+    
 
     public function delete($id = null)
     {

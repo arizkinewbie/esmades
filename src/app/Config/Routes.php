@@ -268,6 +268,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
         $routes->get('edit/(:num)', 'KependudukanController::edit/$1');
         $routes->post('update/(:num)', 'KependudukanController::update/$1');
         $routes->get('register/(:num)', 'KependudukanController::register/$1');
+        $routes->get('tambah_anggota/(:num)', 'KependudukanController::tambah_anggota/$1');
     });
     
     $routes->group('klien', ['namespace' => 'App\Controllers\Cms'], function ($routes) {
