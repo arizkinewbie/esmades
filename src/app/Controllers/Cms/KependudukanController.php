@@ -91,9 +91,6 @@ class KependudukanController extends BaseAdminController
 
     public function create()
     {
-
-        
-
         $dataRequest = [
             'method'            => 'POST',
             'api_path'          => '/api/kependudukan',
@@ -104,7 +101,22 @@ class KependudukanController extends BaseAdminController
         ];
 
         $response = $this->request($dataRequest);
+        // return $this->respond($response->getStatusCode());
         if ($response->getStatusCode() == 201) {
+            $files = json_decode((string) $this->request->getPost('files'));
+            $countFiles = count($files);
+            if ($countFiles > 0) {
+                foreach ($files as $row) {
+                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
+                    $file = new File($fileToMove);
+
+                    $destinationFolder = FCPATH . 'uploads/kependudukan/';
+                    if (!is_dir($destinationFolder)) {
+                        mkdir($destinationFolder, 0777, true);
+                    }
+                    $file->move($destinationFolder, $row->filename);
+                }
+            }
             return redirect()->to('/admin/kependudukan/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->withInput()->with('listErrors', json_decode($response->getBody())->messages)->withInput();
@@ -157,7 +169,22 @@ class KependudukanController extends BaseAdminController
         // return $this->respond($response->getBody());
 
         if ($response->getStatusCode() == 200) {
+            $files = json_decode((string) $this->request->getPost('files'));
+            $countFiles = count($files);
+            if ($countFiles > 0) {
+                foreach ($files as $row) {
+                    $fileToMove = FCPATH . 'uploads/temp/images/' . $row->filename;
+                    if (file_exists($fileToMove)) {
+                        $file = new File($fileToMove);
 
+                        $destinationFolder = FCPATH . 'uploads/kependudukan/';
+                        if (!is_dir($destinationFolder)) {
+                            mkdir($destinationFolder, 0777, true);
+                        }
+                        $file->move($destinationFolder, $row->filename);
+                    }
+                }
+            }
             return redirect()->to('/admin/kependudukan/index')->with('success', 'Data berhasil disimpan.');
         } else {
             return redirect()->back()->with('listErrors', json_decode($response->getBody())->messages)->withInput();

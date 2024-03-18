@@ -38,6 +38,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">NPWP</label>
+                                <input type="text" class="form-control npwp" name="npwp" value="<?= set_value('npwp') ?>" placeholder="NPWP">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="firstNameinput" class="form-label">Jenis Pajak</label>
+                                <select class="form-control js-example-basic-single jenis_pajak_id" name="jenis_pajak_id"></select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label for="firstNameinput" class="form-label">Nama Kepala Keluarga</label>
                                 <input type="text" class="form-control nama_kepala_keluarga" name="nama_kepala_keluarga" value="<?= set_value('nama_kepala_keluarga') ?>" placeholder="Nama Kepala Keluarga">
                             </div>
@@ -89,6 +106,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -120,39 +138,40 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Desa</label>
-                                <input type="text" readonly class="form-control desa_nama" name="desa_nama" value="<?= set_value('desa_nama') ?>" placeholder="Desa">
+                                <label for="firstNameinput" class="form-label">Luas Tanah</label>
+                                <input type="text" class="form-control cleave-numeral luas_tanah" name="luas_tanah" value="<?= set_value('luas_tanah') ?>" placeholder="Luas Tanah">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Kecamatan</label>
-                                <input type="text" readonly class="form-control kecamatan_nama" name="kecamatan_nama" value="<?= set_value('kecamatan_nama') ?>" placeholder="Kecamatan">
+                                <label for="firstNameinput" class="form-label">Satuan Luas Tanah</label>
+                                <select class="form-control js-example-basic-single satuan_luas_tanah" name="satuan_luas_tanah"></select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Kabupaten</label>
-                                <input type="text" readonly class="form-control kabupaten_nama" name="kabupaten_nama" value="<?= set_value('kabupaten_nama') ?>" placeholder="Kabupaten">
+                                <label for="firstNameinput" class="form-label">Luas Bangungan</label>
+                                <input type="text" class="form-control cleave-numeral luas_bangunan" name="luas_bangunan" value="<?= set_value('luas_bangunan') ?>" placeholder="Luas Bangungan">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Provinsi</label>
-                                <input type="text" readonly class="form-control provinsi_nama" name="provinsi_nama" value="<?= set_value('provinsi_nama') ?>" placeholder="Provinsi">
+                                <label for="firstNameinput" class="form-label">Satuan Luas Bangungan</label>
+                                <select class="form-control js-example-basic-single satuan_luas_bangunan" name="satuan_luas_bangunan"></select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="firstNameinput" class="form-label">Kode Pos</label>
-                                <input type="text" required class="form-control kode_pos" name="kode_pos" value="<?= set_value('kode_pos') ?>" placeholder="Kode Pos">
+                                <label for="firstNameinput" class="form-label">Status Tempat Tinggal</label>
+                                <select class="form-control js-example-basic-single status_tempat_tinggal" name="status_tempat_tinggal"></select>
                             </div>
                         </div>
                     </div>
@@ -174,10 +193,51 @@
                                 <label class="form-label">Polygon</label>
                                 <div class="input-group">
                                     <button type="button" class="input-group-text btnModalPoligon">Tampilkan Peta</button>
-                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"></textarea>
-                                    <!-- <input type="text" class="form-control lat_lng" name="lat_lng" value="<?= set_value('lat_lng') ?>" placeholder="Garis Bujur & lintang"> -->
+                                    <textarea class="form-control poligon" name="poligon" id="poligon" readonly cols="30" rows="10"><?= set_value('poligon') ?></textarea>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <textarea name="files" id="files" cols="30" rows="10" hidden></textarea>
+                        <div class="col-md-6">
+                            <div class="dropzone">
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple="multiple">
+                                </div>
+                                <div class="dz-message needsclick">
+                                    <div class="mb-3">
+                                        <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
+                                    </div>
+                                    <h4>Unggah foto rumah tampak depan, <br> samping & belakang</h4>
+                                </div>
+                            </div>
+
+                            <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                <li class="mt-2" id="dropzone-preview-list">
+                                    <!-- This is used as the file preview template -->
+                                    <div class="border rounded">
+                                        <div class="d-flex p-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm bg-light rounded">
+                                                    <img data-dz-thumbnail class="img-fluid rounded d-block" src="assets/images/new-document.png" alt="Dropzone-Image" />
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="pt-1">
+                                                    <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
+                                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                    <strong class="error text-danger" data-dz-errormessage></strong>
+                                                </div>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     
@@ -301,6 +361,12 @@
 
 
     ajaxSelectFromApi({
+        id: '.jenis_pajak_id',
+        headers: { "Authorization": "Bearer <?= $token ?>" },
+        url: '<?= $apiDomain . '/api/select2/jenis_pajak' ?>',
+        selected: '<?= set_value('jenis_pajak_id') ?>',
+    });
+    ajaxSelectFromApi({
         id: '.agama_id',
         headers: { "Authorization": "Bearer <?= $token ?>" },
         url: '<?= $apiDomain . '/api/select2/agama' ?>',
@@ -324,5 +390,73 @@
             {id: 'Laki-laki', text: 'Laki-laki'},
             {id: 'Perempuan', text: 'Perempuan'},
         ]
-    }).val('<?= set_value('pendidikan_id') ?>').trigger('change')
+    }).val('<?= set_value('jenis_kelamin') ?>').trigger('change')
+    $('.satuan_luas_tanah').select2({
+        placeholder: 'Pilih Opsi',
+        data: [
+            {id: 'Hektar', text: 'Hektar'},
+            {id: 'M2', text: 'M2'},
+        ]
+    }).val('<?= set_value('satuan_luas_tanah') ?>').trigger('change')
+    $('.satuan_luas_bangunan').select2({
+        placeholder: 'Pilih Opsi',
+        data: [
+            {id: 'Hektar', text: 'Hektar'},
+            {id: 'M2', text: 'M2'},
+        ]
+    }).val('<?= set_value('satuan_luas_bangunan') ?>').trigger('change')
+    $('.status_tempat_tinggal').select2({
+        placeholder: 'Pilih Opsi',
+        data: [
+            {id: 'Milik Sendiri', text: 'Milik Sendiri'},
+            {id: 'Milik Keluarga', text: 'Milik Keluarga'},
+            {id: 'Milik Perusahaan', text: 'Milik Perusahaan'},
+            {id: 'Sewa', text: 'Sewa'},
+        ]
+    }).val('<?= set_value('status_tempat_tinggal') ?>').trigger('change')
+
+
+
+    var formData = new FormData();
+    var dataFiles = [];
+    var textareaFiles = $("#files");
+    var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
+    if (dropzonePreviewNode) {
+        var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
+        dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
+        var dropzone = new Dropzone(".dropzone", {
+            autoQueue: true,
+            url: '<?= site_url('admin/kependudukan/') ?>upload_file',
+            method: "post",
+            previewTemplate: previewTemplate,
+            previewsContainer: "#dropzone-preview",
+            success: function(file, response) {
+                dataFiles.push(response);
+                textareaFiles.val(JSON.stringify(dataFiles));
+            },
+            error: function(file, respon) {
+                this.removeFile(file)
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: respon.message.file,
+                });
+            },
+
+            init: function() {
+
+                this.on("removedfile", function(file) {
+                    console.log(file.upload.uuid);
+                });
+                this.on("addedfile", function(file) {
+                    // var myForm = document.getElementById('form1');
+                    // formData = new FormData(myForm);
+                    // console.log(formData);
+                });
+                this.on("sendingmultiple", function(file, xhr, formData) {
+
+                });
+            }
+        });
+    }
 </script>
