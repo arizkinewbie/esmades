@@ -37,13 +37,13 @@
             <td><?= $whatsapp; ?></td>
         </tr>
         <tr>
-            <td>Foto Kabar Desa</td>
+            <td>Foto Wisata Desa</td>
             <td>
                 <?php if (!empty($foto_wisata)) : ?>
                     <?php $arrayFiles = json_decode($foto_wisata, true); ?>
                     <?php foreach ($arrayFiles as $row) : ?>
                         <?php if (file_exists("uploads/wisata/images/" . $row['nama_file'])) : ?>
-                            <img widht="80" height="80" src="<?= base_url('uploads/kabar_desa/images/' . $row['nama_file']) ?>" onclick="return showImage(this.src)">
+                            <img widht="80" height="80" src="<?= base_url('uploads/wisata/images/' . $row['nama_file']) ?>" onclick="return showImage(this.src)">
                         <?php endif; ?>
                     <?php endforeach ?>
                 <?php endif ?>
