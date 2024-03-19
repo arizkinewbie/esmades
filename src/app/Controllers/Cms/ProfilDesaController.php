@@ -31,14 +31,13 @@ class ProfilDesaController extends BaseAdminController
 
         if ($response->getStatusCode() == 200) {
             $result = json_decode($response->getBody());
-
         } else {
             $result = "";
         }
 
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Index '.$this->titleHeader,
+            'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'index',
@@ -47,17 +46,19 @@ class ProfilDesaController extends BaseAdminController
         return $this->render($data);
     }
 
-    public function new() {
+    public function new()
+    {
         $data = [
             'title' => $this->titleHeader,
-            'subTitle' => 'Tambah '.$this->titleHeader,
+            'subTitle' => 'Tambah ' . $this->titleHeader,
             'token' => session('jwtToken'),
             'view' => $this->var['viewPath'] . 'new',
         ];
         return $this->render($data);
     }
-    
-    public function create() {
+
+    public function create()
+    {
         $nama = $this->request->getPost('nama');
 
         $dataRequest = [
@@ -75,8 +76,9 @@ class ProfilDesaController extends BaseAdminController
             return redirect()->to('/admin/profil/index')->with('error', 'Data gagal disimpan.');
         }
     }
-    
-    public function edit($id = null) {
+
+    public function edit($id = null)
+    {
 
         $dataRequest = [
             'method' => 'GET',
@@ -87,7 +89,8 @@ class ProfilDesaController extends BaseAdminController
             $result = json_decode($response->getBody(), true);
             $data = [
                 'title' => $this->titleHeader,
-                'subTitle' => 'Edit '.$this->titleHeader,
+                'ckeditor' => true,
+                'subTitle' => 'Edit ' . $this->titleHeader,
                 'view' => $this->var['viewPath'] . 'edit',
             ];
             $data = array_merge($data, $result[0]);
@@ -97,7 +100,8 @@ class ProfilDesaController extends BaseAdminController
         }
     }
 
-    public function update($id = null) {
+    public function update($id = null)
+    {
         $nama = $this->request->getPost('nama');
 
         $dataRequest = [
