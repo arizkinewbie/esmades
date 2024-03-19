@@ -82,6 +82,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
 
     $routes->group('perangkat_desa', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'PerangkatDesaController::index');
+        $routes->get('show/(:num)', 'PerangkatDesaController::show/$1');
         $routes->get('new', 'PerangkatDesaController::new');
         $routes->post('create', 'PerangkatDesaController::create');
         $routes->post('testing', 'PerangkatDesaController::testing');

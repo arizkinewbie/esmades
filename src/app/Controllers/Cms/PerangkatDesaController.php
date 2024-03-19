@@ -23,7 +23,7 @@ class PerangkatDesaController extends BaseAdminController
     public function index()
     {
         $data = [
-            'title' => 'Aset Desa',
+            'title' => $this->titleHeader,
             'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
@@ -33,6 +33,31 @@ class PerangkatDesaController extends BaseAdminController
         return $this->render($data);
     }
 
+    public function show($id = null)
+    {
+        if ($id) {
+            $dataRequest = [
+                'method' => 'GET',
+                'api_path' => '/api/perangkat_desa/show/' . $id,
+            ];
+            $response = $this->request($dataRequest);
+            if ($response->getStatusCode() == 200) {
+                $result = json_decode($response->getBody(), true);
+                $data = [
+                    'title' => $this->titleHeader,
+                    'subTitle' => 'Detail ' . $this->titleHeader,
+                    'select2' => true,
+                    'dropzone' => true,
+                    'dataTable' => true,
+                    'token' => session('jwtToken'),
+                    'apiDomain' => getenv('API_DOMAIN'),
+                    'view' => $this->var['viewPath'] . 'detail',
+                ];
+                $data = array_merge($data, $result);
+                return view('cms/perangkat_desa/show', $data);
+            }
+        }
+    }
     public function new()
     {
         $data = [
