@@ -13,39 +13,17 @@
                 <table id="table" class="table table-bordered nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>No.</th>
-                            <th class="w-75">Nama Wisata</th>
+                            <th>Nama Wisata</th>
+                            <th>Jenis Wisata</th>
+                            <th>Alamat Wisata</th>
+                            <th>Nomor Kontak</th>
+                            <th>Keterangan Wisata</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php if (!empty($result)) : $no = 1;
-                            foreach ($result as $k) : ?>
-                                <tr>
-                                    <td><?= $no; ?></td>
-                                    <td><?= $k->nama_wisata; ?></td>
-                                    <td>
-                                        <div class="dropdown d-inline-block">
-                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill align-middle"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
-                                                    <a href="<?= site_url('admin/wisata/edit/' . $k->id) ?>" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:deleteData('<?= $k->id ?>')" class="dropdown-item remove-item-btn">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                        <?php $no++;
-                            endforeach;
-                        endif; ?>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
@@ -53,8 +31,92 @@
 </div>
 <!--end row-->
 
+<!--end row-->
+<div class="modal fade modalDetail" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Detail <?= $title; ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="formDetail"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <script>
-    $('#table').DataTable();
+    var table;
+
+    table = $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '<?= $apiDomain ?>/api/datatable/wisata',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <?= $token ?>');
+            }
+        },
+        columns: [{
+                data: 'id',
+                visible: false
+            },
+            {
+                data: 'no',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'nama_wisata'
+            },
+            {
+                data: 'jenis_wisata'
+            },
+            {
+                data: 'alamat_wisata'
+            },
+            {
+                data: 'nomor_kontak'
+            },
+            {
+                data: 'keterangan_wisata'
+            },
+            {
+                data: 'id',
+                orderable: false,
+                className: 'text-center',
+                width: '100px',
+                render: function(data, type, row) {
+                    var html = `<div class="dropdown d-inline-block">
+        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="ri-more-fill align-middle"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">`;
+                    html += `<li><a href="javascript:detailData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a></li>`;
+                    html += `<li><a href="<?= site_url('admin/wisata/') ?>edit/` + data + `" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>`;
+                    html += `<li><a href="javascript:deleteData(` + data + `)" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>`;
+                    html += `</ul></div>`;
+                    return html;
+                }
+            },
+        ]
+    });
+
+
+    function detailData(id) {
+        $('.formDetail').load('<?= site_url('admin/wisata/show/') ?>' + id, function(response, status, xhr) {
+            if (status == "error") {
+                alert('Error:', xhr.statusText)
+                return;
+            }
+            $('.modalDetail').modal('show');
+        });
+    }
 
     function deleteData(id) {
         Swal.fire({

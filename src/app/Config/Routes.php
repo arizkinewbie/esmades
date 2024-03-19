@@ -248,6 +248,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Cms'], function ($route
 
     $routes->group('wisata', ['namespace' => 'App\Controllers\Cms', 'filter' => 'auth'], function ($routes) {
         $routes->get('index', 'WisataController::index');
+        $routes->get('show/(:num)', 'WisataController::show/$1');
         $routes->get('new', 'WisataController::new');
         $routes->post('create', 'WisataController::create');
         $routes->get('edit/(:num)', 'WisataController::edit/$1');

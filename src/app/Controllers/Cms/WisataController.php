@@ -22,30 +22,41 @@ class WisataController extends BaseAdminController
 
     public function index()
     {
-
-        $array = array('test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8');
-
-        $dataRequest = [
-            'method' => 'GET',
-            'api_path' => '/api/wisata',
-        ];
-        $response = $this->request($dataRequest);
-
-        if ($response->getStatusCode() == 200) {
-            $result = json_decode($response->getBody());
-        } else {
-            $result = "";
-        }
-
         $data = [
             'title' => $this->titleHeader,
             'subTitle' => 'Index ' . $this->titleHeader,
             'dataTable' => true,
             'token' => session('jwtToken'),
+            'apiDomain' => getenv('API_DOMAIN'),
             'view' => $this->var['viewPath'] . 'index',
-            'result' => $result
         ];
         return $this->render($data);
+    }
+
+    public function show($id = null)
+    {
+        if ($id) {
+            $dataRequest = [
+                'method' => 'GET',
+                'api_path' => '/api/wisata/show/' . $id,
+            ];
+            $response = $this->request($dataRequest);
+            if ($response->getStatusCode() == 200) {
+                $result = json_decode($response->getBody(), true);
+                $data = [
+                    'title' => $this->titleHeader,
+                    'subTitle' => 'Detail ' . $this->titleHeader,
+                    'select2' => true,
+                    'dropzone' => true,
+                    'dataTable' => true,
+                    'token' => session('jwtToken'),
+                    'apiDomain' => getenv('API_DOMAIN'),
+                    'view' => $this->var['viewPath'] . 'detail',
+                ];
+                $data = array_merge($data, $result);
+                return view('cms/wisata/show', $data);
+            }
+        }
     }
 
     public function new()
